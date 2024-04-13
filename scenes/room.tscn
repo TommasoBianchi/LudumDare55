@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0vis11a86lkk"]
+
+[ext_resource type="PackedScene" uid="uid://d4iva5r2cmdjv" path="res://scenes/player.tscn" id="1_o10hu"]
+[ext_resource type="PackedScene" uid="uid://dy6xki38mjmv6" path="res://scenes/placed_rune.tscn" id="2_yorr4"]
+
+[node name="Room" type="Node"]
+
+[node name="PlacedRunesContainer" type="Node" parent="."]
+
+[node name="Player" parent="." node_paths=PackedStringArray("placed_runes_container") instance=ExtResource("1_o10hu")]
+position = Vector2(439, 290)
+placed_rune_prefab = ExtResource("2_yorr4")
+placed_runes_container = NodePath("../PlacedRunesContainer")

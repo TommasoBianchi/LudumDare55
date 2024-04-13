@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy6xki38mjmv6"]
+
+[ext_resource type="Texture2D" uid="uid://b8bcpg0jo7ewp" path="res://assets/icon.svg" id="1_yijdk"]
+
+[node name="PlacedRune" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_yijdk")
+flip_v = true
