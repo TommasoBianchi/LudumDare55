@@ -6,6 +6,8 @@ extends Node2D
 @export var spawned_creatures_container: Node
 @export var time_for_rune_level: float = 1
 @export var time_for_summon_level: float = 1
+@export var max_rune_levels: int = 3
+@export var max_summon_levels: int = 3
 @export var progress_bar: TextureProgressBar
 
 var _rune_charge: float = 0
@@ -30,8 +32,11 @@ func _process(delta):
 func _process_rune(delta):
 	if Input.is_action_pressed("place_rune"):
 		_rune_charge += delta
+		_rune_charge = min(_rune_charge, time_for_rune_level * max_rune_levels)
 		progress_bar.show()
 		progress_bar.value = _get_remaining_from_charge(_rune_charge, time_for_rune_level) / time_for_rune_level
+		if _rune_charge >= time_for_rune_level * max_rune_levels:
+			progress_bar.value = 1
 		return true
 	if Input.is_action_just_released("place_rune"):
 		_place_rune()
@@ -41,8 +46,11 @@ func _process_rune(delta):
 func _process_summon(delta):
 	if Input.is_action_pressed("summon"):
 		_summon_charge += delta
+		_summon_charge = min(_summon_charge, time_for_summon_level * max_summon_levels)
 		progress_bar.show()
 		progress_bar.value = _get_remaining_from_charge(_summon_charge, time_for_summon_level) / time_for_summon_level
+		if _summon_charge >= time_for_summon_level * max_summon_levels:
+			progress_bar.value = 1
 		return true
 	if Input.is_action_just_released("summon"):
 		if _summon_charge >= 1:
