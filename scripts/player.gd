@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Player
+
 @export var move_speed: float = 400
 @export var placed_rune_prefab: PackedScene
 @export var placed_runes_container: Node
@@ -111,6 +113,11 @@ func _summon():
 			rune_data.level,
 			level
 		)
+		
+func receive_hit(from: Creature, damage: float):
+	print("The player has been hit for %f damage!" % damage)
+	# TODO: implement
+	pass
 
 ########################
 # Utility functions
