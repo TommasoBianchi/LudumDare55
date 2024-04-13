@@ -12,4 +12,4 @@ animated_sprite = NodePath("Sprite2D")
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_escpl")
 animation = &"move"
-frame_progress = 0.655131
+frame_progress = 0.803738

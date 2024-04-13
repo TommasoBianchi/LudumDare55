@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dxrc6iu7f2plr" path="res://assets/sprites/player/player.png" id="2_o5qng"]
 [ext_resource type="PackedScene" uid="uid://2joqtfpmw7he" path="res://scenes/loading_bar.tscn" id="3_qt1lq"]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("progress_bar")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("progress_bar") groups=["player"]]
 y_sort_enabled = true
 script = ExtResource("1_5ch10")
 progress_bar = NodePath("TextureProgressBar")
