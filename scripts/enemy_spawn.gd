@@ -2,6 +2,7 @@ extends Node2D
 
 @export var spawn_delays: Array[int]
 @export var spawned_enemies_container: Node
+@export var enemy_type: String
 
 var _current_index: int = 0
 var _elapsed_time: float = 0
@@ -21,7 +22,7 @@ func _process(delta):
 		
 func _spawn_enemies(amount: int):
 	for i in range(amount):
-		var creature = CreatureFactory.spawn_enemy(global_position, spawned_enemies_container)
+		var creature = CreatureFactory.spawn_enemy(global_position, spawned_enemies_container, enemy_type)
 	
 func _turn_off():
 	# TODO: add some VFX
