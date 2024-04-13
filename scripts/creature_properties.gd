@@ -47,41 +47,41 @@ class CreatureStats:
 var summon_stats = [
 	[
 		CreatureStats.new(
-			"warrior", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			"warrior", 50.0, 5.0, 1.0, 1.0, 0.0, 150.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/melee_1_movement.tres"),
 			SeekAndDestroyMovement.new(), CloserTargeter.new()),
 		CreatureStats.new(
-			"fighter", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			"fighter", 100.0, 10.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/melee_2_movement.tres"),
 			SeekAndDestroyMovement.new(), CloserTargeter.new()),
 		CreatureStats.new(
-			"knight", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			"knight", 100.0, 10.0, 1.0, 1.0, 50.0, 200.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/melee_3_movement.tres"),
-			OrbitalMovement.new(true, 5, 5), PlayerTargeter.new())
+			OrbitalMovement.new(true, 150.0, 1.0), PlayerTargeter.new())
 	],
 	[
 		CreatureStats.new(
-			"archer", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			"archer", 30.0, 5.0, 500.0, 1.0, 0.0, 0.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/ranged_1_movement.tres")),
 		CreatureStats.new(
-			"marksman", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			"marksman", 30.0, 15.0, 500.0, 1.0, 0.0, 0.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/ranged_2_movement.tres"),
 			BaseMovement.new(), CloserTargeter.new()),
 		CreatureStats.new(
-			"assassin",50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			"assassin",50.0, 15.0, 300.0, 1.25, 0.0, 200.0, 15.0, 250.0,
 			preload("res://assets/animations/summon/ranged_3_movement.tres"),
-			BaseMovement.new(), LeastHealthTargeter.new(false))
+			SeekAndKiteMovement.new(300.0), LeastHealthTargeter.new(false))
 	],
 	[
 		CreatureStats.new(
-			"priest", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			"priest", 50.0, 10.0, 150.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/support_1_movement.tres"),
-			BaseMovement.new(), LeastHealthTargeter.new(true)),
+			OrbitalMovement.new(false, 150.0, 1.0), LeastHealthTargeter.new(true)),
 		CreatureStats.new(
-			"enchanter", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			"enchanter", 75.0, 50.0, 300.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/support_2_movement.tres")),
 		CreatureStats.new(
-			"seraphim", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			"seraphim", 100.0, 10.0, 1.0, 1.0, 50.0, 250.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/support_3_movement.tres"),
 			RicochetOnWallsMovement.new())
 	]
@@ -90,23 +90,23 @@ var summon_stats = [
 # Define different enemy and their statistics
 var enemy_stats = {
 	"enemy_1": CreatureStats.new(
-		"enemy_1", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+		"enemy_1", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		SeekAndDestroyMovement.new(), CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_2": CreatureStats.new(
-		"enemy_2", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+		"enemy_2", 30.0, 5.0, 350.0, 1.0, 0.0, 0.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		BaseMovement.new(), CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_3": CreatureStats.new(
-		"enemy_3", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+		"enemy_3", 100.0, 5.0, 1.0, 1.0, 0.0, 150.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		SeekAndDestroyMovement.new(), CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_4": CreatureStats.new(
-		"enemy_4", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+		"enemy_4", 50.0, 15.0, 1.0, 1.0, 0.0, 250.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		SeekAndDestroyMovement.new(), PlayerTargeter.new()),
 	"enemy_5": CreatureStats.new(
-		"enemy_5", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+		"enemy_5", 150.0, 0.0, 1.0, 1.0, 0.0, 200.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		RicochetOnWallsMovement.new())
 }
