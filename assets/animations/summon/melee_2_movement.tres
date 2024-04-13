@@ -1,37 +1,78 @@
-[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://h2th864gcige"]
+[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://h2th864gcige"]
 
+[ext_resource type="Texture2D" uid="uid://bcd3bvhslrqis" path="res://assets/sprites/summons/melee 2 attack.png" id="1_j5jk2"]
 [ext_resource type="Texture2D" uid="uid://cbbu74gfg7hsb" path="res://assets/sprites/summons/melee 2 movement.png" id="1_tsy4l"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8rwnp"]
-atlas = ExtResource("1_tsy4l")
-region = Rect2(0, 0, 100, 129)
+[sub_resource type="AtlasTexture" id="AtlasTexture_kun08"]
+atlas = ExtResource("1_j5jk2")
+region = Rect2(0, 0, 102, 133)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lhc60"]
-atlas = ExtResource("1_tsy4l")
-region = Rect2(100, 0, 100, 129)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmgom"]
+atlas = ExtResource("1_j5jk2")
+region = Rect2(102, 0, 102, 133)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ofx6h"]
-atlas = ExtResource("1_tsy4l")
-region = Rect2(200, 0, 100, 129)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrdyl"]
+atlas = ExtResource("1_j5jk2")
+region = Rect2(204, 0, 102, 133)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yrfw8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8slc"]
+atlas = ExtResource("1_j5jk2")
+region = Rect2(306, 0, 102, 133)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2valy"]
+atlas = ExtResource("1_j5jk2")
+region = Rect2(408, 0, 102, 133)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2562e"]
 atlas = ExtResource("1_tsy4l")
-region = Rect2(300, 0, 100, 129)
+region = Rect2(0, 0, 103, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhfp7"]
+atlas = ExtResource("1_tsy4l")
+region = Rect2(103, 0, 103, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl1bo"]
+atlas = ExtResource("1_tsy4l")
+region = Rect2(206, 0, 103, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8ius"]
+atlas = ExtResource("1_tsy4l")
+region = Rect2(309, 0, 103, 131)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8rwnp")
+"texture": SubResource("AtlasTexture_kun08")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lhc60")
+"texture": SubResource("AtlasTexture_rmgom")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ofx6h")
+"texture": SubResource("AtlasTexture_rrdyl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yrfw8")
+"texture": SubResource("AtlasTexture_f8slc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2valy")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2562e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhfp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl1bo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8ius")
 }],
 "loop": true,
 "name": &"move",

@@ -1,6 +1,27 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://f8h24h3qlstu"]
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://f8h24h3qlstu"]
 
+[ext_resource type="Texture2D" uid="uid://dgnpi6erte358" path="res://assets/sprites/summons/melee 1 attack.png" id="1_3ablx"]
 [ext_resource type="Texture2D" uid="uid://d1iqa3kbhmau5" path="res://assets/sprites/summons/melee 1 movement.png" id="1_h3ptj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov8ir"]
+atlas = ExtResource("1_3ablx")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcv7a"]
+atlas = ExtResource("1_3ablx")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpodr"]
+atlas = ExtResource("1_3ablx")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlaeg"]
+atlas = ExtResource("1_3ablx")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv3ww"]
+atlas = ExtResource("1_3ablx")
+region = Rect2(400, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v8vch"]
 atlas = ExtResource("1_h3ptj")
@@ -24,6 +45,26 @@ region = Rect2(400, 0, 100, 100)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov8ir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcv7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpodr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlaeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv3ww")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v8vch")
