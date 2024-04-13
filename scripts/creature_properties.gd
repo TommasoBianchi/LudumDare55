@@ -49,11 +49,11 @@ var summon_stats = [
 		CreatureStats.new(
 			"warrior", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/melee_1_movement.tres"),
-			SeekAndDestroyMovement.new()),
+			SeekAndDestroyMovement.new(), CloserTargeter.new()),
 		CreatureStats.new(
 			"fighter", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/melee_2_movement.tres"),
-			SeekAndDestroyMovement.new()),
+			SeekAndDestroyMovement.new(), CloserTargeter.new()),
 		CreatureStats.new(
 			"knight", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/melee_3_movement.tres"),
