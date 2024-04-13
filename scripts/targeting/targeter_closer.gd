@@ -24,5 +24,5 @@ func compute_target(
 	var closest_to_position = self_position
 	if _closer_to == CloserTo.PLAYER:
 		closest_to_position = player_position
-	var closest_enemy = Utils.get_closest(closest_to_position, candidate_targets as Array[Node2D])
+	var closest_enemy = Utils.get_closest_creature(closest_to_position, candidate_targets)
 	return closest_enemy

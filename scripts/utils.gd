@@ -31,6 +31,12 @@ func keep_movement_in_map(current_position: Vector2, movement: Vector2, map: Rec
 		
 	return movement
 
+func get_closest_creature(position: Vector2, creatures: Array[Creature]) -> Creature:
+	var nodes: Array[Node2D]
+	nodes.assign(creatures)
+	var closest_node = get_closest(position, nodes)
+	return closest_node as Creature
+
 func get_closest(position: Vector2, nodes: Array[Node2D]) -> Node2D:
 	assert(len(nodes) > 0)
 	
