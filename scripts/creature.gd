@@ -88,8 +88,9 @@ func _spawn_projectile(target: Target, damage: float):
 	projectile.position = global_position  # TODO: think about having an explicit spawn position
 	projectile.damage = damage
 	projectile.direction = (target.position - global_position).normalized()
+	projectile.attacker_type = type
 	
-	# TODO: make it better
+	# NOTE: this is not the cleanest, but it works as it should
 	get_parent().add_child(projectile)
 
 func _process_move(direction: Vector2, delta: float):
