@@ -92,15 +92,15 @@ var enemy_stats = {
 	"enemy_1": CreatureStats.new(
 		"enemy_1", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
-		SeekAndDestroyMovement.new(), CloserTargeter.new()),
+		SeekAndDestroyMovement.new(), CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_2": CreatureStats.new(
 		"enemy_2", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
-		BaseMovement.new(), CloserTargeter.new()),
+		BaseMovement.new(), CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_3": CreatureStats.new(
 		"enemy_3", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
-		SeekAndDestroyMovement.new(), CloserTargeter.new()),
+		SeekAndDestroyMovement.new(), CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_4": CreatureStats.new(
 		"enemy_4", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
