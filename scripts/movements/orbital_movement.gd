@@ -1,3 +1,5 @@
+extends BaseMovement
+
 class_name OrbitalMovement
 
 var _clockwise: bool
@@ -24,6 +26,6 @@ func compute_next_direction(
 		_current_angle = (target_position - self_position).angle()
 		
 	var desired_position = target_position + Vector2.from_angle(_current_angle) * _radius
-	_current_angle += _angular_speed * delta
+	_current_angle += _angular_speed * delta * (1 if _clockwise else -1)
 	
-	return desired_position
+	return (desired_position - self_position).normalized()
