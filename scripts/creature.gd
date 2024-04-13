@@ -3,11 +3,14 @@ extends Node2D
 class_name Creature
 
 enum CreatureType { SUMMON, ENEMY }
+enum AttackType { MELEE, RANGED }
 
 @export var animated_sprite: AnimatedSprite2D
+@export var projectile_prefab: PackedScene
 
 var move_speed: float = 0
 var type: CreatureType
+var attack_type: AttackType
 var current_health: float
 var damage: float
 var range: float
@@ -73,14 +76,22 @@ func _process_attack(target: Target):
 		
 	var has_crit: bool = randf_range(0, 100) > crit_chance
 	var actual_damage = damage * (1 if not has_crit else crit_damage / 100)
-	if target.creature:
-		target.creature.receive_hit(self, actual_damage)
-	else:
-		# The player has been hit
-		_player.receive_hit(self, actual_damage)
+	if attack_type == AttackType.MELEE:
+		(target.creature if target.creature else _player).receive_hit(self, actual_damage)
+	elif attack_type == AttackType.RANGED:
+		_spawn_projectile(target, actual_damage)
 		
 	_attack_cooldown = 1 / attack_speed
 	
+func _spawn_projectile(target: Target, damage: float):
+	var projectile: Projectile = projectile_prefab.instantiate()
+	projectile.position = global_position  # TODO: think about having an explicit spawn position
+	projectile.damage = damage
+	projectile.direction = (target.position - global_position).normalized()
+	
+	# TODO: make it better
+	get_parent().add_child(projectile)
+
 func _process_move(direction: Vector2, delta: float):
 	var movement = Utils.keep_movement_in_map(
 		global_position,

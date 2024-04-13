@@ -13,6 +13,7 @@ func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureTyp
 	creature.damage = stats.damage
 	creature.range = stats.range
 	creature.attack_speed = stats.attack_speed
+	creature.attack_type = stats.attack_type
 	creature.shield = stats.shield
 	creature.crit_chance = stats.crit_chance
 	creature.crit_damage = stats.crit_damage
