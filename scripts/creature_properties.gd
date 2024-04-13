@@ -12,8 +12,8 @@ class CreatureStats:
 	var crit_chance: float
 	var crit_damage: float
 	var sprite_frames: SpriteFrames
-	var movement: BaseMovement
-	var targeter: BaseTargeter
+	var movement_builder: Callable
+	var targeter_builder: Callable
 	
 	# Constructor to initialize the stats
 	func _init(
@@ -27,8 +27,8 @@ class CreatureStats:
 		crit_chance: float,
 		crit_damage: float,
 		sprite_frames: SpriteFrames,
-		movement: BaseMovement = BaseMovement.new(),
-		targeter: BaseTargeter = BaseTargeter.new()
+		movement_builder: Callable = func(): return BaseMovement.new(),
+		targeter_builder: Callable = func(): return BaseTargeter.new()
 	):
 		self.name = name
 		self.health = health
@@ -40,8 +40,8 @@ class CreatureStats:
 		self.crit_chance = crit_chance
 		self.crit_damage = crit_damage
 		self.sprite_frames = sprite_frames
-		self.movement = movement
-		self.targeter = targeter
+		self.movement_builder = movement_builder
+		self.targeter_builder = targeter_builder
 
 # Define different summons and their statistics
 var summon_stats = [
@@ -49,15 +49,18 @@ var summon_stats = [
 		CreatureStats.new(
 			"warrior", 50.0, 5.0, 1.0, 1.0, 0.0, 150.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/melee_1_movement.tres"),
-			SeekAndDestroyMovement.new(), CloserTargeter.new()),
+			func (): return SeekAndDestroyMovement.new(),
+			func (): return CloserTargeter.new()),
 		CreatureStats.new(
 			"fighter", 100.0, 10.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/melee_2_movement.tres"),
-			SeekAndDestroyMovement.new(), CloserTargeter.new()),
+			func (): return SeekAndDestroyMovement.new(),
+			func (): return CloserTargeter.new()),
 		CreatureStats.new(
 			"knight", 100.0, 10.0, 1.0, 1.0, 50.0, 200.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/melee_3_movement.tres"),
-			OrbitalMovement.new(true, 150.0, 1.0), PlayerTargeter.new())
+			func (): return OrbitalMovement.new(true, 150.0, 1.0),
+			func (): return PlayerTargeter.new())
 	],
 	[
 		CreatureStats.new(
@@ -66,24 +69,27 @@ var summon_stats = [
 		CreatureStats.new(
 			"marksman", 30.0, 15.0, 500.0, 1.0, 0.0, 0.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/ranged_2_movement.tres"),
-			BaseMovement.new(), CloserTargeter.new()),
+			func (): return BaseMovement.new(),
+			func (): return CloserTargeter.new()),
 		CreatureStats.new(
 			"assassin",50.0, 15.0, 300.0, 1.25, 0.0, 200.0, 15.0, 250.0,
 			preload("res://assets/animations/summon/ranged_3_movement.tres"),
-			SeekAndKiteMovement.new(300.0), LeastHealthTargeter.new(false))
+			func (): return SeekAndKiteMovement.new(300.0),
+			func (): return LeastHealthTargeter.new(false))
 	],
 	[
 		CreatureStats.new(
 			"priest", 50.0, 10.0, 150.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/support_1_movement.tres"),
-			OrbitalMovement.new(false, 150.0, 1.0), LeastHealthTargeter.new(true)),
+			func (): return OrbitalMovement.new(false, 150.0, 1.0),
+			func (): return LeastHealthTargeter.new(true)),
 		CreatureStats.new(
 			"enchanter", 75.0, 50.0, 300.0, 1.0, 0.0, 200.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/support_2_movement.tres")),
 		CreatureStats.new(
 			"seraphim", 100.0, 10.0, 1.0, 1.0, 50.0, 250.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/support_3_movement.tres"),
-			RicochetOnWallsMovement.new())
+			func (): return RicochetOnWallsMovement.new())
 	]
 ]
 
@@ -92,23 +98,27 @@ var enemy_stats = {
 	"enemy_1": CreatureStats.new(
 		"enemy_1", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
-		SeekAndDestroyMovement.new(), CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
+		func (): return SeekAndDestroyMovement.new(),
+		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_2": CreatureStats.new(
 		"enemy_2", 30.0, 5.0, 350.0, 1.0, 0.0, 0.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
-		BaseMovement.new(), CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
+		func (): return BaseMovement.new(),
+		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_3": CreatureStats.new(
 		"enemy_3", 100.0, 5.0, 1.0, 1.0, 0.0, 150.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
-		SeekAndDestroyMovement.new(), CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
+		func (): return SeekAndDestroyMovement.new(),
+		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_4": CreatureStats.new(
 		"enemy_4", 50.0, 15.0, 1.0, 1.0, 0.0, 250.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
-		SeekAndDestroyMovement.new(), PlayerTargeter.new()),
+		func (): return SeekAndDestroyMovement.new(),
+		func (): return PlayerTargeter.new()),
 	"enemy_5": CreatureStats.new(
 		"enemy_5", 150.0, 0.0, 1.0, 1.0, 0.0, 200.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
-		RicochetOnWallsMovement.new())
+		func (): return RicochetOnWallsMovement.new())
 }
 
 # Function to get summon stats by type and tier

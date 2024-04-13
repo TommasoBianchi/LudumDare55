@@ -6,8 +6,8 @@ func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureTyp
 	var creature: Creature = creature_prefab.instantiate()
 	creature.type = type
 	creature.global_position = position
-	creature.movement = stats.movement
-	creature.targeter = stats.targeter
+	creature.movement = stats.movement_builder.call()
+	creature.targeter = stats.targeter_builder.call()
 	creature.move_speed = stats.speed
 	creature.current_health = stats.health
 	creature.animated_sprite.sprite_frames = stats.sprite_frames
