@@ -55,7 +55,12 @@ func _process_move(delta):
 
 	var is_moving = move_dir != Vector2.ZERO
 	if is_moving:
-		translate(move_dir.normalized() * move_speed * delta)
+		var movement = Utils.keep_movement_in_map(
+			global_position,
+			move_dir.normalized() * move_speed * delta,
+			get_viewport_rect().grow(-50)  # TODO: find a better way to define the limits of the map
+		)
+		translate(movement)
 
 func _place_rune():
 	var level: int = floori(_rune_charge / time_for_rune_level)
