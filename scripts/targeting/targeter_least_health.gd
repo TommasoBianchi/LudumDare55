@@ -1,5 +1,7 @@
 extends BaseTargeter
 
+class_name LeastHealthTargeter
+
 var _target_ally: bool
 
 func _init(target_ally: bool):

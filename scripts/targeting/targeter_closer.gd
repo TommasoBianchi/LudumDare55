@@ -1,5 +1,7 @@
 extends BaseTargeter
 
+class_name CloserTargeter
+
 enum CloserTo { SELF, PLAYER }
 
 var _closer_to: CloserTo
