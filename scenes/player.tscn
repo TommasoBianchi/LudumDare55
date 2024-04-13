@@ -19,4 +19,3 @@ offset_top = -70.0
 offset_right = 500.0
 offset_bottom = 442.0
 scale = Vector2(0.05, 0.05)
-loop = null

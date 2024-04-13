@@ -3,6 +3,8 @@ extends Node2D
 @export var move_speed: float = 400
 @export var placed_rune_prefab: PackedScene
 @export var placed_runes_container: Node
+@export var base_creature_prefab: PackedScene
+@export var spawned_creatures_container: Node
 @export var time_for_rune_level: float = 1
 @export var time_for_summon_level: float = 1
 @export var progress_bar: TextureProgressBar
@@ -88,7 +90,12 @@ func _summon():
 	if level == 0:
 		return
 	
-	# TODO: spawn creatures
+	# Spawn creatures
+	for rune_data in _placed_runes:
+		var creature: BaseCreature = base_creature_prefab.instantiate()
+		creature.global_position = rune_data.position
+		creature.setup(rune_data.level, level)
+		spawned_creatures_container.add_child(creature)
 
 ########################
 # Utility functions
