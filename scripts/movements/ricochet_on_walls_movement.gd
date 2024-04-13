@@ -2,8 +2,11 @@ extends BaseMovement
 
 class_name RicochetOnWallsMovement
 
-var _previous_position: Vector2 = Vector2.ZERO
-var _current_direction: Vector2 = Vector2.ZERO
+var _current_direction: Vector2
+
+func _init():
+	var angle = randf_range(0, TAU)
+	self._current_direction = Vector2.from_angle(angle)
 
 func compute_next_direction(
 	self_position: Vector2,
@@ -12,11 +15,6 @@ func compute_next_direction(
 	map: Rect2,
 	delta: float
 ) -> Vector2:
-	if _current_direction == Vector2.ZERO:
-		_current_direction = Vector2.from_angle(randf_range(0, TAU))
-		_previous_position = self_position
-		return _current_direction
-		
 	var colliding_walls = Utils.find_colliding_walls(self_position, map)
 	
 	if Utils.WallPosition.UP in colliding_walls:
