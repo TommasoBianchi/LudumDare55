@@ -9,6 +9,7 @@ func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureTyp
 	creature.targeter = stats.targeter
 	creature.move_speed = stats.speed
 	creature.current_health = stats.health
+	creature.animated_sprite.sprite_frames = stats.sprite_frames
 	parent.add_child(creature)
 	return creature
 	

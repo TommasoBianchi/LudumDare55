@@ -11,6 +11,7 @@ class CreatureStats:
 	var speed: float
 	var crit_chance: float
 	var crit_damage: float
+	var sprite_frames: SpriteFrames
 	var movement: BaseMovement
 	var targeter: BaseTargeter
 	
@@ -25,6 +26,7 @@ class CreatureStats:
 		speed: float,
 		crit_chance: float,
 		crit_damage: float,
+		sprite_frames: SpriteFrames,
 		movement: BaseMovement = BaseMovement.new(),
 		targeter: BaseTargeter = BaseTargeter.new()
 	):
@@ -37,35 +39,76 @@ class CreatureStats:
 		self.speed = speed
 		self.crit_chance = crit_chance
 		self.crit_damage = crit_damage
+		self.sprite_frames = sprite_frames
 		self.movement = movement
 		self.targeter = targeter
 
 # Define different summons and their statistics
 var summon_stats = [
 	[
-		CreatureStats.new("warrior", 5, 1, 1, 1, 0, 1, 5, 200, SeekAndDestroyMovement.new()),
-		CreatureStats.new("fighter", 5, 1, 1, 1, 0, 1, 5, 200, SeekAndDestroyMovement.new()),
-		CreatureStats.new("knight", 5, 1, 1, 1, 0, 1, 5, 200)
+		CreatureStats.new(
+			"warrior", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			preload("res://assets/animations/summon/melee_1_movement.tres"),
+			SeekAndDestroyMovement.new()),
+		CreatureStats.new(
+			"fighter", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			preload("res://assets/animations/summon/melee_2_movement.tres"),
+			SeekAndDestroyMovement.new()),
+		CreatureStats.new(
+			"knight", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			preload("res://assets/animations/summon/melee_2_movement.tres"),
+			OrbitalMovement.new(true, 5, 5), PlayerTargeter.new())
 	],
 	[
-		CreatureStats.new("archer", 5, 1, 1, 1, 0, 1, 5, 200),
-		CreatureStats.new("marksman", 5, 1, 1, 1, 0, 1, 5, 200, BaseMovement.new(), CloserTargeter.new()),
-		CreatureStats.new("assassin",5, 1, 1, 1, 0, 1, 5, 200, BaseMovement.new(), LeastHealthTargeter.new(false))
+		CreatureStats.new(
+			"archer", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			preload("res://assets/animations/summon/melee_1_movement.tres")),
+		CreatureStats.new(
+			"marksman", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			preload("res://assets/animations/summon/melee_2_movement.tres"),
+			BaseMovement.new(), CloserTargeter.new()),
+		CreatureStats.new(
+			"assassin",50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			preload("res://assets/animations/summon/melee_1_movement.tres"),
+			BaseMovement.new(), LeastHealthTargeter.new(false))
 	],
 	[
-		CreatureStats.new("priest", 5, 1, 1, 1, 0, 1, 5, 200, BaseMovement.new(), LeastHealthTargeter.new(true)),
-		CreatureStats.new("enchanter", 5, 1, 1, 1, 0, 1, 5, 200),
-		CreatureStats.new("seraphim", 5, 1, 1, 1, 0, 1, 5, 200, RicochetOnWallsMovement.new())
+		CreatureStats.new(
+			"priest", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			preload("res://assets/animations/summon/melee_1_movement.tres"),
+			BaseMovement.new(), LeastHealthTargeter.new(true)),
+		CreatureStats.new(
+			"enchanter", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			preload("res://assets/animations/summon/melee_2_movement.tres")),
+		CreatureStats.new(
+			"seraphim", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+			preload("res://assets/animations/summon/melee_1_movement.tres"),
+			RicochetOnWallsMovement.new())
 	]
 ]
 
 # Define different enemy and their statistics
 var enemy_stats = {
-	"enemy_1": CreatureStats.new("enemy_1", 5, 1, 1, 1, 0, 1, 5, 200, SeekAndDestroyMovement.new()),
-	"enemy_2": CreatureStats.new("enemy_2", 5, 1, 1, 1, 0, 1, 5, 200),
-	"enemy_3": CreatureStats.new("enemy_3", 5, 1, 1, 1, 0, 1, 5, 200, SeekAndDestroyMovement.new()),
-	"enemy_4": CreatureStats.new("enemy_4", 5, 1, 1, 1, 0, 1, 5, 200),
-	"enemy_5": CreatureStats.new("enemy_5", 5, 1, 1, 1, 0, 1, 5, 200)
+	"enemy_1": CreatureStats.new(
+		"enemy_1", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+		preload("res://assets/animations/summon/melee_1_movement.tres"),
+		SeekAndDestroyMovement.new(), CloserTargeter.new()),
+	"enemy_2": CreatureStats.new(
+		"enemy_2", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+		preload("res://assets/animations/summon/melee_1_movement.tres"),
+		BaseMovement.new(), CloserTargeter.new()),
+	"enemy_3": CreatureStats.new(
+		"enemy_3", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+		preload("res://assets/animations/summon/melee_1_movement.tres"),
+		SeekAndDestroyMovement.new(), CloserTargeter.new()),
+	"enemy_4": CreatureStats.new(
+		"enemy_4", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+		preload("res://assets/animations/summon/melee_1_movement.tres"),
+		SeekAndDestroyMovement.new(), PlayerTargeter.new()),
+	"enemy_5": CreatureStats.new(
+		"enemy_5", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+		preload("res://assets/animations/summon/melee_1_movement.tres"),
+		RicochetOnWallsMovement.new())
 }
 
 # Function to get summon stats by type and tier
@@ -74,7 +117,9 @@ func get_summon_stats(type: int, tier: int) -> CreatureStats:
 	
 # Function to get enemy stats by name
 func get_enemy_stats(name: String) -> CreatureStats:
-	return enemy_stats.get(name, CreatureStats.new("enemy_1", 5, 1, 1, 1, 0, 1, 5, 200))
+	return enemy_stats.get(name, CreatureStats.new(
+		"enemy_1", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
+		preload("res://assets/animations/summon/melee_1_movement.tres")))
 
 # Usage example
 func _ready():
