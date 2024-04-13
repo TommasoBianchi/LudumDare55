@@ -87,6 +87,7 @@ func _place_rune():
 	_placed_runes.append(PlacedRuneData.new(global_position, level))
 	var placed_rune = placed_rune_prefab.instantiate()
 	placed_rune.global_position = global_position
+	placed_rune.get_node("Sprite2D").texture = RunesLoader.get_rune_data(level, 1).sprite
 	placed_runes_container.add_child(placed_rune)
 	
 func _summon():

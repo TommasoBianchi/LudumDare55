@@ -5,5 +5,6 @@
 [node name="PlacedRune" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
 texture = ExtResource("1_q6hym")
 flip_v = true
