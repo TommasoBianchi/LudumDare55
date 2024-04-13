@@ -3,21 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://bjdh4wfgu84me" path="res://assets/sprites/summons/melee 3 attack.png" id="1_klyo6"]
 [ext_resource type="Texture2D" uid="uid://dm8gm70g2y75s" path="res://assets/sprites/summons/melee 3 movement.png" id="1_quo0g"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j018u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_171eb"]
+atlas = ExtResource("1_klyo6")
+region = Rect2(0, 0, 120, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yu8b"]
 atlas = ExtResource("1_klyo6")
 region = Rect2(120, 0, 120, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gfc1g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtb61"]
 atlas = ExtResource("1_klyo6")
 region = Rect2(240, 0, 120, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8nk53"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y65uc"]
 atlas = ExtResource("1_klyo6")
 region = Rect2(360, 0, 120, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mymb1"]
-atlas = ExtResource("1_klyo6")
-region = Rect2(480, 0, 120, 160)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_li0cy"]
 atlas = ExtResource("1_quo0g")
@@ -39,16 +39,16 @@ region = Rect2(360, 0, 120, 159)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j018u")
+"texture": SubResource("AtlasTexture_171eb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gfc1g")
+"texture": SubResource("AtlasTexture_4yu8b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8nk53")
+"texture": SubResource("AtlasTexture_gtb61")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mymb1")
+"texture": SubResource("AtlasTexture_y65uc")
 }],
 "loop": true,
 "name": &"attack",
