@@ -12,9 +12,10 @@ func compute_target(
 	enemy_creatures: Array[Creature],
 	ally_creatures: Array[Creature],
 	player_position: Vector2
-) -> Creature:
+) -> Target:
 	var candidate_targets = ally_creatures if _target_ally else enemy_creatures
 	if len(candidate_targets) == 0:
 		return null
 	
-	return Utils.get_least_health(candidate_targets)
+	var target_creature = Utils.get_least_health(candidate_targets)
+	return Target.from_creature(target_creature)

@@ -26,7 +26,7 @@ func _process(delta):
 	ally_creatures.assign(get_tree().get_nodes_in_group(_own_group))
 	ally_creatures = ally_creatures.filter(func (c): return c != self)
 	
-	var target: Creature = targeter.compute_target(
+	var target: Target = targeter.compute_target(
 		global_position,
 		enemy_creatures,
 		ally_creatures,
