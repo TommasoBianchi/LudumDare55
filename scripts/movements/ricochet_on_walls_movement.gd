@@ -9,7 +9,8 @@ func compute_next_direction(
 	self_position: Vector2,
 	target_position: Vector2,
 	has_taget: bool,
-	map: Rect2
+	map: Rect2,
+	delta: float
 ) -> Vector2:
 	if _current_direction == Vector2.ZERO:
 		_current_direction = Vector2.from_angle(randf_range(0, TAU))

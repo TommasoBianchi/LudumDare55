@@ -36,7 +36,8 @@ func _process(delta):
 		global_position,
 		target.position if has_target else Vector2.ZERO,
 		has_target,
-		get_viewport_rect().grow(-50)
+		get_viewport_rect().grow(-50),
+		delta
 	)
 	
 	if direction != Vector2.ZERO:
