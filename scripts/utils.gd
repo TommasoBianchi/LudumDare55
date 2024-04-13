@@ -44,3 +44,16 @@ func get_closest(position: Vector2, nodes: Array[Node2D]) -> Node2D:
 			closest_distance = distance
 			
 	return closest_node
+
+func get_least_health(creatures: Array[Creature]) -> Creature:
+	assert(len(creatures) > 0)
+	
+	var least_health_creature = creatures[0]
+	var health = creatures[0].current_health
+	
+	for creature in creatures:
+		if creature.current_health < health:
+			least_health_creature = creature
+			health = creature.current_health
+			
+	return least_health_creature
