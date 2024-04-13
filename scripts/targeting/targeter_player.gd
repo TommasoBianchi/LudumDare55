@@ -1,6 +1,6 @@
-extends RefCounted
+extends BaseTargeter
 
-class_name BaseTargeter
+class_name PlayerTargeter
 
 func compute_target(
 	self_position: Vector2,
@@ -8,4 +8,4 @@ func compute_target(
 	ally_creatures: Array[Creature],
 	player_position: Vector2
 ) -> Target:
-	return null
+	return Target.from_player_position(player_position)

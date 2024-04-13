@@ -24,8 +24,9 @@ func _process(delta):
 	enemy_creatures.assign(get_tree().get_nodes_in_group(_enemy_group))
 	var ally_creatures: Array[Creature]
 	ally_creatures.assign(get_tree().get_nodes_in_group(_own_group))
+	ally_creatures = ally_creatures.filter(func (c): return c != self)
 	
-	var target: Creature = targeter.compute_target(
+	var target: Target = targeter.compute_target(
 		global_position,
 		enemy_creatures,
 		ally_creatures,
@@ -36,7 +37,8 @@ func _process(delta):
 		global_position,
 		target.position if has_target else Vector2.ZERO,
 		has_target,
-		get_viewport_rect().grow(-50)
+		get_viewport_rect().grow(-50),
+		delta
 	)
 	
 	if direction != Vector2.ZERO:

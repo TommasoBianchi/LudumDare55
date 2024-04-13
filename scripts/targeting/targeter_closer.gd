@@ -16,7 +16,7 @@ func compute_target(
 	enemy_creatures: Array[Creature],
 	ally_creatures: Array[Creature],
 	player_position: Vector2
-) -> Creature:
+) -> Target:
 	var candidate_targets = ally_creatures if _target_ally else enemy_creatures
 	if len(candidate_targets) == 0:
 		return null
@@ -24,5 +24,5 @@ func compute_target(
 	var closest_to_position = self_position
 	if _closer_to == CloserTo.PLAYER:
 		closest_to_position = player_position
-	var closest_enemy = Utils.get_closest(closest_to_position, candidate_targets as Array[Node2D])
-	return closest_enemy
+	var closest_enemy = Utils.get_closest_creature(closest_to_position, candidate_targets)
+	return Target.from_creature(closest_enemy)
