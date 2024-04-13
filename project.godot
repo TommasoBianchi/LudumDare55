@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 Utils="*res://scripts/utils.gd"
+CreatureFactory="*res://scripts/creature_factory.gd"
 
 [display]
 
