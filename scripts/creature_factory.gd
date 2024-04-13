@@ -18,4 +18,8 @@ func spawn_summon(position: Vector2, parent: Node, rune_level: int, summon_level
 	
 func spawn_enemy(position: Vector2, parent: Node):
 	var creature = _spawn_creature(position, parent, Creature.CreatureType.ENEMY)
+	var stats = CreatureProperties.get_enemy_stats("enemy_1")
+	print("Enemy name: ", stats.name)
+	print("Enemy health: ", stats.health)
+	print("Enemy damage: ", stats.damage)
 	return creature
