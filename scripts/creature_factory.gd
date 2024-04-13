@@ -4,6 +4,7 @@ var creature_prefab: PackedScene = preload("res://scenes/creature.tscn")
 
 func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureType, stats: CreatureProperties.CreatureStats) -> Creature:
 	var creature: Creature = creature_prefab.instantiate()
+	creature.type = type
 	creature.global_position = position
 	creature.movement = stats.movement
 	creature.targeter = stats.targeter

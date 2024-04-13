@@ -12,14 +12,15 @@ var current_health: float
 var movement: BaseMovement = BaseMovement.new()
 var targeter: BaseTargeter = BaseTargeter.new()
 
-var _own_group = "summons" if type == CreatureType.SUMMON else "enemies"
-var _enemy_group = "enemies" if type == CreatureType.SUMMON else "summons"
-
 func _ready():
 	assert(animated_sprite != null)
+	var _own_group = "summons" if type == CreatureType.SUMMON else "enemies"
 	add_to_group(_own_group)
 
 func _process(delta):
+	var _own_group = "summons" if type == CreatureType.SUMMON else "enemies"
+	var _enemy_group = "enemies" if type == CreatureType.SUMMON else "summons"
+	
 	var enemy_creatures: Array[Creature]
 	enemy_creatures.assign(get_tree().get_nodes_in_group(_enemy_group))
 	var ally_creatures: Array[Creature]
