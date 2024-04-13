@@ -5,6 +5,7 @@ extends Node2D
 @export var placed_runes_container: Node
 @export var time_for_rune_level: float = 1
 @export var time_for_summon_level: float = 1
+@export var progress_bar: TextureProgressBar
 
 var _rune_charge: float = 0
 var _placed_runes: Array[PlacedRuneData] = []
@@ -13,6 +14,7 @@ var _summon_charge: float = 0
 func _ready():
 	assert(placed_rune_prefab != null)
 	assert(placed_runes_container != null)
+	assert(progress_bar != null)
 
 func _process(delta):
 	var is_busy = _process_summon(delta)
@@ -21,11 +23,14 @@ func _process(delta):
 		is_busy = _process_rune(delta)
 	
 	if not is_busy:
+		progress_bar.hide()
 		_process_move(delta)
 	
 func _process_rune(delta):
 	if Input.is_action_pressed("place_rune"):
 		_rune_charge += delta
+		progress_bar.show()
+		progress_bar.value = _get_remaining_from_charge(_rune_charge, time_for_rune_level) / time_for_rune_level
 		return true
 	if Input.is_action_just_released("place_rune"):
 		_place_rune()
@@ -35,6 +40,8 @@ func _process_rune(delta):
 func _process_summon(delta):
 	if Input.is_action_pressed("summon"):
 		_summon_charge += delta
+		progress_bar.show()
+		progress_bar.value = _get_remaining_from_charge(_summon_charge, time_for_summon_level) / time_for_summon_level
 		return true
 	if Input.is_action_just_released("summon"):
 		_summon()
@@ -63,7 +70,7 @@ func _process_move(delta):
 		translate(movement)
 
 func _place_rune():
-	var level: int = floori(_rune_charge / time_for_rune_level)
+	var level: int = _get_level_from_charge(_rune_charge, time_for_rune_level)
 	if level == 0:
 		return
 
@@ -77,8 +84,21 @@ func _summon():
 	for placed_rune in placed_runes_container.get_children():
 		placed_rune.queue_free()
 		
-	var level: int = floori(_summon_charge / time_for_summon_level)
+	var level: int = _get_level_from_charge(_summon_charge, time_for_summon_level)
 	if level == 0:
 		return
 	
 	# TODO: spawn creatures
+
+########################
+# Utility functions
+########################
+
+func _get_level_from_charge(charge: float, charge_per_level: float) -> int:
+	var level: int = floori(charge / charge_per_level)
+	return level
+	
+func _get_remaining_from_charge(charge: float, charge_per_level: float) -> float:
+	var level: int = _get_level_from_charge(charge, charge_per_level)
+	var remaining: float = charge - level * charge_per_level
+	return remaining

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://2joqtfpmw7he"]
+
+[ext_resource type="Texture2D" uid="uid://ds3f080hlykl8" path="res://assets/loading_circle.png" id="1_owdyo"]
+
+[node name="TextureProgressBar" type="TextureProgressBar"]
+anchors_preset = -1
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+max_value = 1.0
+step = 0.0
+value = 1.0
+fill_mode = 4
+texture_progress = ExtResource("1_owdyo")
