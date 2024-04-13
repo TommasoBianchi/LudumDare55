@@ -56,33 +56,33 @@ var summon_stats = [
 			SeekAndDestroyMovement.new()),
 		CreatureStats.new(
 			"knight", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-			preload("res://assets/animations/summon/melee_2_movement.tres"),
+			preload("res://assets/animations/summon/melee_3_movement.tres"),
 			OrbitalMovement.new(true, 5, 5), PlayerTargeter.new())
 	],
 	[
 		CreatureStats.new(
 			"archer", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-			preload("res://assets/animations/summon/melee_1_movement.tres")),
+			preload("res://assets/animations/summon/ranged_1_movement.tres")),
 		CreatureStats.new(
 			"marksman", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-			preload("res://assets/animations/summon/melee_2_movement.tres"),
+			preload("res://assets/animations/summon/ranged_2_movement.tres"),
 			BaseMovement.new(), CloserTargeter.new()),
 		CreatureStats.new(
 			"assassin",50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-			preload("res://assets/animations/summon/melee_1_movement.tres"),
+			preload("res://assets/animations/summon/ranged_3_movement.tres"),
 			BaseMovement.new(), LeastHealthTargeter.new(false))
 	],
 	[
 		CreatureStats.new(
 			"priest", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-			preload("res://assets/animations/summon/melee_1_movement.tres"),
+			preload("res://assets/animations/summon/support_1_movement.tres"),
 			BaseMovement.new(), LeastHealthTargeter.new(true)),
 		CreatureStats.new(
 			"enchanter", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-			preload("res://assets/animations/summon/melee_2_movement.tres")),
+			preload("res://assets/animations/summon/support_2_movement.tres")),
 		CreatureStats.new(
 			"seraphim", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-			preload("res://assets/animations/summon/melee_1_movement.tres"),
+			preload("res://assets/animations/summon/support_3_movement.tres"),
 			RicochetOnWallsMovement.new())
 	]
 ]

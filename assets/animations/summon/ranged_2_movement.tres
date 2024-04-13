@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dgmc60u6gfugo"]
+
+[ext_resource type="Texture2D" uid="uid://b0oq33el2upl2" path="res://assets/sprites/summons/ranged 2 movement.png" id="1_uskwm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqc7y"]
+atlas = ExtResource("1_uskwm")
+region = Rect2(0, 0, 100, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xw0sd"]
+atlas = ExtResource("1_uskwm")
+region = Rect2(100, 0, 100, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ronfj"]
+atlas = ExtResource("1_uskwm")
+region = Rect2(200, 0, 100, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g8ut"]
+atlas = ExtResource("1_uskwm")
+region = Rect2(300, 0, 100, 155)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqc7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xw0sd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ronfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g8ut")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]

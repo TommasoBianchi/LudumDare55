@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bib8ds1hgcyyt"]
+
+[ext_resource type="Texture2D" uid="uid://dygqh52ran6w6" path="res://assets/sprites/summons/ranged 3 movement.png" id="1_8xp88"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o41f1"]
+atlas = ExtResource("1_8xp88")
+region = Rect2(0, 0, 100, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh40p"]
+atlas = ExtResource("1_8xp88")
+region = Rect2(100, 0, 100, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv174"]
+atlas = ExtResource("1_8xp88")
+region = Rect2(200, 0, 100, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jxxx"]
+atlas = ExtResource("1_8xp88")
+region = Rect2(300, 0, 100, 170)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o41f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vh40p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv174")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jxxx")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]

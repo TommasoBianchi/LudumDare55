@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dfy8leq357cv2"]
+
+[ext_resource type="Texture2D" uid="uid://dm8gm70g2y75s" path="res://assets/sprites/summons/melee 3 movement.png" id="1_quo0g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cudi0"]
+atlas = ExtResource("1_quo0g")
+region = Rect2(0, 0, 100, 157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aut18"]
+atlas = ExtResource("1_quo0g")
+region = Rect2(100, 0, 100, 157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x0or"]
+atlas = ExtResource("1_quo0g")
+region = Rect2(200, 0, 100, 157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blfsm"]
+atlas = ExtResource("1_quo0g")
+region = Rect2(300, 0, 100, 157)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cudi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aut18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x0or")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blfsm")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]

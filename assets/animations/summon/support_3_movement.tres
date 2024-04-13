@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dogks1jbk1d3v"]
+
+[ext_resource type="Texture2D" uid="uid://byilx4q4hlfm5" path="res://assets/sprites/summons/support 3 movement.png" id="1_q8c4h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrosj"]
+atlas = ExtResource("1_q8c4h")
+region = Rect2(0, 0, 100, 173)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5nsq"]
+atlas = ExtResource("1_q8c4h")
+region = Rect2(100, 0, 100, 173)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7pet"]
+atlas = ExtResource("1_q8c4h")
+region = Rect2(200, 0, 100, 173)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3k0j3"]
+atlas = ExtResource("1_q8c4h")
+region = Rect2(300, 0, 100, 173)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrosj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5nsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7pet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3k0j3")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
