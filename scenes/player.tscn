@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://2joqtfpmw7he" path="res://scenes/loading_bar.tscn" id="3_qt1lq"]
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("progress_bar")]
+y_sort_enabled = true
 script = ExtResource("1_5ch10")
 progress_bar = NodePath("TextureProgressBar")
 

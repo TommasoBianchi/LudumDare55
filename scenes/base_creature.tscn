@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b8bcpg0jo7ewp" path="res://assets/icon.svg" id="2_7wmxh"]
 
 [node name="BaseCreature" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_sw6lb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

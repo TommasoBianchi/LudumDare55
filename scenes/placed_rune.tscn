@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b8bcpg0jo7ewp" path="res://assets/icon.svg" id="1_yijdk"]
 
 [node name="PlacedRune" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.15, 0.15)

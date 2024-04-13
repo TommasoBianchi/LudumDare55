@@ -4,11 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://dy6xki38mjmv6" path="res://scenes/placed_rune.tscn" id="2_yorr4"]
 [ext_resource type="PackedScene" uid="uid://cwvu8j1rcirql" path="res://scenes/base_creature.tscn" id="3_lm0jj"]
 
-[node name="Room" type="Node"]
+[node name="Room" type="Node2D"]
+y_sort_enabled = true
 
-[node name="PlacedRunesContainer" type="Node" parent="."]
+[node name="PlacedRunesContainer" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="SpawnedCreaturesContainer" type="Node" parent="."]
+[node name="SpawnedCreaturesContainer" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("placed_runes_container", "spawned_creatures_container") instance=ExtResource("1_o10hu")]
 position = Vector2(439, 290)

@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://ds3f080hlykl8" path="res://assets/loading_circle.png" id="1_owdyo"]
 
 [node name="TextureProgressBar" type="TextureProgressBar"]
-anchors_preset = -1
 offset_left = -256.0
 offset_top = -256.0
 offset_right = 256.0
