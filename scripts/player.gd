@@ -4,6 +4,7 @@ extends Node2D
 @export var placed_rune_prefab: PackedScene
 @export var placed_runes_container: Node
 @export var spawned_creatures_container: Node
+@export var animated_sprite: AnimatedSprite2D
 @export var time_for_rune_level: float = 1
 @export var time_for_summon_level: float = 1
 @export var max_rune_levels: int = 3
@@ -78,6 +79,9 @@ func _process_move(delta):
 			get_viewport_rect().grow(-50)  # TODO: find a better way to define the limits of the map
 		)
 		translate(movement)
+		animated_sprite.play("move")
+	else:
+		animated_sprite.stop()
 
 func _place_rune():
 	var level: int = _get_level_from_charge(_rune_charge, time_for_rune_level)
