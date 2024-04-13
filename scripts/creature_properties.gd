@@ -91,23 +91,23 @@ var summon_stats = [
 var enemy_stats = {
 	"enemy_1": CreatureStats.new(
 		"enemy_1", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-		preload("res://assets/animations/summon/melee_1_movement.tres"),
+		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		SeekAndDestroyMovement.new(), CloserTargeter.new()),
 	"enemy_2": CreatureStats.new(
 		"enemy_2", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-		preload("res://assets/animations/summon/melee_1_movement.tres"),
+		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		BaseMovement.new(), CloserTargeter.new()),
 	"enemy_3": CreatureStats.new(
 		"enemy_3", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-		preload("res://assets/animations/summon/melee_1_movement.tres"),
+		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		SeekAndDestroyMovement.new(), CloserTargeter.new()),
 	"enemy_4": CreatureStats.new(
 		"enemy_4", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-		preload("res://assets/animations/summon/melee_1_movement.tres"),
+		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		SeekAndDestroyMovement.new(), PlayerTargeter.new()),
 	"enemy_5": CreatureStats.new(
 		"enemy_5", 50.0, 5.0, 1.0, 1.0, 0.0, 200.0, 5.0, 200.0,
-		preload("res://assets/animations/summon/melee_1_movement.tres"),
+		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		RicochetOnWallsMovement.new())
 }
 
