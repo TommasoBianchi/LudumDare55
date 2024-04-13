@@ -45,7 +45,8 @@ func _process_summon(delta):
 		progress_bar.value = _get_remaining_from_charge(_summon_charge, time_for_summon_level) / time_for_summon_level
 		return true
 	if Input.is_action_just_released("summon"):
-		_summon()
+		if _summon_charge >= 1:
+			_summon()
 		_summon_charge = 0
 		_placed_runes = []
 	return false
