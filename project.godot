@@ -19,6 +19,7 @@ config/icon="res://assets/icon.svg"
 
 Utils="*res://scripts/utils.gd"
 CreatureFactory="*res://scripts/creature_factory.gd"
+CreatureProperties="*res://scripts/creature_properties.gd"
 
 [display]
 
