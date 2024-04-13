@@ -9,8 +9,17 @@ enum CreatureType { SUMMON, ENEMY }
 var move_speed: float = 0
 var type: CreatureType
 var current_health: float
+var damage: float
+var range: float
+var attack_speed: float
+var shield: float
+var crit_chance: float
+var crit_damage: float
 var movement: BaseMovement = BaseMovement.new()
 var targeter: BaseTargeter = BaseTargeter.new()
+
+@onready var _player: Player = get_tree().get_nodes_in_group("player")[0] as Player
+var _attack_cooldown: float = 0
 
 func _ready():
 	assert(animated_sprite != null)
@@ -31,9 +40,11 @@ func _process(delta):
 		global_position,
 		enemy_creatures,
 		ally_creatures,
-		get_tree().get_nodes_in_group("player")[0].global_position
+		_player.global_position
 	)
+	
 	var has_target: bool = target != null
+	
 	var direction = movement.compute_next_direction(
 		global_position,
 		target.position if has_target else Vector2.ZERO,
@@ -42,11 +53,47 @@ func _process(delta):
 		delta
 	)
 	
-	if direction != Vector2.ZERO:
-		var movement = Utils.keep_movement_in_map(
-			global_position,
-			direction.normalized() * move_speed * delta,
-			get_viewport_rect().grow(-50)  # TODO: find a better way to define the limits of the map
-		)
-		translate(movement)
+	var can_move: bool = direction != Vector2.ZERO
+	
+	_attack_cooldown = max(0, _attack_cooldown - delta)  # NOTE: this way the first frame attacking after a long pause moving will always be a hit
+	var can_attack_target: bool = has_target && (target.position - global_position).length_squared() < range ** 2
+	if can_attack_target:
+		_process_attack(target)
+		animated_sprite.play("attack")
+	elif can_move:
+		_process_move(direction, delta)
 		animated_sprite.play("move")
+	else:
+		# Is idle, so stop animation
+		animated_sprite.stop()
+
+func _process_attack(target: Target):
+	if _attack_cooldown > 0:
+		return
+		
+	var has_crit: bool = randf_range(0, 100) > crit_chance
+	var actual_damage = damage * (1 if not has_crit else crit_damage / 100)
+	if target.creature:
+		target.creature.receive_hit(self, actual_damage)
+	else:
+		# The player has been hit
+		_player.receive_hit(self, actual_damage)
+		
+	_attack_cooldown = 1 / attack_speed
+	
+func _process_move(direction: Vector2, delta: float):
+	var movement = Utils.keep_movement_in_map(
+		global_position,
+		direction.normalized() * move_speed * delta,
+		get_viewport_rect().grow(-50)  # TODO: find a better way to define the limits of the map
+	)
+	translate(movement)
+
+func receive_hit(from: Creature, damage: float):
+	var damage_after_shield = max(0, damage - shield)
+	shield = max(0, shield - damage)
+	current_health -= damage_after_shield
+	
+	if current_health <= 0:
+		# TODO: death animation
+		queue_free()

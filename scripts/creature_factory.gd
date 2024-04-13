@@ -10,6 +10,12 @@ func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureTyp
 	creature.targeter = stats.targeter_builder.call()
 	creature.move_speed = stats.speed
 	creature.current_health = stats.health
+	creature.damage = stats.damage
+	creature.range = stats.range
+	creature.attack_speed = stats.attack_speed
+	creature.shield = stats.shield
+	creature.crit_chance = stats.crit_chance
+	creature.crit_damage = stats.crit_damage
 	creature.animated_sprite.sprite_frames = stats.sprite_frames
 	parent.add_child(creature)
 	return creature
