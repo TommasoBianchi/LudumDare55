@@ -12,15 +12,22 @@ class_name Player
 @export var max_rune_levels: int = 3
 @export var max_summon_levels: int = 3
 @export var progress_bar: TextureProgressBar
+@export var sfx_audio_player_prefab: PackedScene
+@export var summon_sound = AudioStream
+@export var death_sound = AudioStream
 
 var _rune_charge: float = 0
 var _placed_runes: Array[PlacedRuneData] = []
 var _summon_charge: float = 0
+var _sfx_audio_player: SFXAudioPlayer
 
 func _ready():
 	assert(placed_rune_prefab != null)
 	assert(placed_runes_container != null)
 	assert(progress_bar != null)
+	_sfx_audio_player = sfx_audio_player_prefab.instantiate()
+	# TODO: Move this to the parent if necessary to spawn sounds after death
+	add_child(_sfx_audio_player)
 
 func _process(delta):
 	var is_busy = _process_summon(delta)
@@ -58,6 +65,7 @@ func _process_summon(delta):
 	if Input.is_action_just_released("summon"):
 		if _summon_charge >= 1:
 			_summon()
+			_sfx_audio_player.play_sound(summon_sound)
 		_summon_charge = 0
 		_placed_runes = []
 	return false
@@ -117,6 +125,7 @@ func _summon():
 func receive_hit(from: Creature, damage: float):
 	print("The player has been hit for %f damage!" % damage)
 	# TODO: implement
+	# _sfx_audio_player.play_sound(death_sound)
 	pass
 
 ########################

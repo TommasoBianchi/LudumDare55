@@ -5,6 +5,7 @@ class_name Creature
 enum CreatureType { SUMMON, ENEMY }
 
 @export var animated_sprite: AnimatedSprite2D
+@export var sfx_audio_player_prefab: PackedScene
 
 var move_speed: float = 0
 var type: CreatureType
@@ -15,8 +16,12 @@ var attack_speed: float
 var shield: float
 var crit_chance: float
 var crit_damage: float
+var death_sound: AudioStreamWAV
+var hit_sound: AudioStream
 var movement: BaseMovement = BaseMovement.new()
 var targeter: BaseTargeter = BaseTargeter.new()
+
+var _sfx_audio_player: SFXAudioPlayer
 
 @onready var _player: Player = get_tree().get_nodes_in_group("player")[0] as Player
 var _attack_cooldown: float = 0
@@ -25,6 +30,8 @@ func _ready():
 	assert(animated_sprite != null)
 	var _own_group = "summons" if type == CreatureType.SUMMON else "enemies"
 	add_to_group(_own_group)
+	_sfx_audio_player = sfx_audio_player_prefab.instantiate()
+	get_parent().add_child(_sfx_audio_player)
 
 func _process(delta):
 	var _own_group = "summons" if type == CreatureType.SUMMON else "enemies"
@@ -75,6 +82,7 @@ func _process_attack(target: Target):
 	var actual_damage = damage * (1 if not has_crit else crit_damage / 100)
 	if target.creature:
 		target.creature.receive_hit(self, actual_damage)
+		_sfx_audio_player.play_sound(hit_sound)
 	else:
 		# The player has been hit
 		_player.receive_hit(self, actual_damage)
@@ -96,4 +104,5 @@ func receive_hit(from: Creature, damage: float):
 	
 	if current_health <= 0:
 		# TODO: death animation
+		_sfx_audio_player.play_sound(death_sound)
 		queue_free()
