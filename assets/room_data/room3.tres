@@ -6,15 +6,15 @@
 script = ExtResource("1_05uhg")
 min_enemies_by_type = {
 "enemy_1": 6,
-"enemy_2": 5,
-"enemy_3": 2,
+"enemy_2": 4,
+"enemy_3": 1,
 "enemy_4": 0,
 "enemy_5": 0
 }
 max_enemies_by_type = {
 "enemy_1": 10,
-"enemy_2": 7,
-"enemy_3": 4,
+"enemy_2": 8,
+"enemy_3": 2,
 "enemy_4": 1,
 "enemy_5": 0
 }

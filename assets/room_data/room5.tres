@@ -7,18 +7,18 @@ script = ExtResource("1_i8083")
 min_enemies_by_type = {
 "enemy_1": 10,
 "enemy_2": 7,
-"enemy_3": 5,
-"enemy_4": 5,
-"enemy_5": 5
+"enemy_3": 3,
+"enemy_4": 2,
+"enemy_5": 0
 }
 max_enemies_by_type = {
-"enemy_1": 25,
-"enemy_2": 17,
-"enemy_3": 11,
-"enemy_4": 12,
-"enemy_5": 7
+"enemy_1": 16,
+"enemy_2": 10,
+"enemy_3": 5,
+"enemy_4": 3,
+"enemy_5": 0
 }
-min_spawners = 5
-max_spawners = 10
-min_time_between_spawns = 0.5
+min_spawners = 3
+max_spawners = 4
+min_time_between_spawns = 1.0
 max_time_between_spawns = 3.0
