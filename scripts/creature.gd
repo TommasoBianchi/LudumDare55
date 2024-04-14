@@ -3,11 +3,12 @@ extends Node2D
 class_name Creature
 
 enum CreatureType { SUMMON, ENEMY }
-enum AttackType { MELEE, RANGED }
+enum AttackType { MELEE, RANGED, AOE }
 
 @export var animated_sprite: AnimatedSprite2D
 @export var sfx_audio_player_prefab: PackedScene
 @export var projectile_prefab: PackedScene
+@export var area_of_effect_prefab: PackedScene
 
 var move_speed: float = 0
 var type: CreatureType
@@ -102,9 +103,11 @@ func _process_attack(targets: Array[Target]):
 			_sfx_audio_player.play_sound(hit_sound)
 		elif attack_type == AttackType.RANGED:
 			_spawn_projectile(target, actual_damage)
+		elif attack_type == AttackType.AOE:
+			_spawn_area_of_effect(actual_damage)
 		
 	_attack_cooldown = 1 / attack_speed
-	
+
 func _spawn_projectile(target: Target, damage: float):
 	var projectile: Projectile = projectile_prefab.instantiate()
 	projectile.position = global_position  # TODO: think about having an explicit spawn position
@@ -114,6 +117,15 @@ func _spawn_projectile(target: Target, damage: float):
 	
 	# NOTE: this is not the cleanest, but it works as it should
 	get_parent().add_child(projectile)
+
+func _spawn_area_of_effect(damage: float):
+	var area_of_effect: AreaOfEffect = area_of_effect_prefab.instantiate()
+	area_of_effect.position = global_position 
+	area_of_effect.damage = damage
+	area_of_effect.attacker_type = type
+	
+	# NOTE: this is not the cleanest, but it works as it should
+	get_parent().add_child(area_of_effect)
 
 func _process_move(direction: Vector2, delta: float):
 	var movement = Utils.keep_movement_in_map(
