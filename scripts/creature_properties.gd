@@ -15,6 +15,8 @@ class CreatureStats:
 	var sprite_frames: SpriteFrames
 	var death_sound: AudioStream
 	var hit_sound: AudioStream
+	var aoe_sprite: Texture2D
+	var shield_sprite: Texture2D
 	var movement_builder: Callable
 	var targeter_builder: Callable
 	var attack_targeter_builder: Callable
@@ -38,6 +40,8 @@ class CreatureStats:
 		sprite_frames: SpriteFrames,
 		death_sound: AudioStream,
 		hit_sound: AudioStream,
+		aoe_sprite: Texture2D,
+		shield_sprite: Texture2D,
 		movement_builder: Callable = func(): return BaseMovement.new(),
 		targeter_builder: Callable = func(): return BaseTargeter.new(),
 		attack_targeter_builder: Callable = func(): return BaseAttackTargeter.new(),
@@ -58,6 +62,8 @@ class CreatureStats:
 		self.sprite_frames = sprite_frames
 		self.death_sound = death_sound
 		self.hit_sound = hit_sound
+		self.aoe_sprite = aoe_sprite
+		self.shield_sprite = shield_sprite
 		self.movement_builder = movement_builder
 		self.targeter_builder = targeter_builder
 		self.attack_targeter_builder = attack_targeter_builder
@@ -73,6 +79,8 @@ var summon_stats = [
 			preload("res://assets/animations/summon/melee_1_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/melee_hit.mp3"),
+			preload("res://assets/sprites/summons/attack circle.png"),
+			preload("res://assets/sprites/summons/shield small.png"),
 			func (): return SeekAndDestroyMovement.new(),
 			func (): return CloserTargeter.new()),
 		CreatureStats.new(
@@ -80,6 +88,8 @@ var summon_stats = [
 			preload("res://assets/animations/summon/melee_2_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/melee_hit.mp3"),
+			preload("res://assets/sprites/summons/attack circle.png"),
+			preload("res://assets/sprites/summons/shield medium.png"),
 			func (): return SeekAndDestroyMovement.new(),
 			func (): return CloserTargeter.new()),
 		CreatureStats.new(
@@ -87,6 +97,8 @@ var summon_stats = [
 			preload("res://assets/animations/summon/melee_3_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/melee_hit.mp3"),
+			preload("res://assets/sprites/summons/attack circle.png"),
+			preload("res://assets/sprites/summons/shield big.png"),
 			func (): return SeekAndDestroyMovement.new(),
 			func (): return CloserTargeter.new(CloserTargeter.CloserTo.PLAYER))
 	],
@@ -96,6 +108,8 @@ var summon_stats = [
 			preload("res://assets/animations/summon/ranged_1_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/ranged_hit.mp3"),
+			preload("res://assets/sprites/summons/attack circle.png"),
+			preload("res://assets/sprites/summons/shield small.png"),
 			func (): return BaseMovement.new(),
 			func (): return CloserTargeter.new()),
 		CreatureStats.new(
@@ -103,6 +117,8 @@ var summon_stats = [
 			preload("res://assets/animations/summon/ranged_2_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/ranged_hit.mp3"),
+			preload("res://assets/sprites/summons/attack circle.png"),
+			preload("res://assets/sprites/summons/shield medium.png"),
 			func (): return OrbitalMovement.new(true, 150.0, 3.0),
 			func (): return PlayerTargeter.new(),
 			func (): return ClosestAttackTargeter.new(ClosestAttackTargeter.CloserTo.PLAYER)),
@@ -111,6 +127,8 @@ var summon_stats = [
 			preload("res://assets/animations/summon/ranged_3_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/ranged_hit.mp3"),
+			preload("res://assets/sprites/summons/attack circle.png"),
+			preload("res://assets/sprites/summons/shield big.png"),
 			func (): return SeekAndKiteMovement.new(300.0),
 			func (): return LeastHealthTargeter.new(false))
 	],
@@ -120,6 +138,8 @@ var summon_stats = [
 			preload("res://assets/animations/summon/support_1_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/heal_hit.mp3"),
+			preload("res://assets/sprites/summons/attack circle.png"),
+			preload("res://assets/sprites/summons/shield small.png"),
 			func (): return OrbitalMovement.new(false, 150.0, 1.0),
 			func (): return LeastHealthTargeter.new(true)),
 		CreatureStats.new(
@@ -127,6 +147,8 @@ var summon_stats = [
 			preload("res://assets/animations/summon/support_2_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/melee_hit.mp3"),
+			preload("res://assets/sprites/summons/shield area.png"),
+			preload("res://assets/sprites/summons/shield medium.png"),
 			func (): return BaseMovement.new(),
 			func (): return BaseTargeter.new(),
 			func (): return ClosestAttackTargeter.new(ClosestAttackTargeter.CloserTo.SELF, true, true)),
@@ -135,6 +157,8 @@ var summon_stats = [
 			preload("res://assets/animations/summon/support_3_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/saraphim_hit.mp3"),
+			preload("res://assets/sprites/summons/attack circle.png"),
+			preload("res://assets/sprites/summons/shield big.png"),
 			func (): return RicochetOnWallsMovement.new(),
 			func (): return BaseTargeter.new(),
 			func (): return ClosestAttackTargeter.new())
@@ -148,6 +172,8 @@ var enemy_stats = {
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
+		preload("res://assets/sprites/summons/attack circle.png"),
+		preload("res://assets/sprites/summons/shield small.png"),
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_2": CreatureStats.new(
@@ -155,6 +181,8 @@ var enemy_stats = {
 		preload("res://assets/animations/enemies/enemy_3_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/ranged_hit.mp3"),
+		preload("res://assets/sprites/summons/attack circle.png"),
+		preload("res://assets/sprites/summons/shield small.png"),
 		func (): return RicochetOnWallsMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_3": CreatureStats.new(
@@ -162,6 +190,8 @@ var enemy_stats = {
 		preload("res://assets/animations/enemies/enemy_2_movement.tres"),
 		preload("res://assets/audio/sfx/splitter_death.mp3"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
+		preload("res://assets/sprites/summons/attack circle.png"),
+		preload("res://assets/sprites/summons/shield small.png"),
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true),
 		func (): return BaseAttackTargeter.new(),
@@ -173,6 +203,8 @@ var enemy_stats = {
 		preload("res://assets/animations/enemies/enemy_4_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
+		preload("res://assets/sprites/summons/attack circle.png"),
+		preload("res://assets/sprites/summons/shield small.png"),
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return PlayerTargeter.new()),
 	"enemy_5": CreatureStats.new(
@@ -180,6 +212,8 @@ var enemy_stats = {
 		preload("res://assets/animations/enemies/enemy_5_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
+		preload("res://assets/sprites/summons/attack circle.png"),
+		preload("res://assets/sprites/summons/shield small.png"),
 		func (): return RicochetOnWallsMovement.new(),
 		func (): return BaseTargeter.new(),
 		func (): return ClosestAttackTargeter.new(ClosestAttackTargeter.CloserTo.SELF, false, true),
@@ -191,6 +225,8 @@ var enemy_stats = {
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
+		preload("res://assets/sprites/summons/attack circle.png"),
+		preload("res://assets/sprites/summons/shield small.png"),
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true),
 		func (): return BaseAttackTargeter.new(),
@@ -208,5 +244,7 @@ func get_enemy_stats(name: String) -> CreatureStats:
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
+		preload("res://assets/sprites/summons/attack circle.png"),
+		preload("res://assets/sprites/summons/shield small.png"),
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)))

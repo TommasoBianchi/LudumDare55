@@ -40,6 +40,10 @@ var child_enemy_spawn_type: ChildEnemySpawnType
 
 var death_sound: AudioStreamWAV
 var hit_sound: AudioStream
+
+var aoe_sprite: Texture2D
+var shield_sprite: Texture2D
+
 var movement: BaseMovement = BaseMovement.new()
 var targeter: BaseTargeter = BaseTargeter.new()
 var attack_targeter: BaseAttackTargeter = BaseAttackTargeter.new()
@@ -166,6 +170,7 @@ func _spawn_area_of_effect(damage: float):
 	area_of_effect.position = global_position 
 	area_of_effect.damage = damage
 	area_of_effect.attacker_type = type
+	area_of_effect.setup_sprite(aoe_sprite)
 	
 	# NOTE: this is not the cleanest, but it works as it should
 	get_parent().add_child(area_of_effect)

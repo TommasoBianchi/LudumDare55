@@ -25,6 +25,8 @@ func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureTyp
 	creature.die_on_attack = stats.die_on_attack
 	creature.child_enemy_spawn_enemy_type = stats.child_enemy_spawn_enemy_type
 	creature.child_enemy_spawn_type = stats.child_enemy_spawn_type
+	creature.aoe_sprite = stats.aoe_sprite
+	creature.shield_sprite = stats.shield_sprite
 	parent.add_child(creature)
 	return creature
 	
