@@ -22,9 +22,11 @@ class_name Player
 @export var summon_sound = AudioStream
 @export var place_rune = AudioStream
 @export var death_sound = AudioStream
+@export var max_health: int = 100.0
 
 var room: Room
 
+var _current_health: float
 var _rune_charge: float = 0
 var _placed_runes: Array[PlacedRuneData] = []
 var _summon_charge: float = 0
@@ -36,8 +38,8 @@ func _ready():
 	assert(placed_runes_container != null)
 	assert(progress_bar != null)
 	_sfx_audio_player = sfx_audio_player_prefab.instantiate()
-	# TODO: Move this to the parent if necessary to spawn sounds after death
-	add_child(_sfx_audio_player)
+	get_parent().add_child(_sfx_audio_player)
+	_current_health = max_health + PowerupModifiers.player_health
 
 func _process(delta):
 	if not _is_input_enabled:
@@ -146,10 +148,20 @@ func _summon():
 		)
 		
 func receive_hit(from: Creature, damage: float):
-	print("The player has been hit for %f damage!" % damage)
-	# TODO: implement
-	# _sfx_audio_player.play_sound(death_sound)
-	pass
+	if from and from.type != Creature.CreatureType.ENEMY:
+		# Ignore friendly fire
+		return
+
+	_current_health -= damage
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property($Sprite2D, "modulate", Color.DARK_RED, 0.1).set_ease(Tween.EASE_IN)
+	tween.tween_property($Sprite2D, "modulate", Color.WHITE, 0.1).set_ease(Tween.EASE_OUT)
+	
+	if _current_health <= 0:
+		_sfx_audio_player.play_sound(death_sound, true)
+		# TODO: death animation
+		room.player_died()
 
 ########################
 # Utility functions

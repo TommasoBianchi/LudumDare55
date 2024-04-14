@@ -11,6 +11,6 @@ var summon_crit_chance: float = 0
 var summon_crit_damage: float = 0
 
 var player_move_speed: float = 0
-var player_health: float = 0  # TODO: link with player health
+var player_health: float = 0
 var player_time_for_rune_level: float = 0
 var player_time_for_summon_level: float = 0

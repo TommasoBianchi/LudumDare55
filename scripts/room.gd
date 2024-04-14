@@ -11,12 +11,14 @@ class_name Room
 @export var spawner_positions_margin: int = 200
 
 var _total_enemies_from_spawners: int = 0
-var _dead_enemies: int = 0
-var _dead_summons: int = 0
+var dead_enemies: int = 0
+var dead_summons: int = 0
 var _player: Player
 var _enemy_spawners: Array[EnemySpawn]
+var _is_stopped: bool = true
 
 signal on_room_cleared
+signal on_player_died
 
 func setup():
 	_setup_player()
@@ -26,9 +28,11 @@ func start():
 	_player.enable_input(true)
 	for spawner in _enemy_spawners:
 		spawner.start()
+	_is_stopped = false
 
 func stop():
 	_player.enable_input(false)
+	_is_stopped = true
 		
 func _setup_player():
 	_player = player_prefab.instantiate()
@@ -59,12 +63,21 @@ func _setup_spawners():
 		_enemy_spawners.append(enemy_spawner)
 		
 func creature_died(creature: Creature):
+	if _is_stopped:
+		return
+
 	if creature.type == Creature.CreatureType.SUMMON:
-		_dead_summons += 1
+		dead_summons += 1
 	elif creature.type == Creature.CreatureType.ENEMY:
-		_dead_enemies += 1
+		dead_enemies += 1
 		if len(get_tree().get_nodes_in_group("enemies").filter(func (node): return node.name != creature.name)) == 0:
 			_clear_room()
+
+func player_died():
+	if _is_stopped:
+		return
+
+	on_player_died.emit()
 
 func _clear_room():
 	on_room_cleared.emit()
