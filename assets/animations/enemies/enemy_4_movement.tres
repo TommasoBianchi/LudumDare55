@@ -1,7 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://nlt0tirhgabs"]
+[gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://nlt0tirhgabs"]
 
 [ext_resource type="Texture2D" uid="uid://dafpr00hiwimm" path="res://assets/sprites/enemies/enemy 4 movement.png" id="1_gdukm"]
 [ext_resource type="Texture2D" uid="uid://d2so6sl8b7trc" path="res://assets/sprites/enemies/enemy 4 attack.png" id="1_lx328"]
+[ext_resource type="Texture2D" uid="uid://vqxcsdq6vqdx" path="res://assets/sprites/enemies/enemy death.png" id="2_q2h07"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3os3"]
 atlas = ExtResource("1_lx328")
@@ -22,6 +23,26 @@ region = Rect2(390, 0, 130, 155)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dme60"]
 atlas = ExtResource("1_lx328")
 region = Rect2(520, 0, 130, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x5us"]
+atlas = ExtResource("2_q2h07")
+region = Rect2(0, 0, 130, 151)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bgcc"]
+atlas = ExtResource("2_q2h07")
+region = Rect2(130, 0, 130, 151)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfw11"]
+atlas = ExtResource("2_q2h07")
+region = Rect2(260, 0, 130, 151)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsjpx"]
+atlas = ExtResource("2_q2h07")
+region = Rect2(390, 0, 130, 151)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utnd7"]
+atlas = ExtResource("2_q2h07")
+region = Rect2(520, 0, 130, 151)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gmvyu"]
 atlas = ExtResource("1_gdukm")
@@ -64,6 +85,26 @@ animations = [{
 "loop": true,
 "name": &"attack",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x5us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bgcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfw11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsjpx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utnd7")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
