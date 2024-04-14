@@ -74,11 +74,9 @@ func _process(delta):
 		_process_move(direction, delta)
 		
 	if can_attack:
-		if not animated_sprite.is_playing():
-			animated_sprite.play("attack")
+		animated_sprite.play("attack")
 	elif can_move:
-		if not animated_sprite.is_playing():
-			animated_sprite.play("move")
+		animated_sprite.play("move")
 	else:
 		# Is idle, so stop animation
 		animated_sprite.stop()
