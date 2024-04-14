@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0vis11a86lkk"]
+[gd_scene load_steps=6 format=3 uid="uid://c0vis11a86lkk"]
 
+[ext_resource type="Script" path="res://scripts/room.gd" id="1_de1pv"]
 [ext_resource type="PackedScene" uid="uid://d4iva5r2cmdjv" path="res://scenes/player.tscn" id="1_o10hu"]
-[ext_resource type="PackedScene" uid="uid://dy6xki38mjmv6" path="res://scenes/placed_rune.tscn" id="2_yorr4"]
 [ext_resource type="PackedScene" uid="uid://dwc2wwjqxsla1" path="res://scenes/enemy_spawn.tscn" id="3_6ctxo"]
 [ext_resource type="AudioStream" uid="uid://dnotuv3420eg3" path="res://assets/audio/soundtrack/Winter_Chill.mp3" id="3_guwju"]
+[ext_resource type="Resource" uid="uid://dudr8qcjfxk5t" path="res://assets/room_data/room1.tres" id="4_6smis"]
 
-[node name="Room" type="Node2D"]
+[node name="Room" type="Node2D" node_paths=PackedStringArray("spawned_enemies_container", "placed_runes_container", "spawned_creatures_container")]
 y_sort_enabled = true
+script = ExtResource("1_de1pv")
+spawned_enemies_container = NodePath("SpawnedEnemiesContainer")
+placed_runes_container = NodePath("PlacedRunesContainer")
+spawned_creatures_container = NodePath("SpawnedCreaturesContainer")
+enemy_spawner_prefab = ExtResource("3_6ctxo")
+player_prefab = ExtResource("1_o10hu")
+room_data = ExtResource("4_6smis")
 
 [node name="PlacedRunesContainer" type="Node2D" parent="."]
 
@@ -16,19 +24,7 @@ y_sort_enabled = true
 [node name="SpawnedEnemiesContainer" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Player" parent="." node_paths=PackedStringArray("placed_runes_container", "spawned_creatures_container") instance=ExtResource("1_o10hu")]
-position = Vector2(439, 290)
-placed_rune_prefab = ExtResource("2_yorr4")
-placed_runes_container = NodePath("../PlacedRunesContainer")
-spawned_creatures_container = NodePath("../SpawnedCreaturesContainer")
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_guwju")
 volume_db = -12.0
 autoplay = true
-
-[node name="EnemySpawn" parent="." node_paths=PackedStringArray("spawned_enemies_container") instance=ExtResource("3_6ctxo")]
-position = Vector2(1415, 733)
-enemy_types_to_span = Array[String](["enemy_1", "enemy_2", "enemy_3", "enemy:4", "enemy_5"])
-delays_between_spawns = Array[int]([2])
-spawned_enemies_container = NodePath("../SpawnedEnemiesContainer")

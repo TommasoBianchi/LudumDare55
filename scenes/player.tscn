@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4iva5r2cmdjv"]
+[gd_scene load_steps=9 format=3 uid="uid://d4iva5r2cmdjv"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5ch10"]
+[ext_resource type="PackedScene" uid="uid://dy6xki38mjmv6" path="res://scenes/placed_rune.tscn" id="2_710nt"]
 [ext_resource type="SpriteFrames" uid="uid://jq1ak182frgv" path="res://assets/animations/player.tres" id="2_by3bv"]
-[ext_resource type="PackedScene" uid="uid://bd5v2poc36ech" path="res://scenes/sfx_audio_player.tscn" id="2_iqfk5"]
+[ext_resource type="PackedScene" path="res://scenes/sfx_audio_player.tscn" id="2_iqfk5"]
 [ext_resource type="AudioStream" uid="uid://b4pa12dl34a1u" path="res://assets/audio/sfx/summon_sound.wav" id="3_g0t8w"]
 [ext_resource type="PackedScene" uid="uid://2joqtfpmw7he" path="res://scenes/loading_bar.tscn" id="3_qt1lq"]
 [ext_resource type="AudioStream" uid="uid://bvkkxdggrqkyg" path="res://assets/audio/sfx/player_death.wav" id="4_qsxby"]
@@ -14,6 +15,7 @@ height = 72.0
 [node name="Player" type="Node2D" node_paths=PackedStringArray("animated_sprite", "progress_bar") groups=["player"]]
 y_sort_enabled = true
 script = ExtResource("1_5ch10")
+placed_rune_prefab = ExtResource("2_710nt")
 animated_sprite = NodePath("Sprite2D")
 progress_bar = NodePath("TextureProgressBar")
 sfx_audio_player_prefab = ExtResource("2_iqfk5")
