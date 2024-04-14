@@ -3,7 +3,7 @@ extends Node2D
 class_name Creature
 
 enum CreatureType { SUMMON, ENEMY }
-enum AttackType { MELEE, RANGED, AOE, HEALER }
+enum AttackType { MELEE, RANGED, AOE, HEALER, AOE_BUFF_SHIELD }
 enum ChildEnemySpawnType { NEVER, ON_ATTACK, ON_DEATH }
 
 @export var animated_sprite: AnimatedSprite2D
@@ -146,11 +146,13 @@ func _process_attack(targets: Array[Target]):
 		actual_damage = -actual_damage
 	for target in targets:
 		_sfx_audio_player.play_sound(hit_sound)
-		if attack_type == AttackType.MELEE or attack_type == AttackType.AOE or attack_type == AttackType.HEALER:
+		if attack_type in [AttackType.MELEE, AttackType.AOE, AttackType.HEALER]:
 			(target.creature if target.creature else _player).receive_hit(self, actual_damage)
 		elif attack_type == AttackType.RANGED:
 			_spawn_projectile(target, actual_damage)
-	if attack_type == AttackType.AOE:
+		elif attack_type == AttackType.AOE_BUFF_SHIELD and target.creature:
+			target.creature.shield += actual_damage
+	if attack_type in [AttackType.AOE, AttackType.AOE_BUFF_SHIELD]:
 		_spawn_area_of_effect(actual_damage)
 		
 	# Always face first target

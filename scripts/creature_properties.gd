@@ -143,7 +143,7 @@ var summon_stats = [
 			func (): return OrbitalMovement.new(false, 150.0, 1.0),
 			func (): return LeastHealthTargeter.new(true)),
 		CreatureStats.new(
-			"enchanter", 150.0, 50.0, 300.0, 0.5, Creature.AttackType.AOE, 0.0, 100.0, 5.0, 150.0,
+			"enchanter", 150.0, 50.0, 300.0, 0.5, Creature.AttackType.AOE_BUFF_SHIELD, 0.0, 100.0, 5.0, 150.0,
 			preload("res://assets/animations/summon/support_2_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/melee_hit.mp3"),
