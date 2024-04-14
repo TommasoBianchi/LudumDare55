@@ -120,7 +120,19 @@ func _process_attack(targets: Array[Target]):
 	if attack_type == AttackType.AOE:
 		_spawn_area_of_effect(actual_damage)
 		
+	# Always face first target
+	var towards_first_target = targets[0].position - global_position
+	_flip_sprite(towards_first_target)
+		
 	_attack_cooldown = 1 / attack_speed
+
+func _flip_sprite(facing_direction: Vector2):
+	if facing_direction.x <= 0 or facing_direction.y <= 0:
+		# Left or Up
+		animated_sprite.flip_h = false
+	else:
+		# Right or Down
+		animated_sprite.flip_h = true
 
 func _spawn_projectile(target: Target, damage: float):
 	var projectile: Projectile = projectile_prefab.instantiate()
@@ -147,7 +159,8 @@ func _process_move(direction: Vector2, delta: float):
 		direction.normalized() * move_speed * delta,
 		get_viewport_rect().grow(-50)  # TODO: find a better way to define the limits of the map
 	)
-	translate(movement)
+	translate(movement)	
+	_flip_sprite(movement)
 
 func receive_hit(from: Creature, damage: float):
 	var damage_after_shield = max(0, damage - shield)

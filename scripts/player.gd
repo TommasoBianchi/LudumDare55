@@ -89,12 +89,16 @@ func _process_move(delta):
 	var move_dir = Vector2.ZERO
 	if Input.is_action_pressed("move_down"):
 		move_dir += Vector2.DOWN
+		animated_sprite.flip_h = false
 	if Input.is_action_pressed("move_up"):
 		move_dir += Vector2.UP
+		animated_sprite.flip_h = true
 	if Input.is_action_pressed("move_left"):
 		move_dir += Vector2.LEFT
+		animated_sprite.flip_h = false
 	if Input.is_action_pressed("move_right"):
 		move_dir += Vector2.RIGHT
+		animated_sprite.flip_h = true
 
 	var is_moving = move_dir != Vector2.ZERO
 	if is_moving:
