@@ -1,9 +1,8 @@
 [gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://dc3hsbjyoxppo"]
 
 [ext_resource type="Texture2D" uid="uid://b7k2sieqwwer2" path="res://assets/sprites/enemies/enemy 3 movement.png" id="1_3m2l3"]
-[ext_resource type="Texture2D" uid="uid://qr27ija8cttd" path="res://assets/sprites/enemies/enemy 3 attack.png" id="1_d4ucd"]
-[ext_resource type="Texture2D" uid="uid://vqxcsdq6vqdx" path="res://assets/sprites/enemies/enemy death.png" id="2_jiyps"]
-
+[ext_resource type="Texture2D" uid="uid://lmwk73sgkh75" path="res://assets/sprites/enemies/enemy 3 attack.png" id="1_d4ucd"]
+[ext_resource type="Texture2D" uid="uid://bktk78ijt6ckg" path="res://assets/sprites/enemies/enemy death.png" id="2_jiyps"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfcgk"]
 atlas = ExtResource("1_d4ucd")
