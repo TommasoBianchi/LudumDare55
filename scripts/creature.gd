@@ -142,6 +142,6 @@ func receive_hit(from: Creature, damage: float):
 	
 	if current_health <= 0:
 		# TODO: death animation
-		_sfx_audio_player.play_sound(death_sound)
+		_sfx_audio_player.play_sound(death_sound, true)
 		room.creature_died(self)
 		queue_free()
