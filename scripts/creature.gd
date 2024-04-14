@@ -112,9 +112,9 @@ func _process_attack(targets: Array[Target]):
 	var has_crit: bool = randf_range(0, 100) > crit_chance
 	var actual_damage = damage * (1 if not has_crit else crit_damage / 100)
 	for target in targets:
+		_sfx_audio_player.play_sound(hit_sound)
 		if attack_type == AttackType.MELEE:
 			(target.creature if target.creature else _player).receive_hit(self, actual_damage)
-			_sfx_audio_player.play_sound(hit_sound)
 		elif attack_type == AttackType.RANGED:
 			_spawn_projectile(target, actual_damage)
 		elif attack_type == AttackType.AOE:
