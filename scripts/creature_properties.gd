@@ -87,7 +87,7 @@ var summon_stats = [
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/melee_hit.mp3"),
 			func (): return BaseMovement.new(),
-			func (): return CloserTargeter.new(CloserTargeter.CloserTo.PLAYER)),
+			func (): return CloserTargeter.new()),
 		CreatureStats.new(
 			"marksman", 30.0, 15.0, 500.0, 1.0, Creature.AttackType.RANGED, 0.0, 400.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/ranged_2_movement.tres"),
