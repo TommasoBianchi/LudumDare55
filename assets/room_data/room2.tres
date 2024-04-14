@@ -12,13 +12,13 @@ min_enemies_by_type = {
 "enemy_5": 0
 }
 max_enemies_by_type = {
-"enemy_1": 7,
+"enemy_1": 6,
 "enemy_2": 4,
 "enemy_3": 1,
 "enemy_4": 0,
 "enemy_5": 0
 }
 min_spawners = 1
-max_spawners = 2
+max_spawners = 3
 min_time_between_spawns = 1.0
 max_time_between_spawns = 3.0

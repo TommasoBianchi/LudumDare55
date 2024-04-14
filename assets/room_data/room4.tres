@@ -5,20 +5,20 @@
 [resource]
 script = ExtResource("1_w4ngv")
 min_enemies_by_type = {
-"enemy_1": 15,
-"enemy_2": 10,
-"enemy_3": 3,
+"enemy_1": 8,
+"enemy_2": 5,
+"enemy_3": 2,
 "enemy_4": 1,
 "enemy_5": 0
 }
 max_enemies_by_type = {
-"enemy_1": 20,
-"enemy_2": 13,
-"enemy_3": 7,
-"enemy_4": 3,
+"enemy_1": 13,
+"enemy_2": 8,
+"enemy_3": 3,
+"enemy_4": 1,
 "enemy_5": 0
 }
 min_spawners = 2
-max_spawners = 3
+max_spawners = 4
 min_time_between_spawns = 1.0
 max_time_between_spawns = 3.0
