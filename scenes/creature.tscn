@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cwvu8j1rcirql"]
 
 [ext_resource type="Script" path="res://scripts/creature.gd" id="1_sw6lb"]
-[ext_resource type="PackedScene" uid="uid://bd5v2poc36ech" path="res://scenes/sfx_audio_player.tscn" id="2_lpqn7"]
-[ext_resource type="PackedScene" path="res://scenes/projectile.tscn" id="2_onc1y"]
-[ext_resource type="SpriteFrames" uid="uid://dogks1jbk1d3v" path="res://assets/animations/summon/support_3_movement.tres" id="3_xluwv"]
+[ext_resource type="PackedScene" path="res://scenes/sfx_audio_player.tscn" id="2_evgwh"]
+[ext_resource type="PackedScene" uid="uid://8m5xu8blimls" path="res://scenes/projectile.tscn" id="2_onc1y"]
+[ext_resource type="SpriteFrames" uid="uid://bhrma8185v3tw" path="res://assets/animations/enemies/enemy_5_movement.tres" id="3_0vg6h"]
 [ext_resource type="Script" path="res://scripts/creature_sprite.gd" id="4_g5o7r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s282n"]
@@ -14,13 +14,14 @@ height = 86.5
 y_sort_enabled = true
 script = ExtResource("1_sw6lb")
 animated_sprite = NodePath("Sprite2D")
-sfx_audio_player_prefab = ExtResource("2_lpqn7")
+sfx_audio_player_prefab = ExtResource("2_evgwh")
 projectile_prefab = ExtResource("2_onc1y")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("collision_shape")]
 scale = Vector2(0.5, 0.5)
-sprite_frames = ExtResource("3_xluwv")
+sprite_frames = ExtResource("3_0vg6h")
 animation = &"move"
+frame_progress = 0.972942
 offset = Vector2(0, -86.5)
 script = ExtResource("4_g5o7r")
 collision_shape = NodePath("../Area2D/CollisionShape2D")
