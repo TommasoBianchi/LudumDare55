@@ -61,6 +61,10 @@ func _ready():
 	get_parent().add_child(_sfx_audio_player)
 
 func _process(delta):
+	if current_health <= 0:
+		# Creature is dead, don't do anything other than finishing death animation
+		return
+
 	var _own_group = "summons" if type == CreatureType.SUMMON else "enemies"
 	var _enemy_group = "enemies" if type == CreatureType.SUMMON else "summons"
 	
@@ -193,9 +197,13 @@ func _spawn_child_enemy():
 	CreatureFactory.spawn_enemy(global_position, get_parent(), child_enemy_spawn_enemy_type, room)
 
 func _die():
-	# TODO: death animation
+	animated_sprite.play("death")
 	_sfx_audio_player.play_sound(death_sound, true)
 	room.creature_died(self)
 	if type == CreatureType.ENEMY and child_enemy_spawn_type == ChildEnemySpawnType.ON_DEATH:
 		_spawn_child_enemy()
-	queue_free()
+	# Avoid being targeted by other creatures while dying
+	var own_group = "summons" if type == CreatureType.SUMMON else "enemies"
+	remove_from_group(own_group)
+	$Area2D.queue_free()  # This is to stop interacting with projectiles
+	($QueueFreeTimer as Timer).start(1)
