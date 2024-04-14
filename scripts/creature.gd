@@ -4,6 +4,7 @@ class_name Creature
 
 enum CreatureType { SUMMON, ENEMY }
 enum AttackType { MELEE, RANGED, AOE, HEALER }
+enum ChildEnemySpawnType { NEVER, ON_ATTACK, ON_DEATH }
 
 @export var animated_sprite: AnimatedSprite2D
 @export var sfx_audio_player_prefab: PackedScene
@@ -35,6 +36,10 @@ var crit_damage: float:
 	get:
 		return crit_damage + PowerupModifiers.summon_crit_damage
 var die_on_attack: bool = false
+# NOTE: these make sense only for enemy creatures
+var child_enemy_spawn_enemy_type: String
+var child_enemy_spawn_type: ChildEnemySpawnType
+
 var death_sound: AudioStreamWAV
 var hit_sound: AudioStream
 var movement: BaseMovement = BaseMovement.new()
@@ -92,7 +97,8 @@ func _process(delta):
 	)
 
 	var can_attack: bool = attack_targets.filter(func (t): return t != null).any(func (t): return (t.position - global_position).length_squared() < range ** 2)
-	var can_move: bool = direction != Vector2.ZERO and (not can_attack or attack_type == AttackType.RANGED)
+	var can_move: bool = direction != Vector2.ZERO and (not can_attack or attack_type == AttackType.RANGED or child_enemy_spawn_type == ChildEnemySpawnType.ON_ATTACK)
+	
 	if can_attack:
 		_process_attack(attack_targets)
 	if can_move:
@@ -128,6 +134,9 @@ func _process_attack(targets: Array[Target]):
 	_flip_sprite(towards_first_target)
 		
 	_attack_cooldown = 1 / attack_speed
+	
+	if type == CreatureType.ENEMY and child_enemy_spawn_type == ChildEnemySpawnType.ON_ATTACK:
+		_spawn_child_enemy()
 	
 	if die_on_attack:
 		_die()
@@ -176,8 +185,13 @@ func receive_hit(from: Creature, damage: float):
 	if current_health <= 0:
 		_die()
 
+func _spawn_child_enemy():
+	CreatureFactory.spawn_enemy(global_position, get_parent(), child_enemy_spawn_enemy_type, room)
+
 func _die():
 	# TODO: death animation
-		_sfx_audio_player.play_sound(death_sound, true)
-		room.creature_died(self)
-		queue_free()
+	_sfx_audio_player.play_sound(death_sound, true)
+	room.creature_died(self)
+	if type == CreatureType.ENEMY and child_enemy_spawn_type == ChildEnemySpawnType.ON_DEATH:
+		_spawn_child_enemy()
+	queue_free()

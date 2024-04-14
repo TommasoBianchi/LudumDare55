@@ -19,6 +19,9 @@ class CreatureStats:
 	var targeter_builder: Callable
 	var attack_targeter_builder: Callable
 	var die_on_attack: bool
+	# NOTE: this make sense only for enemy creatures
+	var child_enemy_spawn_enemy_type: String
+	var child_enemy_spawn_type: Creature.ChildEnemySpawnType
 	
 	# Constructor to initialize the stats
 	func _init(
@@ -38,7 +41,9 @@ class CreatureStats:
 		movement_builder: Callable = func(): return BaseMovement.new(),
 		targeter_builder: Callable = func(): return BaseTargeter.new(),
 		attack_targeter_builder: Callable = func(): return BaseAttackTargeter.new(),
-		die_on_attack: bool = false
+		die_on_attack: bool = false,
+		child_enemy_spawn_enemy_type: String = "",
+		child_enemy_spawn_type: Creature.ChildEnemySpawnType = Creature.ChildEnemySpawnType.NEVER
 	):
 		self.name = name
 		self.health = health
@@ -57,6 +62,8 @@ class CreatureStats:
 		self.targeter_builder = targeter_builder
 		self.attack_targeter_builder = attack_targeter_builder
 		self.die_on_attack = die_on_attack
+		self.child_enemy_spawn_enemy_type = child_enemy_spawn_enemy_type
+		self.child_enemy_spawn_type = child_enemy_spawn_type
 
 # Define different summons and their statistics
 var summon_stats = [
@@ -156,7 +163,11 @@ var enemy_stats = {
 		preload("res://assets/audio/sfx/splitter_death.mp3"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
 		func (): return SeekAndDestroyMovement.new(),
-		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
+		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true),
+		func (): return BaseAttackTargeter.new(),
+		false,
+		"enemy_1",
+		Creature.ChildEnemySpawnType.ON_DEATH),
 	"enemy_4": CreatureStats.new(
 		"enemy_4", 100.0, 20.0, 25.0, 0.5, Creature.AttackType.MELEE, 50.0, 125.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_4_movement.tres"),
@@ -165,11 +176,25 @@ var enemy_stats = {
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return PlayerTargeter.new()),
 	"enemy_5": CreatureStats.new(
-		"enemy_5", 300.0, 0.0, 0.0, 0.25, Creature.AttackType.MELEE, 100.0, 75.0, 0.0, 0.0,
+		"enemy_5", 100.0, 10.0, 25000.0, 0.5, Creature.AttackType.MELEE, 0.0, 100.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_5_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
-		func (): return RicochetOnWallsMovement.new())
+		func (): return RicochetOnWallsMovement.new(),
+		func (): return BaseTargeter.new(),
+		func (): return ClosestAttackTargeter.new(ClosestAttackTargeter.CloserTo.SELF, false, true),
+		false,
+		"enemy_6",
+		Creature.ChildEnemySpawnType.ON_ATTACK),
+	"enemy_6": CreatureStats.new(
+		"enemy_6", 50.0, 10.0, 30.0, 0.25, Creature.AttackType.MELEE, 200.0, 75.0, 0.0, 0.0,
+		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
+		preload("res://assets/audio/sfx/enemy_death.wav"),
+		preload("res://assets/audio/sfx/melee_hit.mp3"),
+		func (): return SeekAndDestroyMovement.new(),
+		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true),
+		func (): return BaseAttackTargeter.new(),
+		true)
 }
 
 # Function to get summon stats by type and tier

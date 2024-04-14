@@ -22,7 +22,7 @@ func compute_target(
 ) -> Array[Target]:
 	var candidate_targets = ally_creatures if _target_ally else enemy_creatures
 	if len(candidate_targets) == 0:
-		return [Target.from_player_position(player_position)] if _add_player_to_targets else ([] as Array[Target])
+		return ([Target.from_player_position(player_position)] as Array[Target]) if _add_player_to_targets else ([] as Array[Target])
 		
 	var closest_to_position = self_position
 	if _closer_to == CloserTo.PLAYER:

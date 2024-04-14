@@ -23,6 +23,8 @@ func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureTyp
 	creature.hit_sound = stats.hit_sound
 	creature.room = room
 	creature.die_on_attack = stats.die_on_attack
+	creature.child_enemy_spawn_enemy_type = stats.child_enemy_spawn_enemy_type
+	creature.child_enemy_spawn_type = stats.child_enemy_spawn_type
 	parent.add_child(creature)
 	return creature
 	
