@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0vis11a86lkk"]
+[gd_scene load_steps=5 format=3 uid="uid://c0vis11a86lkk"]
 
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_de1pv"]
 [ext_resource type="PackedScene" uid="uid://d4iva5r2cmdjv" path="res://scenes/player.tscn" id="1_o10hu"]
 [ext_resource type="PackedScene" uid="uid://dwc2wwjqxsla1" path="res://scenes/enemy_spawn.tscn" id="3_6ctxo"]
-[ext_resource type="AudioStream" uid="uid://dnotuv3420eg3" path="res://assets/audio/soundtrack/Winter_Chill.mp3" id="3_guwju"]
 [ext_resource type="Resource" uid="uid://dudr8qcjfxk5t" path="res://assets/room_data/room1.tres" id="4_6smis"]
 
 [node name="Room" type="Node2D" node_paths=PackedStringArray("spawned_enemies_container", "placed_runes_container", "spawned_creatures_container")]
@@ -23,8 +22,3 @@ y_sort_enabled = true
 
 [node name="SpawnedEnemiesContainer" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_guwju")
-volume_db = -12.0
-autoplay = true

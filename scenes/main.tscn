@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk7h4r06cnpnf"]
+[gd_scene load_steps=7 format=3 uid="uid://dk7h4r06cnpnf"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_8cg5k"]
 [ext_resource type="PackedScene" uid="uid://c0vis11a86lkk" path="res://scenes/room.tscn" id="2_1svc8"]
 [ext_resource type="Resource" uid="uid://dudr8qcjfxk5t" path="res://assets/room_data/room1.tres" id="3_lom17"]
 [ext_resource type="PackedScene" uid="uid://ciymv1rw8fsom" path="res://scenes/power_up_display.tscn" id="4_vbqal"]
 [ext_resource type="Resource" uid="uid://g7quhv7g4dhf" path="res://assets/room_data/room2.tres" id="5_nkh0q"]
+[ext_resource type="AudioStream" uid="uid://dnotuv3420eg3" path="res://assets/audio/soundtrack/Winter_Chill.mp3" id="6_wprmy"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("room_start_timer")]
 script = ExtResource("1_8cg5k")
@@ -17,5 +18,10 @@ room_start_time = 1.0
 [node name="RoomStartTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_wprmy")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="timeout" from="RoomStartTimer" to="." method="_on_room_start_timer_timeout"]
