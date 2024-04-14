@@ -10,7 +10,7 @@ class_name Room
 @export var room_data: RoomData
 @export var spawner_positions_margin: int = 200
 
-var _total_enemies: int = 0
+var _total_enemies_from_spawners: int = 0
 var _dead_enemies: int = 0
 var _dead_summons: int = 0
 var _player: Player
@@ -54,7 +54,7 @@ func _setup_spawners():
 		enemy_spawner.delays_between_spawns = config.delays_between_spawns
 		enemy_spawner.spawned_enemies_container = spawned_enemies_container
 		enemy_spawner.room = self
-		_total_enemies += len(config.enemy_types_to_spawn)
+		_total_enemies_from_spawners += len(config.enemy_types_to_spawn)
 		add_child(enemy_spawner)
 		_enemy_spawners.append(enemy_spawner)
 		
@@ -63,7 +63,7 @@ func creature_died(creature: Creature):
 		_dead_summons += 1
 	elif creature.type == Creature.CreatureType.ENEMY:
 		_dead_enemies += 1
-		if _dead_enemies >= _total_enemies:
+		if len(get_tree().get_nodes_in_group("enemies")) == 0:
 			_clear_room()
 			
 func _clear_room():
