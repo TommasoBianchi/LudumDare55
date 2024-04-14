@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4iva5r2cmdjv"]
+[gd_scene load_steps=5 format=3 uid="uid://d4iva5r2cmdjv"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5ch10"]
 [ext_resource type="SpriteFrames" uid="uid://dukc63usx0ua1" path="res://assets/animations/player.tres" id="2_by3bv"]
 [ext_resource type="PackedScene" uid="uid://2joqtfpmw7he" path="res://scenes/loading_bar.tscn" id="3_qt1lq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5kwid"]
+radius = 20.0
+height = 72.0
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("animated_sprite", "progress_bar") groups=["player"]]
 y_sort_enabled = true
@@ -15,10 +19,17 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_by3bv")
 animation = &"move"
 frame_progress = 0.0918583
+offset = Vector2(0, -72)
 
 [node name="TextureProgressBar" parent="." instance=ExtResource("3_qt1lq")]
 offset_left = -12.0
-offset_top = -70.0
+offset_top = -105.0
 offset_right = 500.0
-offset_bottom = 442.0
+offset_bottom = 407.0
 scale = Vector2(0.05, 0.05)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -36)
+shape = SubResource("CapsuleShape2D_5kwid")
