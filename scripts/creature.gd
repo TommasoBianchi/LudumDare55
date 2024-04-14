@@ -191,6 +191,7 @@ func _spawn_area_of_effect(damage: float):
 	area_of_effect.damage = damage
 	area_of_effect.attacker_type = type
 	area_of_effect.setup_sprite(aoe_sprite)
+	area_of_effect.set_aoe_scale(Vector2(range / aoe_sprite.get_size().x, range / aoe_sprite.get_size().y))
 	
 	# NOTE: this is not the cleanest, but it works as it should
 	get_parent().add_child(area_of_effect)
