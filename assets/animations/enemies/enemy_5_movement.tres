@@ -1,8 +1,8 @@
 [gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://bhrma8185v3tw"]
 
-[ext_resource type="Texture2D" uid="uid://cx4eu3htts6qt" path="res://assets/sprites/enemies/enemy 5 attack.png" id="1_m8luy"]
+[ext_resource type="Texture2D" uid="uid://bccuyym1mo34y" path="res://assets/sprites/enemies/enemy 5 attack.png" id="1_m8luy"]
 [ext_resource type="Texture2D" uid="uid://bkki1gfh7ef62" path="res://assets/sprites/enemies/enemy 5 movement.png" id="1_rcj5j"]
-[ext_resource type="Texture2D" uid="uid://l75gtxphjcb6" path="res://assets/sprites/enemies/enemy 5 divide.png" id="2_ycx5j"]
+[ext_resource type="Texture2D" uid="uid://drnemfydbwyp2" path="res://assets/sprites/enemies/enemy 5 divide.png" id="2_ycx5j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cds8v"]
 atlas = ExtResource("1_m8luy")
