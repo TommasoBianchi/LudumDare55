@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RoomData" load_steps=2 format=3 uid="uid://cks7bpaettqss"]
+[gd_resource type="Resource" script_class="RoomData" load_steps=2 format=3 uid="uid://b7wash8yiu4dt"]
 
 [ext_resource type="Script" path="res://scripts/room_data.gd" id="1_aiqbs"]
 

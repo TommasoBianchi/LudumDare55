@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bcd3bvhslrqis" path="res://assets/sprites/summons/melee 2 attack.png" id="1_j5jk2"]
 [ext_resource type="Texture2D" uid="uid://cbbu74gfg7hsb" path="res://assets/sprites/summons/melee 2 movement.png" id="1_tsy4l"]
-[ext_resource type="Texture2D" uid="uid://ctgssw4fxfvve" path="res://assets/sprites/summons/summon death big.png" id="2_ospny"]
+[ext_resource type="Texture2D" uid="uid://q8jnnrpaubdm" path="res://assets/sprites/summons/summon death big.png" id="2_ospny"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kun08"]
 atlas = ExtResource("1_j5jk2")
