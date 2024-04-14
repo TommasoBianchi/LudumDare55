@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk7h4r06cnpnf"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_8cg5k"]
+[ext_resource type="PackedScene" uid="uid://c0vis11a86lkk" path="res://scenes/room.tscn" id="2_1svc8"]
+[ext_resource type="Resource" uid="uid://dudr8qcjfxk5t" path="res://assets/room_data/room1.tres" id="3_lom17"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_8cg5k")
+room_prefab = ExtResource("2_1svc8")
+all_room_data = Array[Resource("res://scripts/room_data.gd")]([ExtResource("3_lom17")])

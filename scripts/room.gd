@@ -14,7 +14,7 @@ var _total_enemies: int = 0
 var _dead_enemies: int = 0
 var _dead_summons: int = 0
 
-func _ready():
+func setup():
 	_setup_player()
 	_setup_spawners()
 		
