@@ -5,15 +5,15 @@
 [resource]
 script = ExtResource("1_w4ngv")
 min_enemies_by_type = {
-"enemy_1": 8,
-"enemy_2": 5,
-"enemy_3": 2,
-"enemy_4": 1,
+"enemy_1": 7,
+"enemy_2": 4,
+"enemy_3": 1,
+"enemy_4": 0,
 "enemy_5": 0
 }
 max_enemies_by_type = {
-"enemy_1": 13,
-"enemy_2": 8,
+"enemy_1": 11,
+"enemy_2": 7,
 "enemy_3": 3,
 "enemy_4": 1,
 "enemy_5": 0

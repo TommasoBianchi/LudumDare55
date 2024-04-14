@@ -63,8 +63,8 @@ func creature_died(creature: Creature):
 		_dead_summons += 1
 	elif creature.type == Creature.CreatureType.ENEMY:
 		_dead_enemies += 1
-		if len(get_tree().get_nodes_in_group("enemies")) == 0:
+		if len(get_tree().get_nodes_in_group("enemies").filter(func (node): return node.name != creature.name)) == 0:
 			_clear_room()
-			
+
 func _clear_room():
 	on_room_cleared.emit()

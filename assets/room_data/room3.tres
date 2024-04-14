@@ -13,7 +13,7 @@ min_enemies_by_type = {
 }
 max_enemies_by_type = {
 "enemy_1": 10,
-"enemy_2": 8,
+"enemy_2": 7,
 "enemy_3": 2,
 "enemy_4": 1,
 "enemy_5": 0
