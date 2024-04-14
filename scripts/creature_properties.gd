@@ -208,7 +208,7 @@ var enemy_stats = {
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return PlayerTargeter.new()),
 	"enemy_5": CreatureStats.new(
-		"evoker", 100.0, 10.0, 25000.0, 0.5, Creature.AttackType.MELEE, 50.0, 100.0, 0.0, 0.0,
+		"evoker", 100.0, 10.0, 25000.0, 0.15, Creature.AttackType.MELEE, 50.0, 100.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_2_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
