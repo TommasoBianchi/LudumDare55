@@ -137,28 +137,28 @@ var enemy_stats = {
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_2": CreatureStats.new(
 		"enemy_2", 30.0, 5.0, 350.0, 1.0, Creature.AttackType.RANGED, 0.0, 0.0, 0.0, 0.0,
-		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
+		preload("res://assets/animations/enemies/enemy_2_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
 		func (): return BaseMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_3": CreatureStats.new(
 		"enemy_3", 100.0, 5.0, 1.0, 1.0, Creature.AttackType.MELEE, 0.0, 150.0, 0.0, 0.0,
-		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
+		preload("res://assets/animations/enemies/enemy_3_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_4": CreatureStats.new(
 		"enemy_4", 50.0, 15.0, 1.0, 1.0, Creature.AttackType.MELEE, 0.0, 250.0, 0.0, 0.0,
-		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
+		preload("res://assets/animations/enemies/enemy_4_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return PlayerTargeter.new()),
 	"enemy_5": CreatureStats.new(
 		"enemy_5", 150.0, 0.0, 1.0, 1.0, Creature.AttackType.MELEE, 0.0, 200.0, 0.0, 0.0,
-		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
+		preload("res://assets/animations/enemies/enemy_5_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
 		func (): return RicochetOnWallsMovement.new())
