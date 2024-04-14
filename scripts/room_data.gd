@@ -12,9 +12,9 @@ class_name RoomData
 class EnemySpawnerConfig:
 	var id: int
 	var enemy_types_to_spawn: Array[String]
-	var delays_between_spawns: Array[int]
+	var delays_between_spawns: Array[float]
 	
-	func _init(id: int, enemy_types_to_spawn: Array[String], delays_between_spawns: Array[int]):
+	func _init(id: int, enemy_types_to_spawn: Array[String], delays_between_spawns: Array[float]):
 		self.id = id
 		self.enemy_types_to_spawn = enemy_types_to_spawn
 		self.delays_between_spawns = delays_between_spawns
@@ -49,7 +49,7 @@ func randomize_spawners_config() -> Array[EnemySpawnerConfig]:
 		var enemy_types: Array[String] = all_enemy_types_to_spawn.slice(slice_start, slice_start + enemies_num)
 		slice_start += enemies_num
 		
-		var delays: Array[int]
+		var delays: Array[float]
 		delays.assign(enemy_types.map(func (t): return randf_range(min_time_between_spawns, max_time_between_spawns)))
 		
 		enemy_spawners_config.append(

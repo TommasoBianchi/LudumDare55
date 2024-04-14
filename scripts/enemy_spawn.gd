@@ -3,7 +3,7 @@ extends Node2D
 class_name EnemySpawn
 
 @export var enemy_types_to_spawn: Array[String]
-@export var delays_between_spawns: Array[int]
+@export var delays_between_spawns: Array[float]
 @export var spawned_enemies_container: Node
 
 var room: Room
