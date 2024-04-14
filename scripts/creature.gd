@@ -80,7 +80,7 @@ func _process(delta):
 		return
 		
 	if shield > 0:
-		$Shield.texture = shield_sprite
+		($Shield as Shield).set_sprite(shield_sprite)
 		$Shield.show()
 	else:
 		$Shield.hide()
