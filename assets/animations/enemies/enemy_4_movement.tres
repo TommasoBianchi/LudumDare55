@@ -1,6 +1,27 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://nlt0tirhgabs"]
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://nlt0tirhgabs"]
 
 [ext_resource type="Texture2D" uid="uid://dafpr00hiwimm" path="res://assets/sprites/enemies/enemy 4 movement.png" id="1_gdukm"]
+[ext_resource type="Texture2D" uid="uid://d2so6sl8b7trc" path="res://assets/sprites/enemies/enemy 4 attack.png" id="1_lx328"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3os3"]
+atlas = ExtResource("1_lx328")
+region = Rect2(0, 0, 130, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0w7l5"]
+atlas = ExtResource("1_lx328")
+region = Rect2(130, 0, 130, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2pd6"]
+atlas = ExtResource("1_lx328")
+region = Rect2(260, 0, 130, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcnwf"]
+atlas = ExtResource("1_lx328")
+region = Rect2(390, 0, 130, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dme60"]
+atlas = ExtResource("1_lx328")
+region = Rect2(520, 0, 130, 155)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gmvyu"]
 atlas = ExtResource("1_gdukm")
@@ -24,6 +45,26 @@ region = Rect2(520, 0, 130, 156)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3os3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0w7l5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2pd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcnwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dme60")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gmvyu")
