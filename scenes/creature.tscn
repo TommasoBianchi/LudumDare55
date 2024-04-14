@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwvu8j1rcirql"]
+[gd_scene load_steps=8 format=3 uid="uid://cwvu8j1rcirql"]
 
 [ext_resource type="Script" path="res://scripts/creature.gd" id="1_sw6lb"]
-[ext_resource type="PackedScene" path="res://scenes/sfx_audio_player.tscn" id="2_evgwh"]
+[ext_resource type="PackedScene" uid="uid://bd5v2poc36ech" path="res://scenes/sfx_audio_player.tscn" id="2_evgwh"]
 [ext_resource type="PackedScene" uid="uid://8m5xu8blimls" path="res://scenes/projectile.tscn" id="2_onc1y"]
+[ext_resource type="PackedScene" uid="uid://3eebp2rlspqr" path="res://scenes/area_of_effect.tscn" id="4_als0a"]
 [ext_resource type="Script" path="res://scripts/creature_sprite.gd" id="4_g5o7r"]
 [ext_resource type="SpriteFrames" uid="uid://dyfh0ejip6djt" path="res://assets/animations/enemies/enemy_1_movement.tres" id="4_tgalv"]
 
@@ -16,6 +17,7 @@ script = ExtResource("1_sw6lb")
 animated_sprite = NodePath("Sprite2D")
 sfx_audio_player_prefab = ExtResource("2_evgwh")
 projectile_prefab = ExtResource("2_onc1y")
+area_of_effect_prefab = ExtResource("4_als0a")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("collision_shape")]
 scale = Vector2(0.5, 0.5)

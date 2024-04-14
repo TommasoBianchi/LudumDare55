@@ -88,14 +88,14 @@ var summon_stats = [
 			"archer", 75.0, 10.0, 500.0, 0.75, Creature.AttackType.RANGED, 0.0, 0.0, 5.0, 150.0,
 			preload("res://assets/animations/summon/ranged_1_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
-			preload("res://assets/audio/sfx/melee_hit.mp3"),
+			preload("res://assets/audio/sfx/ranged_hit.mp3"),
 			func (): return BaseMovement.new(),
 			func (): return CloserTargeter.new()),
 		CreatureStats.new(
 			"marksman", 100.0, 25.0, 500.0, 0.5, Creature.AttackType.RANGED, 0.0, 400.0, 10.0, 150.0,
 			preload("res://assets/animations/summon/ranged_2_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
-			preload("res://assets/audio/sfx/melee_hit.mp3"),
+			preload("res://assets/audio/sfx/ranged_hit.mp3"),
 			func (): return OrbitalMovement.new(true, 150.0, 3.0),
 			func (): return PlayerTargeter.new(),
 			func (): return ClosestAttackTargeter.new(ClosestAttackTargeter.CloserTo.PLAYER)),
@@ -103,13 +103,13 @@ var summon_stats = [
 			"assassin", 150.0, 35.0, 300.0, 0.75, Creature.AttackType.RANGED, 0.0, 150.0, 10.0, 200.0,
 			preload("res://assets/animations/summon/ranged_3_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
-			preload("res://assets/audio/sfx/melee_hit.mp3"),
+			preload("res://assets/audio/sfx/ranged_hit.mp3"),
 			func (): return SeekAndKiteMovement.new(300.0),
 			func (): return LeastHealthTargeter.new(false))
 	],
 	[
 		CreatureStats.new(
-			"priest", 75.0, 10.0, 150.0, 0.5, Creature.AttackType.MELEE, 0.0, 100.0, 5.0, 150.0,
+			"priest", 75.0, 10.0, 150.0, 0.5, Creature.AttackType.HEALER, 0.0, 100.0, 5.0, 150.0,
 			preload("res://assets/animations/summon/support_1_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/melee_hit.mp3"),
@@ -127,7 +127,7 @@ var summon_stats = [
 			"seraphim", 300.0, 25.0, 300.0, 0.5, Creature.AttackType.AOE, 0.0, 75.0, 5.0, 150.0,
 			preload("res://assets/animations/summon/support_3_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
-			preload("res://assets/audio/sfx/melee_hit.mp3"),
+			preload("res://assets/audio/sfx/saraphim_hit.mp3"),
 			func (): return RicochetOnWallsMovement.new(),
 			func (): return BaseTargeter.new(),
 			func (): return ClosestAttackTargeter.new())
@@ -147,7 +147,7 @@ var enemy_stats = {
 		"enemy_2", 75.0, 10.0, 500.0, 0.75, Creature.AttackType.RANGED, 0.0, 0.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_3_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
-		preload("res://assets/audio/sfx/melee_hit.mp3"),
+		preload("res://assets/audio/sfx/ranged_hit.mp3"),
 		func (): return BaseMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_3": CreatureStats.new(
