@@ -1,7 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://h2th864gcige"]
+[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://h2th864gcige"]
 
 [ext_resource type="Texture2D" uid="uid://bcd3bvhslrqis" path="res://assets/sprites/summons/melee 2 attack.png" id="1_j5jk2"]
 [ext_resource type="Texture2D" uid="uid://cbbu74gfg7hsb" path="res://assets/sprites/summons/melee 2 movement.png" id="1_tsy4l"]
+[ext_resource type="Texture2D" uid="uid://q8jnnrpaubdm" path="res://assets/sprites/summons/summon death big.png" id="2_ospny"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kun08"]
 atlas = ExtResource("1_j5jk2")
@@ -22,6 +23,26 @@ region = Rect2(306, 0, 102, 133)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2valy"]
 atlas = ExtResource("1_j5jk2")
 region = Rect2(408, 0, 102, 133)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gttp"]
+atlas = ExtResource("2_ospny")
+region = Rect2(0, 0, 100, 195)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0fy1"]
+atlas = ExtResource("2_ospny")
+region = Rect2(100, 0, 100, 195)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfjbd"]
+atlas = ExtResource("2_ospny")
+region = Rect2(200, 0, 100, 195)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs717"]
+atlas = ExtResource("2_ospny")
+region = Rect2(300, 0, 100, 195)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvwc5"]
+atlas = ExtResource("2_ospny")
+region = Rect2(400, 0, 100, 195)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5j5dy"]
 atlas = ExtResource("1_tsy4l")
@@ -60,6 +81,26 @@ animations = [{
 "loop": true,
 "name": &"attack",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gttp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0fy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfjbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs717")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvwc5")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,

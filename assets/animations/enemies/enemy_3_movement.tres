@@ -1,7 +1,9 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://dc3hsbjyoxppo"]
+[gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://dc3hsbjyoxppo"]
 
 [ext_resource type="Texture2D" uid="uid://b7k2sieqwwer2" path="res://assets/sprites/enemies/enemy 3 movement.png" id="1_3m2l3"]
-[ext_resource type="Texture2D" uid="uid://lmwk73sgkh75" path="res://assets/sprites/enemies/enemy 3 attack.png" id="1_d4ucd"]
+[ext_resource type="Texture2D" uid="uid://qr27ija8cttd" path="res://assets/sprites/enemies/enemy 3 attack.png" id="1_d4ucd"]
+[ext_resource type="Texture2D" uid="uid://vqxcsdq6vqdx" path="res://assets/sprites/enemies/enemy death.png" id="2_jiyps"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfcgk"]
 atlas = ExtResource("1_d4ucd")
@@ -22,6 +24,26 @@ region = Rect2(390, 0, 130, 149)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nlf8c"]
 atlas = ExtResource("1_d4ucd")
 region = Rect2(520, 0, 130, 149)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evr1h"]
+atlas = ExtResource("2_jiyps")
+region = Rect2(0, 0, 130, 151)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly8yh"]
+atlas = ExtResource("2_jiyps")
+region = Rect2(130, 0, 130, 151)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc4id"]
+atlas = ExtResource("2_jiyps")
+region = Rect2(260, 0, 130, 151)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgf6s"]
+atlas = ExtResource("2_jiyps")
+region = Rect2(390, 0, 130, 151)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn87t"]
+atlas = ExtResource("2_jiyps")
+region = Rect2(520, 0, 130, 151)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqcs4"]
 atlas = ExtResource("1_3m2l3")
@@ -64,6 +86,26 @@ animations = [{
 "loop": true,
 "name": &"attack",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evr1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ly8yh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc4id")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgf6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn87t")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
