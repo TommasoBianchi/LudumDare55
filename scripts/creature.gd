@@ -85,7 +85,7 @@ func _process(delta):
 		global_position,
 		target.position if has_target else Vector2.ZERO,
 		has_target,
-		get_viewport_rect().grow(-50),
+		Utils.get_map_rect(),
 		delta
 	)
 	
@@ -174,7 +174,7 @@ func _process_move(direction: Vector2, delta: float):
 	var movement = Utils.keep_movement_in_map(
 		global_position,
 		direction.normalized() * move_speed * delta,
-		get_viewport_rect().grow(-50)  # TODO: find a better way to define the limits of the map
+		Utils.get_map_rect()
 	)
 	translate(movement)	
 	_flip_sprite(movement)

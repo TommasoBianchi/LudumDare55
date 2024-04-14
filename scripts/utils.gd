@@ -63,3 +63,7 @@ func get_least_health(creatures: Array[Creature]) -> Creature:
 			health = creature.current_health
 			
 	return least_health_creature
+
+func get_map_rect():
+	var viewport_rect = get_viewport_rect()
+	return viewport_rect.grow(-viewport_rect.size.y / (1080.0 / 80.0))
