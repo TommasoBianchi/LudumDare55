@@ -20,6 +20,7 @@ class_name Player
 @export var progress_bar: TextureProgressBar
 @export var sfx_audio_player_prefab: PackedScene
 @export var summon_sound = AudioStream
+@export var place_rune = AudioStream
 @export var death_sound = AudioStream
 
 var room: Room
@@ -64,7 +65,9 @@ func _process_rune(delta):
 			progress_bar.value = 1
 		return true
 	if Input.is_action_just_released("place_rune"):
-		_place_rune()
+		if _get_level_from_charge(_rune_charge, time_for_rune_level) >= 1:
+			_place_rune()
+			_sfx_audio_player.play_sound(place_rune)
 		_rune_charge = 0
 	return false
 	
@@ -78,7 +81,7 @@ func _process_summon(delta):
 			progress_bar.value = 1
 		return true
 	if Input.is_action_just_released("summon"):
-		if _summon_charge >= 1:
+		if _get_level_from_charge(_summon_charge, time_for_summon_level) >= 1:
 			_summon()
 			_sfx_audio_player.play_sound(summon_sound)
 			_placed_runes = []
