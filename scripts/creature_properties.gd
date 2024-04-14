@@ -13,7 +13,7 @@ class CreatureStats:
 	var crit_chance: float
 	var crit_damage: float
 	var sprite_frames: SpriteFrames
-	var death_sound: AudioStreamWAV
+	var death_sound: AudioStream
 	var hit_sound: AudioStream
 	var movement_builder: Callable
 	var targeter_builder: Callable
@@ -33,7 +33,7 @@ class CreatureStats:
 		crit_chance: float,
 		crit_damage: float,
 		sprite_frames: SpriteFrames,
-		death_sound: AudioStreamWAV,
+		death_sound: AudioStream,
 		hit_sound: AudioStream,
 		movement_builder: Callable = func(): return BaseMovement.new(),
 		targeter_builder: Callable = func(): return BaseTargeter.new(),
@@ -151,9 +151,9 @@ var enemy_stats = {
 		func (): return BaseMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_3": CreatureStats.new(
-		"enemy_3", 200.0, 10.0, 25.0, 0.5, Creature.AttackType.MELEE, 0.0, 75.0, 0.0, 0.0,
+		"splitter", 200.0, 10.0, 25.0, 0.5, Creature.AttackType.MELEE, 0.0, 75.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_2_movement.tres"),
-		preload("res://assets/audio/sfx/enemy_death.wav"),
+		preload("res://assets/audio/sfx/splitter_death.mp3"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
