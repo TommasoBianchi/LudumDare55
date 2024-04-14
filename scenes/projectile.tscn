@@ -1,29 +1,25 @@
 [gd_scene load_steps=5 format=3 uid="uid://8m5xu8blimls"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_bxaep"]
+[ext_resource type="Texture2D" uid="uid://db7rdqpbuj8q6" path="res://assets/sprites/summons/projectile summon.png" id="2_2nj6g"]
+[ext_resource type="Texture2D" uid="uid://d3n4m61ecjc36" path="res://assets/sprites/enemies/projectile enemy.png" id="2_4ftlc"]
 
-[sub_resource type="Gradient" id="Gradient_y3bmq"]
-offsets = PackedFloat32Array(0, 0.857143)
-colors = PackedColorArray(0.25098, 0.470588, 0.960784, 1, 0.247059, 0.360784, 0.941176, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vym8j"]
-gradient = SubResource("Gradient_y3bmq")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6bj6"]
-size = Vector2(29, 10)
+[sub_resource type="CircleShape2D" id="CircleShape2D_kqu7v"]
+radius = 7.0
 
 [node name="Projectile" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_bxaep")
+summon_projectile_sprite = ExtResource("2_2nj6g")
+enemy_projectile_sprite = ExtResource("2_4ftlc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.15, 10)
-texture = SubResource("GradientTexture1D_vym8j")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_4ftlc")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-4.5, 0)
-shape = SubResource("RectangleShape2D_e6bj6")
+shape = SubResource("CircleShape2D_kqu7v")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_hit"]
