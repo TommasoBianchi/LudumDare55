@@ -3,12 +3,15 @@ extends Node2D
 class_name Creature
 
 enum CreatureType { SUMMON, ENEMY }
+enum AttackType { MELEE, RANGED }
 
 @export var animated_sprite: AnimatedSprite2D
 @export var sfx_audio_player_prefab: PackedScene
+@export var projectile_prefab: PackedScene
 
 var move_speed: float = 0
 var type: CreatureType
+var attack_type: AttackType
 var current_health: float
 var damage: float
 var range: float
@@ -20,6 +23,7 @@ var death_sound: AudioStreamWAV
 var hit_sound: AudioStream
 var movement: BaseMovement = BaseMovement.new()
 var targeter: BaseTargeter = BaseTargeter.new()
+var attack_targeter: BaseAttackTargeter = BaseAttackTargeter.new()
 
 var _sfx_audio_player: SFXAudioPlayer
 
@@ -60,35 +64,55 @@ func _process(delta):
 		delta
 	)
 	
-	var can_move: bool = direction != Vector2.ZERO
-	
 	_attack_cooldown = max(0, _attack_cooldown - delta)  # NOTE: this way the first frame attacking after a long pause moving will always be a hit
-	var can_attack_target: bool = has_target && (target.position - global_position).length_squared() < range ** 2
-	if can_attack_target:
-		_process_attack(target)
+	var attack_targets: Array[Target] = attack_targeter.compute_target(
+		target,
+		global_position,
+		enemy_creatures,
+		ally_creatures,
+		_player.global_position
+	)
+
+	var can_attack: bool = attack_targets.filter(func (t): return t != null).any(func (t): return (t.position - global_position).length_squared() < range ** 2)
+	var can_move: bool = direction != Vector2.ZERO and (not can_attack or attack_type == AttackType.RANGED)
+	if can_attack:
+		_process_attack(attack_targets)
+	if can_move:
+		_process_move(direction, delta)
+		
+	if can_attack:
 		animated_sprite.play("attack")
 	elif can_move:
-		_process_move(direction, delta)
 		animated_sprite.play("move")
 	else:
 		# Is idle, so stop animation
 		animated_sprite.stop()
 
-func _process_attack(target: Target):
-	if _attack_cooldown > 0:
+func _process_attack(targets: Array[Target]):
+	if _attack_cooldown > 0 or len(targets) == 0:
 		return
 		
 	var has_crit: bool = randf_range(0, 100) > crit_chance
 	var actual_damage = damage * (1 if not has_crit else crit_damage / 100)
-	if target.creature:
-		target.creature.receive_hit(self, actual_damage)
-		_sfx_audio_player.play_sound(hit_sound)
-	else:
-		# The player has been hit
-		_player.receive_hit(self, actual_damage)
+	for target in targets:
+		if attack_type == AttackType.MELEE:
+			(target.creature if target.creature else _player).receive_hit(self, actual_damage)
+			_sfx_audio_player.play_sound(hit_sound)
+		elif attack_type == AttackType.RANGED:
+			_spawn_projectile(target, actual_damage)
 		
 	_attack_cooldown = 1 / attack_speed
 	
+func _spawn_projectile(target: Target, damage: float):
+	var projectile: Projectile = projectile_prefab.instantiate()
+	projectile.position = global_position  # TODO: think about having an explicit spawn position
+	projectile.damage = damage
+	projectile.direction = (target.position - global_position).normalized()
+	projectile.attacker_type = type
+	
+	# NOTE: this is not the cleanest, but it works as it should
+	get_parent().add_child(projectile)
+
 func _process_move(direction: Vector2, delta: float):
 	var movement = Utils.keep_movement_in_map(
 		global_position,
