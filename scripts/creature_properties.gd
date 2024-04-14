@@ -113,16 +113,21 @@ var summon_stats = [
 			func (): return OrbitalMovement.new(false, 150.0, 1.0),
 			func (): return LeastHealthTargeter.new(true)),
 		CreatureStats.new(
-			"enchanter", 150.0, 50.0, 300.0, 0.5, Creature.AttackType.MELEE, 0.0, 100.0, 5.0, 150.0,
+			"enchanter", 150.0, 50.0, 300.0, 0.5, Creature.AttackType.AOE, 0.0, 100.0, 5.0, 150.0,
 			preload("res://assets/animations/summon/support_2_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
-			preload("res://assets/audio/sfx/melee_hit.mp3")),
+			preload("res://assets/audio/sfx/melee_hit.mp3"),
+			func (): return BaseMovement.new(),
+			func (): return BaseTargeter.new(),
+			func (): return ClosestAttackTargeter.new(ClosestAttackTargeter.CloserTo.SELF, true, true)),
 		CreatureStats.new(
-			"seraphim", 300.0, 25.0, 300.0, 0.5, Creature.AttackType.MELEE, 0.0, 75.0, 5.0, 150.0,
+			"seraphim", 300.0, 25.0, 300.0, 0.5, Creature.AttackType.AOE, 0.0, 75.0, 5.0, 150.0,
 			preload("res://assets/animations/summon/support_3_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/melee_hit.mp3"),
-			func (): return RicochetOnWallsMovement.new())
+			func (): return RicochetOnWallsMovement.new(),
+			func (): return BaseTargeter.new(),
+			func (): return ClosestAttackTargeter.new())
 	]
 ]
 
