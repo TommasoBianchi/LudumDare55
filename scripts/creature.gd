@@ -20,6 +20,7 @@ var crit_chance: float
 var crit_damage: float
 var movement: BaseMovement = BaseMovement.new()
 var targeter: BaseTargeter = BaseTargeter.new()
+var attack_targeter: BaseAttackTargeter = BaseAttackTargeter.new()
 
 @onready var _player: Player = get_tree().get_nodes_in_group("player")[0] as Player
 var _attack_cooldown: float = 0
@@ -56,30 +57,41 @@ func _process(delta):
 		delta
 	)
 	
-	var can_move: bool = direction != Vector2.ZERO
-	
 	_attack_cooldown = max(0, _attack_cooldown - delta)  # NOTE: this way the first frame attacking after a long pause moving will always be a hit
-	var can_attack_target: bool = has_target && (target.position - global_position).length_squared() < range ** 2
-	if can_attack_target:
-		_process_attack(target)
+	var attack_targets: Array[Target] = attack_targeter.compute_target(
+		target,
+		global_position,
+		enemy_creatures,
+		ally_creatures,
+		_player.global_position
+	)
+
+	var can_attack: bool = attack_targets.any(func (t): return (t.position - global_position).length_squared() < range ** 2)
+	var can_move: bool = direction != Vector2.ZERO and (not can_attack or attack_type == AttackType.RANGED)
+	if can_attack:
+		_process_attack(attack_targets)
+	if can_move:
+		_process_move(direction, delta)
+		
+	if can_attack:
 		animated_sprite.play("attack")
 	elif can_move:
-		_process_move(direction, delta)
 		animated_sprite.play("move")
 	else:
 		# Is idle, so stop animation
 		animated_sprite.stop()
 
-func _process_attack(target: Target):
-	if _attack_cooldown > 0:
+func _process_attack(targets: Array[Target]):
+	if _attack_cooldown > 0 or len(targets) == 0:
 		return
 		
 	var has_crit: bool = randf_range(0, 100) > crit_chance
 	var actual_damage = damage * (1 if not has_crit else crit_damage / 100)
-	if attack_type == AttackType.MELEE:
-		(target.creature if target.creature else _player).receive_hit(self, actual_damage)
-	elif attack_type == AttackType.RANGED:
-		_spawn_projectile(target, actual_damage)
+	for target in targets:
+		if attack_type == AttackType.MELEE:
+			(target.creature if target.creature else _player).receive_hit(self, actual_damage)
+		elif attack_type == AttackType.RANGED:
+			_spawn_projectile(target, actual_damage)
 		
 	_attack_cooldown = 1 / attack_speed
 	

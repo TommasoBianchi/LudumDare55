@@ -15,6 +15,7 @@ class CreatureStats:
 	var sprite_frames: SpriteFrames
 	var movement_builder: Callable
 	var targeter_builder: Callable
+	var attack_targeter_builder: Callable
 	
 	# Constructor to initialize the stats
 	func _init(
@@ -30,7 +31,8 @@ class CreatureStats:
 		crit_damage: float,
 		sprite_frames: SpriteFrames,
 		movement_builder: Callable = func(): return BaseMovement.new(),
-		targeter_builder: Callable = func(): return BaseTargeter.new()
+		targeter_builder: Callable = func(): return BaseTargeter.new(),
+		attack_targeter_builder: Callable = func(): return BaseAttackTargeter.new()
 	):
 		self.name = name
 		self.health = health
@@ -45,6 +47,7 @@ class CreatureStats:
 		self.sprite_frames = sprite_frames
 		self.movement_builder = movement_builder
 		self.targeter_builder = targeter_builder
+		self.attack_targeter_builder = attack_targeter_builder
 
 # Define different summons and their statistics
 var summon_stats = [
@@ -72,10 +75,11 @@ var summon_stats = [
 			func (): return BaseMovement.new(),
 			func (): return CloserTargeter.new()),
 		CreatureStats.new(
-			"marksman", 30.0, 15.0, 500.0, 1.0, Creature.AttackType.RANGED, 0.0, 0.0, 5.0, 200.0,
+			"marksman", 30.0, 15.0, 500.0, 1.0, Creature.AttackType.RANGED, 0.0, 400.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/ranged_2_movement.tres"),
-			func (): return BaseMovement.new(),
-			func (): return CloserTargeter.new()),
+			func (): return OrbitalMovement.new(true, 150.0, 1.0),
+			func (): return PlayerTargeter.new(),
+			func (): return ClosestAttackTargeter.new(ClosestAttackTargeter.CloserTo.PLAYER)),
 		CreatureStats.new(
 			"assassin",50.0, 15.0, 300.0, 1.25, Creature.AttackType.RANGED, 0.0, 200.0, 15.0, 250.0,
 			preload("res://assets/animations/summon/ranged_3_movement.tres"),

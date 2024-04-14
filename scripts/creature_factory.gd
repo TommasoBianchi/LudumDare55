@@ -8,6 +8,7 @@ func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureTyp
 	creature.global_position = position
 	creature.movement = stats.movement_builder.call()
 	creature.targeter = stats.targeter_builder.call()
+	creature.attack_targeter = stats.attack_targeter_builder.call()
 	creature.move_speed = stats.speed
 	creature.current_health = stats.health
 	creature.damage = stats.damage
