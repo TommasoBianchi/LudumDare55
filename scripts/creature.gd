@@ -214,15 +214,17 @@ func receive_hit(from: Creature, damage: float):
 	if current_health <= 0:
 		_die()
 
-func _spawn_child_enemy():
-	CreatureFactory.spawn_enemy(global_position, get_parent(), child_enemy_spawn_enemy_type, room)
+func _spawn_child_enemy(amount: int = 1):
+	for i in range(amount):
+		CreatureFactory.spawn_enemy(global_position, get_parent(), child_enemy_spawn_enemy_type, room)
 
 func _die():
 	animated_sprite.play("death")
 	_sfx_audio_player.play_sound(death_sound, true)
 	room.creature_died(self)
 	if type == CreatureType.ENEMY and child_enemy_spawn_type == ChildEnemySpawnType.ON_DEATH:
-		_spawn_child_enemy()
+		# NOTE: this is hardcoded (since we have a single enemy with this behaviour) but time is a scarce resource
+		_spawn_child_enemy(2)
 	# Avoid being targeted by other creatures while dying
 	var own_group = "summons" if type == CreatureType.SUMMON else "enemies"
 	remove_from_group(own_group)
