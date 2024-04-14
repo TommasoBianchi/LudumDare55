@@ -169,9 +169,13 @@ func _process_move(direction: Vector2, delta: float):
 	_flip_sprite(movement)
 
 func receive_hit(from: Creature, damage: float):
-	var damage_after_shield = max(0, damage - shield)
-	shield = max(0, shield - damage)
-	current_health -= damage_after_shield
+	if damage >= 0:
+		var damage_after_shield = max(0, damage - shield)
+		shield = max(0, shield - damage)
+		current_health -= damage_after_shield
+	else:
+		# This is a heal
+		current_health -= damage
 	
 	if current_health <= 0:
 		_die()
