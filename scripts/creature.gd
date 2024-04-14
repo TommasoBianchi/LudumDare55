@@ -78,6 +78,12 @@ func _process(delta):
 	if current_health <= 0:
 		# Creature is dead, don't do anything other than finishing death animation
 		return
+		
+	if shield > 0:
+		$Shield.texture = shield_sprite
+		$Shield.show()
+	else:
+		$Shield.hide()
 
 	var _own_group = "summons" if type == CreatureType.SUMMON else "enemies"
 	var _enemy_group = "enemies" if type == CreatureType.SUMMON else "summons"
