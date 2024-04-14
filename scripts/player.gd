@@ -16,10 +16,13 @@ class_name Player
 @export var summon_sound = AudioStream
 @export var death_sound = AudioStream
 
+var room: Room
+
 var _rune_charge: float = 0
 var _placed_runes: Array[PlacedRuneData] = []
 var _summon_charge: float = 0
 var _sfx_audio_player: SFXAudioPlayer
+var _is_input_enabled: bool = false
 
 func _ready():
 	assert(placed_rune_prefab != null)
@@ -30,6 +33,9 @@ func _ready():
 	add_child(_sfx_audio_player)
 
 func _process(delta):
+	if not _is_input_enabled:
+		return
+		
 	var is_busy = _process_summon(delta)
 	
 	if not is_busy:
@@ -38,6 +44,9 @@ func _process(delta):
 	if not is_busy:
 		progress_bar.hide()
 		_process_move(delta)
+		
+func enable_input(enable: bool):
+	_is_input_enabled = enable
 	
 func _process_rune(delta):
 	if Input.is_action_pressed("place_rune"):
@@ -66,8 +75,8 @@ func _process_summon(delta):
 		if _summon_charge >= 1:
 			_summon()
 			_sfx_audio_player.play_sound(summon_sound)
+			_placed_runes = []
 		_summon_charge = 0
-		_placed_runes = []
 	return false
 	
 func _process_move(delta):
@@ -119,7 +128,8 @@ func _summon():
 			rune_data.position,
 			spawned_creatures_container,
 			rune_data.level,
-			level
+			level,
+			room
 		)
 		
 func receive_hit(from: Creature, damage: float):

@@ -2,7 +2,7 @@ extends Node
 
 var creature_prefab: PackedScene = preload("res://scenes/creature.tscn")
 
-func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureType, stats: CreatureProperties.CreatureStats) -> Creature:
+func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureType, stats: CreatureProperties.CreatureStats, room: Room) -> Creature:
 	var creature: Creature = creature_prefab.instantiate()
 	creature.type = type
 	creature.global_position = position
@@ -21,15 +21,16 @@ func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureTyp
 	creature.animated_sprite.sprite_frames = stats.sprite_frames
 	creature.death_sound = stats.death_sound
 	creature.hit_sound = stats.hit_sound
+	creature.room = room
 	parent.add_child(creature)
 	return creature
 	
-func spawn_summon(position: Vector2, parent: Node, rune_level: int, summon_level: int):
+func spawn_summon(position: Vector2, parent: Node, rune_level: int, summon_level: int, room: Room):
 	var stats = CreatureProperties.get_summon_stats(rune_level, summon_level)
-	var creature = _spawn_creature(position, parent, Creature.CreatureType.SUMMON, stats)
+	var creature = _spawn_creature(position, parent, Creature.CreatureType.SUMMON, stats, room)
 	return creature
 	
-func spawn_enemy(position: Vector2, parent: Node, enemy_type: String):
+func spawn_enemy(position: Vector2, parent: Node, enemy_type: String, room: Room):
 	var stats = CreatureProperties.get_enemy_stats(enemy_type)
-	var creature = _spawn_creature(position, parent, Creature.CreatureType.ENEMY, stats)
+	var creature = _spawn_creature(position, parent, Creature.CreatureType.ENEMY, stats, room)
 	return creature

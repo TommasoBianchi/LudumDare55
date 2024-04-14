@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=2 format=3 uid="uid://dudr8qcjfxk5t"]
+
+[ext_resource type="Script" path="res://scripts/room_data.gd" id="1_cjnjl"]
+
+[resource]
+script = ExtResource("1_cjnjl")
+min_enemies_by_type = {
+"enemy_1": 2,
+"enemy_2": 1
+}
+max_enemies_by_type = {
+"enemy_1": 3
+}
+min_spawners = 1
+max_spawners = 2
+min_time_between_spawns = 0.5
+max_time_between_spawns = 3.0
