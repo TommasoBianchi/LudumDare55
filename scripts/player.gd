@@ -2,13 +2,19 @@ extends Node2D
 
 class_name Player
 
-@export var move_speed: float = 150.0
+@export var move_speed: float = 150.0:
+	get:
+		return move_speed + PowerupModifiers.player_move_speed
 @export var placed_rune_prefab: PackedScene
 @export var placed_runes_container: Node
 @export var spawned_creatures_container: Node
 @export var animated_sprite: AnimatedSprite2D
-@export var time_for_rune_level: float = 1
-@export var time_for_summon_level: float = 1
+@export var time_for_rune_level: float = 1:
+	get:
+		return time_for_rune_level + PowerupModifiers.player_time_for_rune_level
+@export var time_for_summon_level: float = 1:
+	get:
+		return time_for_summon_level + PowerupModifiers.player_time_for_summon_level
 @export var max_rune_levels: int = 3
 @export var max_summon_levels: int = 3
 @export var progress_bar: TextureProgressBar

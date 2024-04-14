@@ -21,6 +21,8 @@ Utils="*res://scripts/utils.gd"
 CreatureFactory="*res://scripts/creature_factory.gd"
 CreatureProperties="*res://scripts/creature_properties.gd"
 RunesLoader="*res://scripts/runes_loader.gd"
+PowerupModifiers="*res://scripts/powerup/powerup_modifiers.gd"
+PowerupDatabase="*res://scripts/powerup/powerup_database.gd"
 
 [display]
 
@@ -29,6 +31,7 @@ window/size/viewport_height=1080
 window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
 
 [input]
 

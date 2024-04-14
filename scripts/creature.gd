@@ -10,16 +10,30 @@ enum AttackType { MELEE, RANGED, AOE }
 @export var projectile_prefab: PackedScene
 @export var area_of_effect_prefab: PackedScene
 
-var move_speed: float = 0
+var move_speed: float = 0:
+	get:
+		return move_speed + PowerupModifiers.summon_move_speed
 var type: CreatureType
 var attack_type: AttackType
 var current_health: float
-var damage: float
-var range: float
-var attack_speed: float
-var shield: float
-var crit_chance: float
-var crit_damage: float
+var damage: float:
+	get:
+		return damage + PowerupModifiers.summon_damage
+var range: float:
+	get:
+		return range + (PowerupModifiers.summon_melee_range if attack_type == AttackType.MELEE else PowerupModifiers.summon_melee_range)
+var attack_speed: float:
+	get:
+		return attack_speed + PowerupModifiers.summon_attack_speed
+var shield: float:
+	get:
+		return shield + PowerupModifiers.summon_shield
+var crit_chance: float:
+	get:
+		return crit_chance + PowerupModifiers.summon_crit_chance
+var crit_damage: float:
+	get:
+		return crit_damage + PowerupModifiers.summon_crit_damage
 var death_sound: AudioStreamWAV
 var hit_sound: AudioStream
 var movement: BaseMovement = BaseMovement.new()
