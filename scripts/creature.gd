@@ -25,6 +25,8 @@ var movement: BaseMovement = BaseMovement.new()
 var targeter: BaseTargeter = BaseTargeter.new()
 var attack_targeter: BaseAttackTargeter = BaseAttackTargeter.new()
 
+var room: Room
+
 var _sfx_audio_player: SFXAudioPlayer
 
 @onready var _player: Player = get_tree().get_nodes_in_group("player")[0] as Player
@@ -129,4 +131,5 @@ func receive_hit(from: Creature, damage: float):
 	if current_health <= 0:
 		# TODO: death animation
 		_sfx_audio_player.play_sound(death_sound)
+		room.creature_died(self)
 		queue_free()

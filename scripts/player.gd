@@ -16,6 +16,8 @@ class_name Player
 @export var summon_sound = AudioStream
 @export var death_sound = AudioStream
 
+var room: Room
+
 var _rune_charge: float = 0
 var _placed_runes: Array[PlacedRuneData] = []
 var _summon_charge: float = 0
@@ -119,7 +121,8 @@ func _summon():
 			rune_data.position,
 			spawned_creatures_container,
 			rune_data.level,
-			level
+			level,
+			room
 		)
 		
 func receive_hit(from: Creature, damage: float):
