@@ -13,18 +13,30 @@ class_name Room
 var _total_enemies: int = 0
 var _dead_enemies: int = 0
 var _dead_summons: int = 0
+var _player: Player
+var _enemy_spawners: Array[EnemySpawn]
+
+signal on_room_cleared
 
 func setup():
 	_setup_player()
 	_setup_spawners()
+	
+func start():
+	_player.enable_input(true)
+	for spawner in _enemy_spawners:
+		spawner.start()
+
+func stop():
+	_player.enable_input(false)
 		
 func _setup_player():
-	var player: Player = player_prefab.instantiate()
-	player.position = get_viewport_rect().get_center()
-	player.room = self
-	player.placed_runes_container = placed_runes_container
-	player.spawned_creatures_container = spawned_creatures_container
-	add_child(player)
+	_player = player_prefab.instantiate()
+	_player.position = get_viewport_rect().get_center()
+	_player.room = self
+	_player.placed_runes_container = placed_runes_container
+	_player.spawned_creatures_container = spawned_creatures_container
+	add_child(_player)
 	
 func _setup_spawners():
 	var viewport_rect = get_viewport_rect().grow(-spawner_positions_margin)
@@ -44,6 +56,7 @@ func _setup_spawners():
 		enemy_spawner.room = self
 		_total_enemies += len(config.enemy_types_to_spawn)
 		add_child(enemy_spawner)
+		_enemy_spawners.append(enemy_spawner)
 		
 func creature_died(creature: Creature):
 	if creature.type == Creature.CreatureType.SUMMON:
@@ -54,5 +67,4 @@ func creature_died(creature: Creature):
 			_clear_room()
 			
 func _clear_room():
-	# TODO: do something
-	print("ROOM CLEARED")
+	on_room_cleared.emit()

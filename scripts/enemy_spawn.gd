@@ -11,8 +11,21 @@ var room: Room
 var _current_index: int = 0
 var _elapsed_time: float = 0
 var _last_spawn_time: float = 0
+var _is_paused: bool = true
+
+func start():
+	_is_paused = false
+	_elapsed_time = 0
+	_current_index = 0
+	_last_spawn_time = 0
+	
+func pause():
+	_is_paused = true
 
 func _process(delta):
+	if _is_paused:
+		return
+
 	_elapsed_time += delta
 	
 	var types_to_spawn: Array[String] = []

@@ -22,6 +22,7 @@ var _rune_charge: float = 0
 var _placed_runes: Array[PlacedRuneData] = []
 var _summon_charge: float = 0
 var _sfx_audio_player: SFXAudioPlayer
+var _is_input_enabled: bool = false
 
 func _ready():
 	assert(placed_rune_prefab != null)
@@ -32,6 +33,9 @@ func _ready():
 	add_child(_sfx_audio_player)
 
 func _process(delta):
+	if not _is_input_enabled:
+		return
+		
 	var is_busy = _process_summon(delta)
 	
 	if not is_busy:
@@ -40,6 +44,9 @@ func _process(delta):
 	if not is_busy:
 		progress_bar.hide()
 		_process_move(delta)
+		
+func enable_input(enable: bool):
+	_is_input_enabled = enable
 	
 func _process_rune(delta):
 	if Input.is_action_pressed("place_rune"):

@@ -4,7 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://c0vis11a86lkk" path="res://scenes/room.tscn" id="2_1svc8"]
 [ext_resource type="Resource" uid="uid://dudr8qcjfxk5t" path="res://assets/room_data/room1.tres" id="3_lom17"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("room_start_timer")]
 script = ExtResource("1_8cg5k")
 room_prefab = ExtResource("2_1svc8")
 all_room_data = Array[Resource("res://scripts/room_data.gd")]([ExtResource("3_lom17")])
+room_start_timer = NodePath("RoomStartTimer")
+
+[node name="RoomStartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="RoomStartTimer" to="." method="_on_room_start_timer_timeout"]
