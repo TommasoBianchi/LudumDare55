@@ -71,6 +71,7 @@ func _process_rune(delta):
 			_place_rune()
 			_sfx_audio_player.play_sound(place_rune)
 		_rune_charge = 0
+		return true
 	return false
 	
 func _process_summon(delta):
@@ -87,7 +88,9 @@ func _process_summon(delta):
 			_summon()
 			_sfx_audio_player.play_sound(summon_sound)
 			_placed_runes = []
+			_rune_charge = 0
 		_summon_charge = 0
+		return true
 	return false
 	
 func _process_move(delta):
