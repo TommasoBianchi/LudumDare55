@@ -144,18 +144,18 @@ var summon_stats = [
 # Define different enemy and their statistics
 var enemy_stats = {
 	"enemy_1": CreatureStats.new(
-		"enemy_1", 100.0, 10.0, 25.0, 0.5, Creature.AttackType.MELEE, 0.0, 100.0, 0.0, 0.0,
+		"creaper", 100.0, 10.0, 25.0, 0.5, Creature.AttackType.MELEE, 0.0, 100.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_2": CreatureStats.new(
-		"enemy_2", 75.0, 10.0, 500.0, 0.75, Creature.AttackType.RANGED, 0.0, 0.0, 0.0, 0.0,
+		"bat", 75.0, 10.0, 500.0, 0.75, Creature.AttackType.RANGED, 0.0, 50.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_3_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/ranged_hit.mp3"),
-		func (): return BaseMovement.new(),
+		func (): return RicochetOnWallsMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_3": CreatureStats.new(
 		"splitter", 200.0, 10.0, 25.0, 0.5, Creature.AttackType.MELEE, 0.0, 75.0, 0.0, 0.0,
@@ -169,14 +169,14 @@ var enemy_stats = {
 		"enemy_1",
 		Creature.ChildEnemySpawnType.ON_DEATH),
 	"enemy_4": CreatureStats.new(
-		"enemy_4", 100.0, 20.0, 25.0, 0.5, Creature.AttackType.MELEE, 50.0, 125.0, 0.0, 0.0,
+		"stalker", 100.0, 20.0, 25.0, 0.5, Creature.AttackType.MELEE, 50.0, 125.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_4_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
 		func (): return SeekAndDestroyMovement.new(),
 		func (): return PlayerTargeter.new()),
 	"enemy_5": CreatureStats.new(
-		"enemy_5", 100.0, 10.0, 25000.0, 0.5, Creature.AttackType.MELEE, 0.0, 100.0, 0.0, 0.0,
+		"evoker", 100.0, 10.0, 25000.0, 0.5, Creature.AttackType.MELEE, 0.0, 100.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_5_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
@@ -187,7 +187,7 @@ var enemy_stats = {
 		"enemy_6",
 		Creature.ChildEnemySpawnType.ON_ATTACK),
 	"enemy_6": CreatureStats.new(
-		"enemy_6", 50.0, 10.0, 30.0, 0.25, Creature.AttackType.MELEE, 200.0, 75.0, 0.0, 0.0,
+		"exploder", 50.0, 10.0, 30.0, 0.25, Creature.AttackType.MELEE, 200.0, 75.0, 0.0, 0.0,
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
