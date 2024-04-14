@@ -175,15 +175,3 @@ func get_enemy_stats(name: String) -> CreatureStats:
 		preload("res://assets/animations/enemies/enemy_1_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3")))
-
-# Usage example
-func _ready():
-	var summon = get_summon_stats(1, 1)
-	print("Summon name: ", summon.name)
-	print("Summon health: ", summon.health)
-	print("Summon damage: ", summon.damage)
-	
-	var enemy = get_enemy_stats("enemy_1")
-	print("Enemy name: ", enemy.name)
-	print("Enemy health: ", enemy.health)
-	print("Enemy damage: ", enemy.damage)
