@@ -68,8 +68,8 @@ func _process_summon(delta):
 		if _summon_charge >= 1:
 			_summon()
 			_sfx_audio_player.play_sound(summon_sound)
+			_placed_runes = []
 		_summon_charge = 0
-		_placed_runes = []
 	return false
 	
 func _process_move(delta):
