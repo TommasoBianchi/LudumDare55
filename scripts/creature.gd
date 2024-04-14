@@ -26,9 +26,7 @@ var range: float:
 var attack_speed: float:
 	get:
 		return attack_speed + PowerupModifiers.summon_attack_speed
-var shield: float:
-	get:
-		return shield + PowerupModifiers.summon_shield
+var shield: float
 var crit_chance: float:
 	get:
 		return crit_chance + PowerupModifiers.summon_crit_chance
