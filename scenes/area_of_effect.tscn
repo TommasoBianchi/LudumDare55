@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwrrk2bysq1p3"]
 
 [ext_resource type="Script" path="res://scripts/area_of_effect.gd" id="1_ywjlp"]
-[ext_resource type="Texture2D" uid="uid://b5m7saft21nu7" path="res://assets/sprites/summons/attack circle.png" id="2_wnt2y"]
+[ext_resource type="Texture2D" uid="uid://deqfrkvqhd7be" path="res://assets/sprites/summons/attack circle.png" id="2_wnt2y"]
 
 [node name="AreaOf Effect" type="Node2D"]
 scale = Vector2(1e-05, 1e-05)

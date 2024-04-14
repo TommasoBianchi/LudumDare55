@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bd5v2poc36ech" path="res://scenes/sfx_audio_player.tscn" id="2_evgwh"]
 [ext_resource type="PackedScene" uid="uid://8m5xu8blimls" path="res://scenes/projectile.tscn" id="2_onc1y"]
 [ext_resource type="SpriteFrames" uid="uid://h2th864gcige" path="res://assets/animations/summon/melee_2_movement.tres" id="4_8f8xm"]
-[ext_resource type="PackedScene" uid="uid://3eebp2rlspqr" path="res://scenes/area_of_effect.tscn" id="4_5518w"]
+[ext_resource type="PackedScene" uid="uid://dwrrk2bysq1p3" path="res://scenes/area_of_effect.tscn" id="4_5518w"]
 [ext_resource type="Script" path="res://scripts/creature_sprite.gd" id="4_g5o7r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s282n"]
