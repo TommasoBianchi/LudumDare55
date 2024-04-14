@@ -10,7 +10,7 @@ func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureTyp
 	creature.targeter = stats.targeter_builder.call()
 	creature.attack_targeter = stats.attack_targeter_builder.call()
 	creature.move_speed = stats.speed
-	creature.current_health = stats.health
+	creature.current_health = stats.health + PowerupModifiers.summon_health
 	creature.damage = stats.damage
 	creature.range = stats.range
 	creature.attack_speed = stats.attack_speed

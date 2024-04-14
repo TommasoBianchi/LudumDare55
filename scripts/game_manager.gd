@@ -8,6 +8,7 @@ extends Node
 
 var _current_room: Room
 var _current_room_id: int = 0
+var _collected_powerups: Array[PowerUp] = []
 
 func _ready():
 	# TODO: this is temporary
@@ -30,18 +31,20 @@ func _on_current_room_cleared():
 	
 	if _current_room_id >= len(all_room_data) - 1:
 		# It was the last room the game is finished
+		_collected_powerups = []
 		# TODO: win screen or something similar
 		return
 	
 	var power_up_ui = power_up_display_ui_prefab.instantiate()
 	add_child(power_up_ui)
-	# TODO: replace with actual powerup randomized load
-	var powerups: Array[PowerUp] = [PowerUp.new(), PowerUp.new(), PowerUp.new()]
-	power_up_ui.display_powerups(powerups)
+	var collected_powerup_ids: Array[String]
+	collected_powerup_ids.assign(_collected_powerups.map(func (p): return p.id))
+	power_up_ui.display_powerups(PowerupDatabase.select_random_powerups(3, collected_powerup_ids))
 	power_up_ui.on_powerup_selected.connect(_on_powerup_selected)
 
 func _on_powerup_selected(powerup: PowerUp):
 	powerup.activate()
+	_collected_powerups.append(powerup)
 	_current_room.queue_free()
 	setup_room(_current_room_id + 1)
 
