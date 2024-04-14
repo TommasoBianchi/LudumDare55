@@ -77,7 +77,7 @@ var summon_stats = [
 		CreatureStats.new(
 			"marksman", 30.0, 15.0, 500.0, 1.0, Creature.AttackType.RANGED, 0.0, 400.0, 5.0, 200.0,
 			preload("res://assets/animations/summon/ranged_2_movement.tres"),
-			func (): return OrbitalMovement.new(true, 150.0, 1.0),
+			func (): return OrbitalMovement.new(true, 150.0, 3.0),
 			func (): return PlayerTargeter.new(),
 			func (): return ClosestAttackTargeter.new(ClosestAttackTargeter.CloserTo.PLAYER)),
 		CreatureStats.new(
