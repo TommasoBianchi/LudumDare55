@@ -29,6 +29,6 @@ autoplay = true
 
 [node name="EnemySpawn" parent="." node_paths=PackedStringArray("spawned_enemies_container") instance=ExtResource("3_6ctxo")]
 position = Vector2(1415, 733)
-enemy_types_to_span = Array[String](["enemy_1", "enemy_2", "enemy_3", "enemy:4", "enemy_5"])
+enemy_types_to_span = Array[String](["enemy_1", "enemy_2", "enemy_3", "enemy_4", "enemy_5"])
 delays_between_spawns = Array[int]([2])
 spawned_enemies_container = NodePath("../SpawnedEnemiesContainer")

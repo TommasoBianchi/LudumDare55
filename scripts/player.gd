@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Player
 
-@export var move_speed: float = 400
+@export var move_speed: float = 150.0
 @export var placed_rune_prefab: PackedScene
 @export var placed_runes_container: Node
 @export var spawned_creatures_container: Node
