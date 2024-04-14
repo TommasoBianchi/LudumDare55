@@ -18,6 +18,7 @@ class CreatureStats:
 	var movement_builder: Callable
 	var targeter_builder: Callable
 	var attack_targeter_builder: Callable
+	var die_on_attack: bool
 	
 	# Constructor to initialize the stats
 	func _init(
@@ -36,7 +37,8 @@ class CreatureStats:
 		hit_sound: AudioStream,
 		movement_builder: Callable = func(): return BaseMovement.new(),
 		targeter_builder: Callable = func(): return BaseTargeter.new(),
-		attack_targeter_builder: Callable = func(): return BaseAttackTargeter.new()
+		attack_targeter_builder: Callable = func(): return BaseAttackTargeter.new(),
+		die_on_attack: bool = false
 	):
 		self.name = name
 		self.health = health
@@ -54,6 +56,7 @@ class CreatureStats:
 		self.movement_builder = movement_builder
 		self.targeter_builder = targeter_builder
 		self.attack_targeter_builder = attack_targeter_builder
+		self.die_on_attack = die_on_attack
 
 # Define different summons and their statistics
 var summon_stats = [

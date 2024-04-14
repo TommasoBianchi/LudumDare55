@@ -34,6 +34,7 @@ var crit_chance: float:
 var crit_damage: float:
 	get:
 		return crit_damage + PowerupModifiers.summon_crit_damage
+var die_on_attack: bool = false
 var death_sound: AudioStreamWAV
 var hit_sound: AudioStream
 var movement: BaseMovement = BaseMovement.new()
@@ -125,6 +126,9 @@ func _process_attack(targets: Array[Target]):
 	_flip_sprite(towards_first_target)
 		
 	_attack_cooldown = 1 / attack_speed
+	
+	if die_on_attack:
+		_die()
 
 func _flip_sprite(facing_direction: Vector2):
 	if facing_direction.x <= 0 or facing_direction.y <= 0:
@@ -168,7 +172,10 @@ func receive_hit(from: Creature, damage: float):
 	current_health -= damage_after_shield
 	
 	if current_health <= 0:
-		# TODO: death animation
+		_die()
+
+func _die():
+	# TODO: death animation
 		_sfx_audio_player.play_sound(death_sound)
 		room.creature_died(self)
 		queue_free()
