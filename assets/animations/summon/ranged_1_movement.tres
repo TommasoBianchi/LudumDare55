@@ -1,27 +1,23 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://nphx8txgpsby"]
+[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://nphx8txgpsby"]
 
 [ext_resource type="Texture2D" uid="uid://c0qv1pm2axoxc" path="res://assets/sprites/summons/ranged 1 movement.png" id="1_i03wc"]
 [ext_resource type="Texture2D" uid="uid://c143507oltkvy" path="res://assets/sprites/summons/ranged 1 attack.png" id="1_uki8o"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3q14r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4kka"]
 atlas = ExtResource("1_uki8o")
 region = Rect2(0, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5vm6e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hwrg"]
 atlas = ExtResource("1_uki8o")
 region = Rect2(100, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ksot"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_14joy"]
 atlas = ExtResource("1_uki8o")
 region = Rect2(200, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pfvg5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_24dv0"]
 atlas = ExtResource("1_uki8o")
 region = Rect2(300, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_af765"]
-atlas = ExtResource("1_uki8o")
-region = Rect2(400, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m7tqw"]
 atlas = ExtResource("1_i03wc")
@@ -47,19 +43,16 @@ region = Rect2(400, 0, 100, 100)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3q14r")
+"texture": SubResource("AtlasTexture_g4kka")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5vm6e")
+"texture": SubResource("AtlasTexture_4hwrg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7ksot")
+"texture": SubResource("AtlasTexture_14joy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pfvg5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_af765")
+"texture": SubResource("AtlasTexture_24dv0")
 }],
 "loop": true,
 "name": &"attack",
