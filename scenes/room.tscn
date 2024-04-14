@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0vis11a86lkk"]
+[gd_scene load_steps=5 format=3 uid="uid://c0vis11a86lkk"]
 
 [ext_resource type="PackedScene" uid="uid://d4iva5r2cmdjv" path="res://scenes/player.tscn" id="1_o10hu"]
 [ext_resource type="PackedScene" uid="uid://dy6xki38mjmv6" path="res://scenes/placed_rune.tscn" id="2_yorr4"]
+[ext_resource type="PackedScene" uid="uid://dwc2wwjqxsla1" path="res://scenes/enemy_spawn.tscn" id="3_6ctxo"]
 [ext_resource type="AudioStream" uid="uid://dnotuv3420eg3" path="res://assets/audio/soundtrack/Winter_Chill.mp3" id="3_guwju"]
 
 [node name="Room" type="Node2D"]
@@ -10,6 +11,9 @@ y_sort_enabled = true
 [node name="PlacedRunesContainer" type="Node2D" parent="."]
 
 [node name="SpawnedCreaturesContainer" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="SpawnedEnemiesContainer" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("placed_runes_container", "spawned_creatures_container") instance=ExtResource("1_o10hu")]
@@ -22,3 +26,9 @@ spawned_creatures_container = NodePath("../SpawnedCreaturesContainer")
 stream = ExtResource("3_guwju")
 volume_db = -12.0
 autoplay = true
+
+[node name="EnemySpawn" parent="." node_paths=PackedStringArray("spawned_enemies_container") instance=ExtResource("3_6ctxo")]
+position = Vector2(1415, 733)
+enemy_types_to_span = Array[String](["enemy_1", "enemy_2", "enemy_3", "enemy:4", "enemy_5"])
+delays_between_spawns = Array[int]([2])
+spawned_enemies_container = NodePath("../SpawnedEnemiesContainer")
