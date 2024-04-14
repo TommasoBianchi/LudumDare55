@@ -13,25 +13,37 @@ enum ChildEnemySpawnType { NEVER, ON_ATTACK, ON_DEATH }
 
 var move_speed: float = 0:
 	get:
+		if type == CreatureType.ENEMY:
+			return move_speed
 		return move_speed + PowerupModifiers.summon_move_speed
 var type: CreatureType
 var attack_type: AttackType
 var current_health: float
 var damage: float:
 	get:
+		if type == CreatureType.ENEMY:
+			return damage
 		return damage + PowerupModifiers.summon_damage
 var range: float:
 	get:
+		if type == CreatureType.ENEMY:
+			return range
 		return range + (PowerupModifiers.summon_melee_range if attack_type == AttackType.MELEE else PowerupModifiers.summon_melee_range)
 var attack_speed: float:
 	get:
+		if type == CreatureType.ENEMY:
+			return attack_speed
 		return attack_speed + PowerupModifiers.summon_attack_speed
 var shield: float
 var crit_chance: float:
 	get:
+		if type == CreatureType.ENEMY:
+			return crit_chance
 		return crit_chance + PowerupModifiers.summon_crit_chance
 var crit_damage: float:
 	get:
+		if type == CreatureType.ENEMY:
+			return crit_damage
 		return crit_damage + PowerupModifiers.summon_crit_damage
 var die_on_attack: bool = false
 # NOTE: these make sense only for enemy creatures
