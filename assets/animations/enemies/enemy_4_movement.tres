@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d2so6sl8b7trc" path="res://assets/sprites/enemies/enemy 4 attack.png" id="1_lx328"]
 [ext_resource type="Texture2D" uid="uid://vqxcsdq6vqdx" path="res://assets/sprites/enemies/enemy death.png" id="2_q2h07"]
 
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3os3"]
 atlas = ExtResource("1_lx328")
 region = Rect2(0, 0, 130, 155)
