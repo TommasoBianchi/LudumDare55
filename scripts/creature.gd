@@ -6,6 +6,7 @@ enum CreatureType { SUMMON, ENEMY }
 enum AttackType { MELEE, RANGED }
 
 @export var animated_sprite: AnimatedSprite2D
+@export var sfx_audio_player_prefab: PackedScene
 @export var projectile_prefab: PackedScene
 
 var move_speed: float = 0
@@ -18,9 +19,13 @@ var attack_speed: float
 var shield: float
 var crit_chance: float
 var crit_damage: float
+var death_sound: AudioStreamWAV
+var hit_sound: AudioStream
 var movement: BaseMovement = BaseMovement.new()
 var targeter: BaseTargeter = BaseTargeter.new()
 var attack_targeter: BaseAttackTargeter = BaseAttackTargeter.new()
+
+var _sfx_audio_player: SFXAudioPlayer
 
 @onready var _player: Player = get_tree().get_nodes_in_group("player")[0] as Player
 var _attack_cooldown: float = 0
@@ -29,6 +34,8 @@ func _ready():
 	assert(animated_sprite != null)
 	var _own_group = "summons" if type == CreatureType.SUMMON else "enemies"
 	add_to_group(_own_group)
+	_sfx_audio_player = sfx_audio_player_prefab.instantiate()
+	get_parent().add_child(_sfx_audio_player)
 
 func _process(delta):
 	var _own_group = "summons" if type == CreatureType.SUMMON else "enemies"
@@ -66,7 +73,7 @@ func _process(delta):
 		_player.global_position
 	)
 
-	var can_attack: bool = attack_targets.any(func (t): return (t.position - global_position).length_squared() < range ** 2)
+	var can_attack: bool = attack_targets.filter(func (t): return t != null).any(func (t): return (t.position - global_position).length_squared() < range ** 2)
 	var can_move: bool = direction != Vector2.ZERO and (not can_attack or attack_type == AttackType.RANGED)
 	if can_attack:
 		_process_attack(attack_targets)
@@ -90,6 +97,7 @@ func _process_attack(targets: Array[Target]):
 	for target in targets:
 		if attack_type == AttackType.MELEE:
 			(target.creature if target.creature else _player).receive_hit(self, actual_damage)
+			_sfx_audio_player.play_sound(hit_sound)
 		elif attack_type == AttackType.RANGED:
 			_spawn_projectile(target, actual_damage)
 		
@@ -120,4 +128,5 @@ func receive_hit(from: Creature, damage: float):
 	
 	if current_health <= 0:
 		# TODO: death animation
+		_sfx_audio_player.play_sound(death_sound)
 		queue_free()

@@ -19,6 +19,8 @@ func _spawn_creature(position: Vector2, parent: Node, type: Creature.CreatureTyp
 	creature.crit_chance = stats.crit_chance
 	creature.crit_damage = stats.crit_damage
 	creature.animated_sprite.sprite_frames = stats.sprite_frames
+	creature.death_sound = stats.death_sound
+	creature.hit_sound = stats.hit_sound
 	parent.add_child(creature)
 	return creature
 	

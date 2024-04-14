@@ -1,6 +1,6 @@
 extends RefCounted
 
-class_name NoneAttackTargeter
+class_name BaseAttackTargeter
 
 func compute_target(
 	move_target: Target,

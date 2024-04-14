@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0vis11a86lkk"]
+[gd_scene load_steps=4 format=3 uid="uid://c0vis11a86lkk"]
 
 [ext_resource type="PackedScene" uid="uid://d4iva5r2cmdjv" path="res://scenes/player.tscn" id="1_o10hu"]
 [ext_resource type="PackedScene" uid="uid://dy6xki38mjmv6" path="res://scenes/placed_rune.tscn" id="2_yorr4"]
+[ext_resource type="AudioStream" uid="uid://dnotuv3420eg3" path="res://assets/audio/soundtrack/Winter_Chill.mp3" id="3_guwju"]
 
 [node name="Room" type="Node2D"]
 y_sort_enabled = true
@@ -16,3 +17,8 @@ position = Vector2(439, 290)
 placed_rune_prefab = ExtResource("2_yorr4")
 placed_runes_container = NodePath("../PlacedRunesContainer")
 spawned_creatures_container = NodePath("../SpawnedCreaturesContainer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_guwju")
+volume_db = -12.0
+autoplay = true
