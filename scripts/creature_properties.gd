@@ -137,14 +137,14 @@ var enemy_stats = {
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_2": CreatureStats.new(
 		"enemy_2", 30.0, 5.0, 350.0, 1.0, Creature.AttackType.RANGED, 0.0, 0.0, 0.0, 0.0,
-		preload("res://assets/animations/enemies/enemy_2_movement.tres"),
+		preload("res://assets/animations/enemies/enemy_3_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
 		func (): return BaseMovement.new(),
 		func (): return CloserTargeter.new(CloserTargeter.CloserTo.SELF, false, true)),
 	"enemy_3": CreatureStats.new(
 		"enemy_3", 100.0, 5.0, 1.0, 1.0, Creature.AttackType.MELEE, 0.0, 150.0, 0.0, 0.0,
-		preload("res://assets/animations/enemies/enemy_3_movement.tres"),
+		preload("res://assets/animations/enemies/enemy_2_movement.tres"),
 		preload("res://assets/audio/sfx/enemy_death.wav"),
 		preload("res://assets/audio/sfx/melee_hit.mp3"),
 		func (): return SeekAndDestroyMovement.new(),
