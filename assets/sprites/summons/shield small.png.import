@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctgssw4fxfvve"
-path="res://.godot/imported/summon death big.png-134a79b56a353314516d473e74d310d1.ctex"
+uid="uid://gvtufbhuqqmw"
+path="res://.godot/imported/shield small.png-6093df405b24e35829fb9e4d2ea4f17b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/summons/summon death big.png"
-dest_files=["res://.godot/imported/summon death big.png-134a79b56a353314516d473e74d310d1.ctex"]
+source_file="res://assets/sprites/summons/shield small.png"
+dest_files=["res://.godot/imported/shield small.png-6093df405b24e35829fb9e4d2ea4f17b.ctex"]
 
 [params]
 

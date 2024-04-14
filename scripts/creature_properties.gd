@@ -106,7 +106,7 @@ var summon_stats = [
 	],
 	[
 		CreatureStats.new(
-			"priest", 75.0, 10.0, 150.0, 0.5, Creature.AttackType.MELEE, 0.0, 100.0, 5.0, 150.0,
+			"priest", 75.0, 10.0, 150.0, 0.5, Creature.AttackType.HEALER, 0.0, 100.0, 5.0, 150.0,
 			preload("res://assets/animations/summon/support_1_movement.tres"),
 			preload("res://assets/audio/sfx/summon_death.wav"),
 			preload("res://assets/audio/sfx/melee_hit.mp3"),

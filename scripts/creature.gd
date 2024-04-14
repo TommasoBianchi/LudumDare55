@@ -3,7 +3,7 @@ extends Node2D
 class_name Creature
 
 enum CreatureType { SUMMON, ENEMY }
-enum AttackType { MELEE, RANGED, AOE }
+enum AttackType { MELEE, RANGED, AOE, HEALER }
 
 @export var animated_sprite: AnimatedSprite2D
 @export var sfx_audio_player_prefab: PackedScene
@@ -111,9 +111,11 @@ func _process_attack(targets: Array[Target]):
 
 	var has_crit: bool = randf_range(0, 100) < crit_chance
 	var actual_damage = damage * (1 if not has_crit else min(100, crit_damage) / 100)
+	if attack_type == AttackType.HEALER:
+		actual_damage = -actual_damage
 	for target in targets:
 		_sfx_audio_player.play_sound(hit_sound)
-		if attack_type == AttackType.MELEE or attack_type == AttackType.AOE:
+		if attack_type == AttackType.MELEE or attack_type == AttackType.AOE or attack_type == AttackType.HEALER:
 			(target.creature if target.creature else _player).receive_hit(self, actual_damage)
 		elif attack_type == AttackType.RANGED:
 			_spawn_projectile(target, actual_damage)

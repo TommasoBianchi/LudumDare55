@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctgssw4fxfvve"
-path="res://.godot/imported/summon death big.png-134a79b56a353314516d473e74d310d1.ctex"
+uid="uid://deqfrkvqhd7be"
+path="res://.godot/imported/attack circle.png-633b985461bbe91cbe2f7e6f32772c9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/summons/summon death big.png"
-dest_files=["res://.godot/imported/summon death big.png-134a79b56a353314516d473e74d310d1.ctex"]
+source_file="res://assets/sprites/summons/attack circle.png"
+dest_files=["res://.godot/imported/attack circle.png-633b985461bbe91cbe2f7e6f32772c9e.ctex"]
 
 [params]
 
