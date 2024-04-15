@@ -51,12 +51,12 @@ text = "Here go the statistics"
 [node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "RESTART"
+text = "Restart"
 
 [node name="Button2" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "MAIN MENU"
+text = "Main Menu"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Button2" to="." method="_on_main_menu_pressed"]
