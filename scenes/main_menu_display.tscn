@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main_menu_display.gd" id="1_83yan"]
 [ext_resource type="Texture2D" uid="uid://djhilubl5ua6g" path="res://assets/main menu.png" id="2_mj7pw"]
 [ext_resource type="Texture2D" uid="uid://dqr05yvrcpevw" path="res://assets/rune main menu.png" id="3_3vh3r"]
-[ext_resource type="Texture2D" uid="uid://6vd3tn0qqww8" path="res://assets/game over.png" id="4_r8p58"]
+[ext_resource type="Texture2D" uid="uid://b8fjiai86eskj" path="res://assets/Tutorial.png" id="4_hq5im"]
 
 [node name="MainMenuDisplay" type="Control"]
 layout_mode = 3
@@ -250,18 +250,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_r8p58")
+texture = ExtResource("4_hq5im")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Tutorial Group"]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -166.0
-offset_bottom = -76.0
-grow_horizontal = 2
+offset_left = -529.0
+offset_top = -150.0
+offset_right = -102.0
+offset_bottom = -88.0
+grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Click anywhere to close"
