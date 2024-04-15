@@ -53,6 +53,9 @@ func _process(delta):
 	if not is_busy:
 		progress_bar.hide()
 		_process_move(delta)
+	else:
+		# TODO: remove this once we have animations for charging rune and summon
+		animated_sprite.stop()
 		
 func enable_input(enable: bool):
 	_is_input_enabled = enable
