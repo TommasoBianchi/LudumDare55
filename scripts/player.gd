@@ -46,7 +46,7 @@ func _ready():
 	get_parent().add_child(_sfx_audio_player)
 	_current_health = max_health + PowerupModifiers.player_health
 	_hud_ui = hud_ui_prefab.instantiate()
-	get_parent().get_parent().add_child(_hud_ui)
+	get_parent().add_child(_hud_ui)
 
 func _process(delta):
 	if not _is_input_enabled:

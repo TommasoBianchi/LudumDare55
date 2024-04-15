@@ -13,6 +13,8 @@ grow_vertical = 2
 script = ExtResource("1_iwaad")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+top_level = true
+z_index = 10
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
