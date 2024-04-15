@@ -76,6 +76,9 @@ func _go_to_main_menu():
 		main_menu_display.queue_free()
 		setup_room(0)
 	)
+	
+	# Cleanup powerup modifiers for next run
+	PowerupModifiers.reset()
 
 func _on_powerup_selected(powerup: PowerUp):
 	powerup.activate()
