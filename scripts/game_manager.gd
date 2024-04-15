@@ -66,6 +66,9 @@ func _on_player_died():
 	)
 	
 func _go_to_main_menu():
+	if _current_room:
+		_current_room.queue_free()
+	
 	var main_menu_display: MainMenuDisplay = main_menu_ui_prefab.instantiate()
 	add_child(main_menu_display)
 	
