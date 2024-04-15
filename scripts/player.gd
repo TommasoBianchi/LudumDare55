@@ -6,6 +6,7 @@ class_name Player
 	get:
 		return move_speed + PowerupModifiers.player_move_speed
 @export var placed_rune_prefab: PackedScene
+@export var hud_ui_prefab: PackedScene = preload("res://scenes/hud.tscn")
 @export var placed_runes_container: Node
 @export var spawned_creatures_container: Node
 @export var animated_sprite: AnimatedSprite2D
@@ -32,6 +33,7 @@ var _placed_runes: Array[PlacedRuneData] = []
 var _summon_charge: float = 0
 var _sfx_audio_player: SFXAudioPlayer
 var _is_input_enabled: bool = false
+var _hud_ui: HUD
 
 func _ready():
 	assert(placed_rune_prefab != null)
@@ -40,6 +42,8 @@ func _ready():
 	_sfx_audio_player = sfx_audio_player_prefab.instantiate()
 	get_parent().add_child(_sfx_audio_player)
 	_current_health = max_health + PowerupModifiers.player_health
+	_hud_ui = hud_ui_prefab.instantiate()
+	get_parent().get_parent().add_child(_hud_ui)
 
 func _process(delta):
 	if not _is_input_enabled:
@@ -157,8 +161,13 @@ func receive_hit(from: Creature, damage: float):
 	if from and from.type != Creature.CreatureType.ENEMY:
 		# Ignore friendly fire
 		return
-
+		
+	if _current_health <= 0:
+		# Already dead
+		return
+		
 	_current_health -= damage
+	_hud_ui.set_life_percentage(_current_health / max_health)
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property($Sprite2D, "modulate", Color.DARK_RED, 0.1).set_ease(Tween.EASE_IN)
@@ -168,6 +177,8 @@ func receive_hit(from: Creature, damage: float):
 		_sfx_audio_player.play_sound(death_sound, true)
 		# TODO: death animation
 		room.player_died()
+		_hud_ui.queue_free()
+		hide()
 
 ########################
 # Utility functions
