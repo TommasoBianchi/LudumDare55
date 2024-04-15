@@ -92,6 +92,7 @@ func _process_rune(delta):
 	
 func _process_summon(delta):
 	if Input.is_action_pressed("summon"):
+		progress_bar_rune_preview.texture = null
 		_summon_charge += delta
 		_summon_charge = min(_summon_charge, time_for_summon_level * max_summon_levels)
 		progress_bar.show()
