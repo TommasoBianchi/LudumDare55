@@ -59,16 +59,21 @@ var all_powerups: Array[PowerUp] = [
 	PowerUp.new(
 		"player_time_for_rune_level",
 		"Reduce the time required to place runes",
-		func (): PowerupModifiers.player_time_for_rune_level -= 0.5
+		func (): PowerupModifiers.player_time_for_rune_level -= 0.25,
+		true,
+		3
 	),
 	PowerUp.new(
 		"player_time_for_summon_level",
 		"Reduce the time required to summon creatures",
-		func (): PowerupModifiers.player_time_for_summon_level -= 0.5
+		func (): PowerupModifiers.player_time_for_summon_level -= 0.25,
+		true,
+		3
 	),
 ]
 
 func select_random_powerups(num: int, already_collected_ids: Array[String]):
-	var selectable = all_powerups.filter(func (p): return p.can_stack or p.id not in already_collected_ids)
+	var selectable = all_powerups.filter(func (p): return p.can_stack or p.id not in already_collected_ids)\
+		.filter(func (p): return p.max_stacks == -1 or already_collected_ids.count(p.id) < p.max_stacks)
 	selectable.shuffle()
 	return selectable.slice(0, num)
