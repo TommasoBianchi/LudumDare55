@@ -25,6 +25,8 @@ class_name Player
 @export var death_sound = AudioStream
 @export var max_health: int = 100.0
 
+@onready var progress_bar_rune_preview: TextureRect = progress_bar.get_node("RunePreview")
+
 var room: Room
 
 var _current_health: float
@@ -73,12 +75,18 @@ func _process_rune(delta):
 		progress_bar.value = _get_remaining_from_charge(_rune_charge, time_for_rune_level) / time_for_rune_level
 		if _rune_charge >= time_for_rune_level * max_rune_levels:
 			progress_bar.value = 1
+		var rune_level: int = _get_level_from_charge(_rune_charge, time_for_rune_level)
+		if rune_level > 0:
+			progress_bar_rune_preview.texture = RunesLoader.get_rune_data(rune_level, 1).sprite
+		else:
+			progress_bar_rune_preview.texture = null
 		return true
 	if Input.is_action_just_released("place_rune"):
 		if _get_level_from_charge(_rune_charge, time_for_rune_level) >= 1:
 			_place_rune()
 			_sfx_audio_player.play_sound(place_rune)
 		_rune_charge = 0
+		progress_bar_rune_preview.texture = null
 		return true
 	return false
 	

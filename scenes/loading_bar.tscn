@@ -12,3 +12,15 @@ step = 0.0
 value = 1.0
 fill_mode = 4
 texture_progress = ExtResource("1_owdyo")
+
+[node name="RunePreview" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = -128.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
