@@ -34,6 +34,7 @@ var _summon_charge: float = 0
 var _sfx_audio_player: SFXAudioPlayer
 var _is_input_enabled: bool = false
 var _hud_ui: HUD
+var _previous_summon_level: int = 1
 
 func _ready():
 	assert(placed_rune_prefab != null)
@@ -89,6 +90,13 @@ func _process_summon(delta):
 		progress_bar.value = _get_remaining_from_charge(_summon_charge, time_for_summon_level) / time_for_summon_level
 		if _summon_charge >= time_for_summon_level * max_summon_levels:
 			progress_bar.value = 1
+		
+		var summon_level = _get_level_from_charge(_summon_charge, time_for_summon_level)
+		if summon_level > _previous_summon_level:
+			for placed_rune in _placed_runes:
+				placed_rune.set_summon_level(summon_level)
+			_previous_summon_level = summon_level
+		
 		return true
 	if Input.is_action_just_released("summon"):
 		if _get_level_from_charge(_summon_charge, time_for_summon_level) >= 1:
@@ -97,6 +105,7 @@ func _process_summon(delta):
 			_placed_runes = []
 			_rune_charge = 0
 		_summon_charge = 0
+		_previous_summon_level = 1
 		return true
 	return false
 	
@@ -132,11 +141,11 @@ func _place_rune():
 	if level == 0:
 		return
 
-	_placed_runes.append(PlacedRuneData.new(global_position, level))
 	var placed_rune = placed_rune_prefab.instantiate()
 	placed_rune.global_position = global_position
 	placed_rune.get_node("Sprite2D").texture = RunesLoader.get_rune_data(level, 1).sprite
 	placed_runes_container.add_child(placed_rune)
+	_placed_runes.append(PlacedRuneData.new(global_position, level, placed_rune.get_node("Sprite2D")))
 	
 func _summon():
 	# Remove instantiated runes
