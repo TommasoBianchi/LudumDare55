@@ -177,7 +177,8 @@ func _flip_sprite(facing_direction: Vector2):
 
 func _spawn_projectile(target: Target, damage: float):
 	var projectile: Projectile = projectile_prefab.instantiate()
-	projectile.position = global_position  # TODO: think about having an explicit spawn position
+	# NOTE: the position offset is to make creatures spawn from the center of the sprite
+	projectile.position = global_position - Vector2(0, animated_sprite.sprite_frames.get_frame_texture("move", 0).get_height() / 2 * animated_sprite.scale.y)
 	projectile.damage = damage
 	projectile.direction = (target.position - global_position).normalized()
 	projectile.attacker_type = type
