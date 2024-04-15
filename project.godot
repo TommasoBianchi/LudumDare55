@@ -32,6 +32,11 @@ window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[gui]
+
+theme/custom="res://default_ui_theme.tres"
+theme/custom_font="res://assets/fonts/Alata-Regular.ttf"
+
 [input]
 
 move_left={

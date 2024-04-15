@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccgb78x42ex26"]
+[gd_scene load_steps=4 format=3 uid="uid://ccgb78x42ex26"]
 
 [ext_resource type="Script" path="res://scripts/main_menu_display.gd" id="1_83yan"]
+[ext_resource type="Texture2D" uid="uid://djhilubl5ua6g" path="res://assets/main menu.png" id="2_mj7pw"]
+[ext_resource type="Texture2D" uid="uid://dqr05yvrcpevw" path="res://assets/rune main menu.png" id="3_3vh3r"]
 
 [node name="MainMenuDisplay" type="Control"]
 layout_mode = 3
@@ -11,47 +13,223 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_83yan")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="BackgroundImage" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.266667, 0.266667, 0.266667, 1)
+texture = ExtResource("2_mj7pw")
+expand_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Title Group" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 150.0
+offset_right = 20.0
+offset_bottom = 190.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 600
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 600
-theme_override_constants/margin_bottom = 100
 
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 100
-alignment = 1
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "MAIN MENU"
+[node name="Title" type="Label" parent="Title Group"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -960.0
+offset_right = 960.0
+offset_bottom = 101.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 72
+text = "SHADOW SUMMONER"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="Subtitle" type="Label" parent="Title Group"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -960.0
+offset_top = 80.0
+offset_right = 960.0
+offset_bottom = 149.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 36
+text = "Chronicles of the tiny guardians"
+horizontal_alignment = 1
+
+[node name="Main Buttons Group" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play Button" type="Button" parent="Main Buttons Group"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -153.5
+offset_right = 100.0
+offset_bottom = -70.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "Play"
+alignment = 0
+
+[node name="TextureRect" type="TextureRect" parent="Main Buttons Group/Play Button"]
+layout_mode = 0
+offset_left = -80.0
+offset_right = 5.0
+offset_bottom = 85.0
+texture = ExtResource("3_3vh3r")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Buttons Group"]
+layout_mode = 2
+offset_left = 860.0
+offset_top = 483.0
+offset_right = 1060.0
+offset_bottom = 851.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Options Button" type="Button" parent="Main Buttons Group/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "PLAY"
+text = "Options"
+alignment = 0
 
-[node name="Button2" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="Credits Button" type="Button" parent="Main Buttons Group/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "EXIT"
+text = "Credits"
+alignment = 0
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Button2" to="." method="_on_exit_pressed"]
+[node name="Exit Game Button" type="Button" parent="Main Buttons Group/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Exit Game"
+alignment = 0
+
+[node name="Options Group (WIP)" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options Group (WIP)"]
+offset_left = 860.0
+offset_top = 483.0
+offset_right = 1060.0
+offset_bottom = 851.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Options Group (WIP)/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider2" type="HSlider" parent="Options Group (WIP)/VBoxContainer"]
+layout_mode = 2
+
+[node name="Back Button" type="Button" parent="Options Group (WIP)/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Back"
+alignment = 0
+
+[node name="Credits Group" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label4" type="Label" parent="Credits Group"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -57.5
+offset_right = 416.0
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Made with love by the Bianchi brothers: Francesca, Lorenzo and Tommaso"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits Group"]
+visible = false
+offset_left = 600.0
+offset_top = 330.0
+offset_right = 1325.0
+offset_bottom = 730.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="Credits Group/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "Francesca Bianchi: game art"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="Credits Group/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "Lorenzo Bianchi: lead game design, programming, SFX"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="Credits Group/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "Tommaso Bianchi: game design, lead programming"
+autowrap_mode = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Credits Group"]
+offset_left = 860.0
+offset_top = 750.0
+offset_right = 1060.0
+offset_bottom = 851.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Back Button" type="Button" parent="Credits Group/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[connection signal="pressed" from="Main Buttons Group/Play Button" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Main Buttons Group/VBoxContainer/Options Button" to="Main Buttons Group" method="hide"]
+[connection signal="pressed" from="Main Buttons Group/VBoxContainer/Options Button" to="Options Group (WIP)" method="show"]
+[connection signal="pressed" from="Main Buttons Group/VBoxContainer/Credits Button" to="Main Buttons Group" method="hide"]
+[connection signal="pressed" from="Main Buttons Group/VBoxContainer/Credits Button" to="Credits Group" method="show"]
+[connection signal="pressed" from="Main Buttons Group/VBoxContainer/Exit Game Button" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Options Group (WIP)/VBoxContainer/Back Button" to="Main Buttons Group" method="show"]
+[connection signal="pressed" from="Options Group (WIP)/VBoxContainer/Back Button" to="Options Group (WIP)" method="hide"]
+[connection signal="pressed" from="Credits Group/VBoxContainer3/Back Button" to="Main Buttons Group" method="show"]
+[connection signal="pressed" from="Credits Group/VBoxContainer3/Back Button" to="Credits Group" method="hide"]

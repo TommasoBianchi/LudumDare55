@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://ne534ppktpxa"]
+
+[ext_resource type="FontFile" uid="uid://bhuyyc3n7e8xq" path="res://assets/fonts/Alata-Regular.ttf" id="1_1d2ni"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhv2c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vwhdx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qtlq1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u27iu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tmvns"]
+
+[resource]
+default_font = ExtResource("1_1d2ni")
+Button/colors/font_hover_color = Color(0.588235, 0.588235, 0.588235, 1)
+Button/colors/font_pressed_color = Color(0.423529, 0.423529, 0.423529, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_dhv2c")
+Button/styles/focus = SubResource("StyleBoxEmpty_vwhdx")
+Button/styles/hover = SubResource("StyleBoxEmpty_qtlq1")
+Button/styles/normal = SubResource("StyleBoxEmpty_u27iu")
+Button/styles/pressed = SubResource("StyleBoxEmpty_tmvns")
