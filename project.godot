@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Ludum Dare 55"
+config/name="Shadow Summoner"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://assets/icon.svg"
+config/icon="res://assets/sprites/player/player.png"
 
 [autoload]
 
