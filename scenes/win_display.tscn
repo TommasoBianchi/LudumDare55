@@ -1,16 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://clh7a5k7vdskt"]
+[gd_scene load_steps=3 format=3 uid="uid://b0kmn3rt2h624"]
 
-[ext_resource type="Script" path="res://scripts/game_over_display.gd" id="1_7qaqk"]
-[ext_resource type="Texture2D" uid="uid://6vd3tn0qqww8" path="res://assets/game over.png" id="2_8hyuw"]
+[ext_resource type="Script" path="res://scripts/game_over_display.gd" id="1_4f54t"]
+[ext_resource type="Texture2D" uid="uid://bwikl2ira4uhe" path="res://assets/you win.png" id="2_tcsbh"]
 
-[node name="GameOverDisplay" type="Control"]
+[node name="WinDisplay" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7qaqk")
+script = ExtResource("1_4f54t")
 
 [node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_8hyuw")
+texture = ExtResource("2_tcsbh")
 expand_mode = 2
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
@@ -33,15 +33,15 @@ theme_override_constants/separation = 20
 [node name="Title" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
-text = "GAME OVER"
+text = "YOU WIN!"
 horizontal_alignment = 1
 
 [node name="Text" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
-text = "Oops, looks like victory slipped through your fingers this time.
-The tiny guardians might need a peep talk.
-But hey, every setback is a setup for a comeback, right?"
+text = "Way to go! You've totally nailed summoning, and those shadow guardians?
+They're loving their time in the spotlight.
+Great work!"
 horizontal_alignment = 1
 
 [node name="Statistics" type="Label" parent="HBoxContainer"]

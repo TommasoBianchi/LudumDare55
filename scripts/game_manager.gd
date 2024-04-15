@@ -4,6 +4,7 @@ extends Node
 @export var main_menu_ui_prefab: PackedScene
 @export var power_up_display_ui_prefab: PackedScene
 @export var game_over_ui_prefab: PackedScene
+@export var win_ui_prefab: PackedScene = preload("res://scenes/win_display.tscn")
 @export var all_room_data: Array[RoomData]
 @export var room_start_timer: Timer
 @export var room_start_time: float = 3
@@ -34,7 +35,20 @@ func _on_current_room_cleared():
 	if _current_room_id >= len(all_room_data) - 1:
 		# It was the last room the game is finished
 		_collected_powerups = []
-		# TODO: win screen or something similar
+		var win_display: GameOverDisplay = win_ui_prefab.instantiate()
+		win_display.display_statistics(_current_room_id + 1, _current_room.dead_enemies, _current_room.dead_summons)
+		add_child(win_display)
+		
+		win_display.restart_clicked.connect(func ():
+			win_display.queue_free()
+			_current_room.queue_free()
+			setup_room(0)
+		)
+		
+		win_display.main_menu_clicked.connect(func ():
+			win_display.queue_free()
+			_go_to_main_menu()
+		)
 		return
 	
 	var power_up_ui = power_up_display_ui_prefab.instantiate()
