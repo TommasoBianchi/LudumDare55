@@ -4,10 +4,11 @@ extends Node
 @export var main_menu_ui_prefab: PackedScene
 @export var power_up_display_ui_prefab: PackedScene
 @export var game_over_ui_prefab: PackedScene
+@export var countdown_ui_prefab: PackedScene = preload("res://scenes/countdown.tscn")
 @export var win_ui_prefab: PackedScene = preload("res://scenes/win_display.tscn")
 @export var all_room_data: Array[RoomData]
 @export var room_start_timer: Timer
-@export var room_start_time: float = 3
+@export var room_start_time: int = 3
 
 var _current_room: Room
 var _current_room_id: int = 0
@@ -25,6 +26,9 @@ func setup_room(id: int):
 	_current_room.on_room_cleared.connect(_on_current_room_cleared)
 	_current_room.on_player_died.connect(_on_player_died)
 	room_start_timer.start(room_start_time)
+	var countdown_ui: CountdownUI = countdown_ui_prefab.instantiate()
+	add_child(countdown_ui)
+	countdown_ui.start(room_start_time)
 
 func _on_current_room_cleared():
 	if _current_room.on_room_cleared.is_connected(_on_current_room_cleared):
