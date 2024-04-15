@@ -9,6 +9,7 @@ class_name Room
 @export var player_prefab: PackedScene
 @export var room_data: RoomData
 @export var spawner_positions_margin: int = 200
+@export var spawners_min_distance_from_player: int = 400
 
 var _total_enemies_from_spawners: int = 0
 var dead_enemies: int = 0
@@ -48,10 +49,13 @@ func _setup_spawners():
 	
 	for config in enemy_spawners_config:
 		var enemy_spawner: EnemySpawn = enemy_spawner_prefab.instantiate()
-		var position = Vector2(
-			randf_range(viewport_rect.position.x, viewport_rect.end.x),
-			randf_range(viewport_rect.position.y, viewport_rect.end.y)
-		)
+		var position = _player.global_position
+		while (position - _player.global_position).length_squared() < spawners_min_distance_from_player ** 2:
+			print("Position too close to player: " + str(position))
+			position = Vector2(
+				randf_range(viewport_rect.position.x, viewport_rect.end.x),
+				randf_range(viewport_rect.position.y, viewport_rect.end.y)
+			)
 		enemy_spawner.position = position
 		enemy_spawner.name = "Enemy Spawner %d" % config.id
 		enemy_spawner.enemy_types_to_spawn = config.enemy_types_to_spawn
