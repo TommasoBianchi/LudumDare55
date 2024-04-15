@@ -28,9 +28,7 @@ PowerupDatabase="*res://scripts/powerup/powerup_database.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
-window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
+window/stretch/mode="canvas_items"
 
 [gui]
 
