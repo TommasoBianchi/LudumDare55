@@ -1,20 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0vis11a86lkk"]
+[gd_scene load_steps=5 format=3 uid="uid://c0vis11a86lkk"]
 
-[ext_resource type="Script" path="res://scripts/room.gd" id="1_de1pv"]
+[ext_resource type="Script" path="res://scripts/room/room.gd" id="1_nxgm8"]
 [ext_resource type="PackedScene" uid="uid://d4iva5r2cmdjv" path="res://scenes/player.tscn" id="1_o10hu"]
 [ext_resource type="PackedScene" uid="uid://dwc2wwjqxsla1" path="res://scenes/enemy_spawn.tscn" id="3_6ctxo"]
-[ext_resource type="Resource" uid="uid://dudr8qcjfxk5t" path="res://assets/room_data/room1.tres" id="4_6smis"]
 [ext_resource type="PackedScene" uid="uid://dxmg7nongiwe8" path="res://scenes/room_background.tscn" id="5_53rb5"]
 
 [node name="Room" type="Node2D" node_paths=PackedStringArray("spawned_enemies_container", "placed_runes_container", "spawned_creatures_container")]
 y_sort_enabled = true
-script = ExtResource("1_de1pv")
+script = ExtResource("1_nxgm8")
 spawned_enemies_container = NodePath("SpawnedEnemiesContainer")
 placed_runes_container = NodePath("PlacedRunesContainer")
 spawned_creatures_container = NodePath("SpawnedCreaturesContainer")
 enemy_spawner_prefab = ExtResource("3_6ctxo")
 player_prefab = ExtResource("1_o10hu")
-room_data = ExtResource("4_6smis")
 
 [node name="Background" parent="." instance=ExtResource("5_53rb5")]
 

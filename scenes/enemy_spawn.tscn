@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwc2wwjqxsla1"]
 
-[ext_resource type="Script" path="res://scripts/enemy_spawn.gd" id="1_kd3vl"]
+[ext_resource type="Script" path="res://scripts/creatures/enemy_spawn.gd" id="1_uvors"]
 [ext_resource type="Texture2D" uid="uid://3nhcsdqhjirt" path="res://assets/sprites/enemies/spawn.png" id="2_judk0"]
 
 [node name="EnemySpawn" type="Node2D"]
-script = ExtResource("1_kd3vl")
+script = ExtResource("1_uvors")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_judk0")

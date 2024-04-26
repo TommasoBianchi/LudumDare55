@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ciymv1rw8fsom"]
 
-[ext_resource type="Script" path="res://scripts/power_up_display.gd" id="1_yxs0h"]
+[ext_resource type="Script" path="res://scripts/ui/power_up_display.gd" id="1_7fqx3"]
 [ext_resource type="PackedScene" uid="uid://dl0wspausirph" path="res://scenes/power_up_button.tscn" id="2_yixx5"]
 
 [node name="PowerUpDisplay" type="Control" node_paths=PackedStringArray("powerup_buttons_container")]
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_yxs0h")
+script = ExtResource("1_7fqx3")
 powerup_button_prefab = ExtResource("2_yixx5")
 powerup_buttons_container = NodePath("MarginContainer/HBoxContainer")
 

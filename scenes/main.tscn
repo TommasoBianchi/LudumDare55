@@ -23,7 +23,7 @@ room_prefab = ExtResource("2_1svc8")
 main_menu_ui_prefab = ExtResource("3_xyts7")
 power_up_display_ui_prefab = ExtResource("4_vbqal")
 game_over_ui_prefab = ExtResource("4_hum0n")
-all_room_data = Array[Resource("res://scripts/room_data.gd")]([ExtResource("3_lom17"), ExtResource("5_nkh0q"), ExtResource("6_jch4u"), ExtResource("7_ffdrl"), ExtResource("8_ql6gw"), ExtResource("9_h3gsn"), ExtResource("10_gr11s"), ExtResource("11_5dwes"), ExtResource("12_if8uw"), ExtResource("7_hkcqt")])
+all_room_data = Array[Resource("res://scripts/room/room_data.gd")]([ExtResource("3_lom17"), ExtResource("5_nkh0q"), ExtResource("6_jch4u"), ExtResource("7_ffdrl"), ExtResource("8_ql6gw"), ExtResource("9_h3gsn"), ExtResource("10_gr11s"), ExtResource("11_5dwes"), ExtResource("12_if8uw"), ExtResource("7_hkcqt")])
 room_start_timer = NodePath("RoomStartTimer")
 
 [node name="RoomStartTimer" type="Timer" parent="."]

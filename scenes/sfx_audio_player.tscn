@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://bd5v2poc36ech"]
 
-[ext_resource type="Script" path="res://scripts/sfx_audio_player.gd" id="1_opryg"]
+[ext_resource type="Script" path="res://scripts/sfx/sfx_audio_player.gd" id="1_tw2dm"]
 
 [node name="SFXAudioPlayer" type="AudioStreamPlayer2D"]
-script = ExtResource("1_opryg")
+script = ExtResource("1_tw2dm")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

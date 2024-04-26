@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://cwvu8j1rcirql"]
 
-[ext_resource type="Script" path="res://scripts/creature.gd" id="1_sw6lb"]
-[ext_resource type="PackedScene" path="res://scenes/sfx_audio_player.tscn" id="2_evgwh"]
+[ext_resource type="Script" path="res://scripts/creatures/creature.gd" id="1_k5ril"]
+[ext_resource type="PackedScene" uid="uid://bd5v2poc36ech" path="res://scenes/sfx_audio_player.tscn" id="2_evgwh"]
 [ext_resource type="PackedScene" uid="uid://8m5xu8blimls" path="res://scenes/projectile.tscn" id="2_onc1y"]
 [ext_resource type="SpriteFrames" uid="uid://h2th864gcige" path="res://assets/animations/summon/melee_2_movement.tres" id="4_8f8xm"]
 [ext_resource type="PackedScene" uid="uid://dwrrk2bysq1p3" path="res://scenes/area_of_effect.tscn" id="4_5518w"]
-[ext_resource type="Script" path="res://scripts/creature_sprite.gd" id="4_g5o7r"]
-[ext_resource type="Texture2D" uid="uid://cdpdunou2mn5m" path="res://assets/sprites/summons/shield small.png" id="7_dhxem"]
-[ext_resource type="Script" path="res://scripts/shield.gd" id="8_ktljk"]
+[ext_resource type="Script" path="res://scripts/creatures/creature_sprite.gd" id="6_3e01g"]
+[ext_resource type="Texture2D" uid="uid://gvtufbhuqqmw" path="res://assets/sprites/summons/shield small.png" id="7_dhxem"]
+[ext_resource type="Script" path="res://scripts/creatures/shield.gd" id="8_cg82y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s282n"]
 radius = 23.0
@@ -15,7 +15,7 @@ height = 86.5
 
 [node name="Creature" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
 y_sort_enabled = true
-script = ExtResource("1_sw6lb")
+script = ExtResource("1_k5ril")
 animated_sprite = NodePath("Sprite2D")
 sfx_audio_player_prefab = ExtResource("2_evgwh")
 projectile_prefab = ExtResource("2_onc1y")
@@ -26,7 +26,7 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("4_8f8xm")
 animation = &"move"
 offset = Vector2(0, -86.5)
-script = ExtResource("4_g5o7r")
+script = ExtResource("6_3e01g")
 collision_shape = NodePath("../Area2D/CollisionShape2D")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -46,6 +46,6 @@ position = Vector2(0, 2)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_dhxem")
 offset = Vector2(0, -28)
-script = ExtResource("8_ktljk")
+script = ExtResource("8_cg82y")
 
 [connection signal="timeout" from="QueueFreeTimer" to="." method="queue_free"]

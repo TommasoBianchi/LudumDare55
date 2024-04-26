@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccgb78x42ex26"]
 
-[ext_resource type="Script" path="res://scripts/main_menu_display.gd" id="1_83yan"]
+[ext_resource type="Script" path="res://scripts/ui/main_menu_display.gd" id="1_dvf7i"]
 [ext_resource type="Texture2D" uid="uid://djhilubl5ua6g" path="res://assets/main menu.png" id="2_mj7pw"]
 [ext_resource type="Texture2D" uid="uid://dqr05yvrcpevw" path="res://assets/rune main menu.png" id="3_3vh3r"]
 [ext_resource type="Texture2D" uid="uid://b8fjiai86eskj" path="res://assets/Tutorial.png" id="4_hq5im"]
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_83yan")
+script = ExtResource("1_dvf7i")
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
 layout_mode = 1

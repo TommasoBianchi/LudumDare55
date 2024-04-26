@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://8m5xu8blimls"]
 
-[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_bxaep"]
+[ext_resource type="Script" path="res://scripts/creatures/projectile.gd" id="1_jgdwq"]
 [ext_resource type="Texture2D" uid="uid://db7rdqpbuj8q6" path="res://assets/sprites/summons/projectile summon.png" id="2_2nj6g"]
 [ext_resource type="Texture2D" uid="uid://d3n4m61ecjc36" path="res://assets/sprites/enemies/projectile enemy.png" id="2_4ftlc"]
 
@@ -9,7 +9,7 @@ radius = 7.0
 
 [node name="Projectile" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_bxaep")
+script = ExtResource("1_jgdwq")
 summon_projectile_sprite = ExtResource("2_2nj6g")
 enemy_projectile_sprite = ExtResource("2_4ftlc")
 
