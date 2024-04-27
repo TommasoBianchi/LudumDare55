@@ -39,6 +39,9 @@ func randomize_spawners_config() -> Array[EnemySpawnerConfig]:
 	var slice_start: int = 0
 	for spawner_id in range(num_spawners):
 		var remaining_enemies_num: int = len(all_enemy_types_to_spawn) - slice_start
+		if remaining_enemies_num <= 0:
+			break
+		
 		var remaining_spawners: int = num_spawners - spawner_id
 		var min_enemies_num: int = max(1, remaining_enemies_num / (remaining_spawners + 1))
 		var max_enemies_num: int = min(remaining_enemies_num - remaining_spawners + 1, remaining_enemies_num / max(1, remaining_spawners - 1))
