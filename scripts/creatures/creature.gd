@@ -11,61 +11,18 @@ enum ChildEnemySpawnType { NEVER, ON_ATTACK, ON_DEATH }
 @export var projectile_prefab: PackedScene
 @export var area_of_effect_prefab: PackedScene
 
-var move_speed: float = 0:
-	get:
-		if type == CreatureType.ENEMY:
-			return move_speed
-		return move_speed + PowerupModifiers.summon_move_speed
 var type: CreatureType
-var attack_type: AttackType
+var stats: CreaturePropertiesLoader.CreatureStats
+var assets: CreaturePropertiesLoader.CreatureAssets
+var behaviours: CreaturePropertiesLoader.CreatureBehaviours
+
 var current_health: float
-var damage: float:
-	get:
-		if type == CreatureType.ENEMY:
-			return damage
-		return damage + PowerupModifiers.summon_damage
-var range: float:
-	get:
-		if type == CreatureType.ENEMY:
-			return range
-		return range + (PowerupModifiers.summon_melee_range if attack_type == AttackType.MELEE else PowerupModifiers.summon_melee_range)
-var attack_speed: float:
-	get:
-		if type == CreatureType.ENEMY:
-			return attack_speed
-		return attack_speed + PowerupModifiers.summon_attack_speed
-var shield: float
-var crit_chance: float:
-	get:
-		if type == CreatureType.ENEMY:
-			return crit_chance
-		return crit_chance + PowerupModifiers.summon_crit_chance
-var crit_damage: float:
-	get:
-		if type == CreatureType.ENEMY:
-			return crit_damage
-		return crit_damage + PowerupModifiers.summon_crit_damage
-var die_on_attack: bool = false
-# NOTE: these make sense only for enemy creatures
-var child_enemy_spawn_enemy_type: String
-var child_enemy_spawn_type: ChildEnemySpawnType
-
-var death_sound: AudioStreamWAV
-var hit_sound: AudioStream
-
-var aoe_sprite: Texture2D
-var shield_sprite: Texture2D
-
-var movement: BaseMovement = BaseMovement.new()
-var targeter: BaseTargeter = BaseTargeter.new()
-var attack_targeter: BaseAttackTargeter = BaseAttackTargeter.new()
-
+var current_shield: float
 var room: Room
-
-var _sfx_audio_player: SFXAudioPlayer
 
 @onready var _player: Player = get_tree().get_nodes_in_group("player")[0] as Player
 var _attack_cooldown: float = 0
+var _sfx_audio_player: SFXAudioPlayer
 
 func _ready():
 	assert(animated_sprite != null)
@@ -79,8 +36,8 @@ func _process(delta):
 		# Creature is dead, don't do anything other than finishing death animation
 		return
 		
-	if shield > 0:
-		($Shield as Shield).set_sprite(shield_sprite)
+	if current_shield > 0:
+		($Shield as Shield).set_sprite(assets.shield_sprite)
 		$Shield.show()
 	else:
 		$Shield.hide()
@@ -94,7 +51,7 @@ func _process(delta):
 	ally_creatures.assign(get_tree().get_nodes_in_group(_own_group))
 	ally_creatures = ally_creatures.filter(func (c): return c != self)
 	
-	var target: Target = targeter.compute_target(
+	var target: Target = behaviours.targeter.compute_target(
 		global_position,
 		enemy_creatures,
 		ally_creatures,
@@ -103,7 +60,7 @@ func _process(delta):
 	
 	var has_target: bool = target != null
 	
-	var direction = movement.compute_next_direction(
+	var direction = behaviours.movement.compute_next_direction(
 		global_position,
 		target.position if has_target else Vector2.ZERO,
 		has_target,
@@ -112,7 +69,7 @@ func _process(delta):
 	)
 	
 	_attack_cooldown = max(0, _attack_cooldown - delta)  # NOTE: this way the first frame attacking after a long pause moving will always be a hit
-	var attack_targets: Array[Target] = attack_targeter.compute_target(
+	var attack_targets: Array[Target] = behaviours.attack_targeter.compute_target(
 		target,
 		global_position,
 		enemy_creatures,
@@ -120,8 +77,15 @@ func _process(delta):
 		_player.global_position
 	)
 
-	var can_attack: bool = attack_targets.filter(func (t): return t != null).any(func (t): return (t.position - global_position).length_squared() < range ** 2)
-	var can_move: bool = direction != Vector2.ZERO and (not can_attack or attack_type == AttackType.RANGED or child_enemy_spawn_type == ChildEnemySpawnType.ON_ATTACK)
+	var can_attack: bool = attack_targets\
+	.filter(func (t): return t != null)\
+	.any(func (t): return (t.position - global_position).length_squared() < stats.range ** 2)
+	var can_move: bool = (direction != Vector2.ZERO) and\
+	(
+		not can_attack or\
+		stats.attack_type == AttackType.RANGED or\
+		behaviours.child_enemy_spawn_type == ChildEnemySpawnType.ON_ATTACK
+	)
 	
 	if can_attack:
 		_process_attack(attack_targets)
@@ -140,31 +104,31 @@ func _process_attack(targets: Array[Target]):
 	if _attack_cooldown > 0 or len(targets) == 0:
 		return
 
-	var has_crit: bool = randf_range(0, 100) < crit_chance
-	var actual_damage = damage * (1 if not has_crit else min(100, crit_damage) / 100)
-	if attack_type == AttackType.HEALER:
+	var has_crit: bool = randf_range(0, 100) < stats.crit_chance
+	var actual_damage = stats.damage * (1 if not has_crit else min(100, stats.crit_damage) / 100)
+	if stats.attack_type == AttackType.HEALER:
 		actual_damage = -actual_damage
 	for target in targets:
-		_sfx_audio_player.play_sound(hit_sound)
-		if attack_type in [AttackType.MELEE, AttackType.AOE, AttackType.HEALER]:
+		_sfx_audio_player.play_sound(assets.hit_sound)
+		if stats.attack_type in [AttackType.MELEE, AttackType.AOE, AttackType.HEALER]:
 			(target.creature if target.creature else _player).receive_hit(self, actual_damage)
-		elif attack_type == AttackType.RANGED:
+		elif stats.attack_type == AttackType.RANGED:
 			_spawn_projectile(target, actual_damage)
-		elif attack_type == AttackType.AOE_BUFF_SHIELD and target.creature:
+		elif stats.attack_type == AttackType.AOE_BUFF_SHIELD and target.creature:
 			target.creature.shield += actual_damage
-	if attack_type in [AttackType.AOE, AttackType.AOE_BUFF_SHIELD]:
+	if stats.attack_type in [AttackType.AOE, AttackType.AOE_BUFF_SHIELD]:
 		_spawn_area_of_effect(actual_damage)
 		
 	# Always face first target
 	var towards_first_target = targets[0].position - global_position
 	_flip_sprite(towards_first_target)
 		
-	_attack_cooldown = 1 / attack_speed
+	_attack_cooldown = 1 / stats.attack_speed
 	
-	if type == CreatureType.ENEMY and child_enemy_spawn_type == ChildEnemySpawnType.ON_ATTACK:
+	if type == CreatureType.ENEMY and behaviours.child_enemy_spawn_type == ChildEnemySpawnType.ON_ATTACK:
 		_spawn_child_enemy()
 	
-	if die_on_attack:
+	if behaviours.die_on_attack:
 		_die()
 
 func _flip_sprite(facing_direction: Vector2):
@@ -191,8 +155,8 @@ func _spawn_area_of_effect(damage: float):
 	area_of_effect.position = global_position 
 	area_of_effect.damage = damage
 	area_of_effect.attacker_type = type
-	area_of_effect.setup_sprite(aoe_sprite)
-	area_of_effect.set_aoe_scale(Vector2(range / aoe_sprite.get_size().x, range / aoe_sprite.get_size().y))
+	area_of_effect.setup_sprite(assets.aoe_sprite)
+	area_of_effect.set_aoe_scale(Vector2(stats.range / assets.aoe_sprite.get_size().x, stats.range / assets.aoe_sprite.get_size().y))
 	
 	# NOTE: this is not the cleanest, but it works as it should
 	get_parent().add_child(area_of_effect)
@@ -200,7 +164,7 @@ func _spawn_area_of_effect(damage: float):
 func _process_move(direction: Vector2, delta: float):
 	var movement = Utils.keep_movement_in_map(
 		global_position,
-		direction.normalized() * move_speed * delta,
+		direction.normalized() * stats.speed * delta,
 		Utils.get_map_rect()
 	)
 	translate(movement)	
@@ -208,8 +172,8 @@ func _process_move(direction: Vector2, delta: float):
 
 func receive_hit(from: Creature, damage: float):
 	if damage >= 0:
-		var damage_after_shield = max(0, damage - shield)
-		shield = max(0, shield - damage)
+		var damage_after_shield = max(0, damage - current_shield)
+		current_shield = max(0, current_shield - damage)
 		current_health -= damage_after_shield
 	else:
 		# This is a heal
@@ -220,13 +184,13 @@ func receive_hit(from: Creature, damage: float):
 
 func _spawn_child_enemy(amount: int = 1):
 	for i in range(amount):
-		CreatureFactory.spawn_enemy(global_position, get_parent(), child_enemy_spawn_enemy_type, room)
+		CreatureFactory.spawn_enemy(global_position, get_parent(), behaviours.child_enemy_spawn_enemy_type, room)
 
 func _die():
 	animated_sprite.play("death")
-	_sfx_audio_player.play_sound(death_sound, true)
+	_sfx_audio_player.play_sound(assets.death_sound, true)
 	room.creature_died(self)
-	if type == CreatureType.ENEMY and child_enemy_spawn_type == ChildEnemySpawnType.ON_DEATH:
+	if type == CreatureType.ENEMY and behaviours.child_enemy_spawn_type == ChildEnemySpawnType.ON_DEATH:
 		# NOTE: this is hardcoded (since we have a single enemy with this behaviour) but time is a scarce resource
 		_spawn_child_enemy(2)
 	# Avoid being targeted by other creatures while dying
