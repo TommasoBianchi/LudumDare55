@@ -6,6 +6,7 @@ extends Node
 @export var game_over_ui_prefab: PackedScene
 @export var countdown_ui_prefab: PackedScene = preload("res://scenes/countdown.tscn")
 @export var win_ui_prefab: PackedScene = preload("res://scenes/win_display.tscn")
+@export var camera_scroll_prefab: PackedScene = preload("res://scenes/camera_scroll.tscn")
 @export var all_room_data: Array[RoomData]
 @export var room_start_timer: Timer
 @export var room_start_time: int = 3
@@ -25,10 +26,12 @@ func setup_room(id: int):
 	_current_room.setup()
 	_current_room.on_room_cleared.connect(_on_current_room_cleared)
 	_current_room.on_player_died.connect(_on_player_died)
-	room_start_timer.start(room_start_time)
-	var countdown_ui: CountdownUI = countdown_ui_prefab.instantiate()
-	add_child(countdown_ui)
-	countdown_ui.start(room_start_time)
+	
+	if id == 0:
+		room_start_timer.start(room_start_time)
+		var countdown_ui: CountdownUI = countdown_ui_prefab.instantiate()
+		add_child(countdown_ui)
+		countdown_ui.start(room_start_time)
 
 func _on_current_room_cleared():
 	if _current_room.on_room_cleared.is_connected(_on_current_room_cleared):
@@ -101,8 +104,22 @@ func _go_to_main_menu():
 func _on_powerup_selected(powerup: PowerUp):
 	powerup.activate()
 	_collected_powerups.append(powerup)
-	_current_room.queue_free()
-	setup_room(_current_room_id + 1)
+	var camera_scroll: CameraScroll = camera_scroll_prefab.instantiate()
+	add_child(camera_scroll)
+	camera_scroll.scroll_towards(
+		Vector2.UP * get_viewport().size.y * 2,  # direction
+		3,  # duration
+		# on_mid_scroll
+		func ():
+			_current_room.queue_free()
+			setup_room(_current_room_id + 1),
+		# on_finished
+		func ():
+			room_start_timer.start(room_start_time)
+			var countdown_ui: CountdownUI = countdown_ui_prefab.instantiate()
+			add_child(countdown_ui)
+			countdown_ui.start(room_start_time)
+	)
 
 func _on_room_start_timer_timeout():
 	_current_room.start()

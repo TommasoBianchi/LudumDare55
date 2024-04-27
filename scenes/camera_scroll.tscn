@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://sgnhbvuamhst"]
+
+[ext_resource type="Script" path="res://scripts/vfx/camera_scroll.gd" id="1_sx353"]
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2(960, 540)
+script = ExtResource("1_sx353")
